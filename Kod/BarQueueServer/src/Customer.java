@@ -28,7 +28,7 @@ public class Customer {
             System.out.println("Removed "+item.getName()+" for "+name);
         }
         public void showOrder(){
-            System.out.println(name+": ");
+            System.out.println("Customer "+name+": ");
             for (MenuItem value :order) {
                 System.out.println(value.getName());
             }
@@ -45,6 +45,7 @@ public class Customer {
         }
         //sends in the current order to the bar
         public void sendOrder(){
+            main.q.enqueue(name);
             System.out.println(name+"'s order sent!");
         }
 

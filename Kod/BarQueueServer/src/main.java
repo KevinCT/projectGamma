@@ -1,4 +1,5 @@
 public class main{
+    public static Queue q = new Queue();
     public static void main(String[]args){
         MenuItem vodka = new MenuItem("Vodka");
         MenuItem whiskey = new MenuItem("Whiskey");
@@ -6,18 +7,11 @@ public class main{
         MenuItem pinacolada = new MenuItem("Pina Colada");
         MenuItem fruittingle = new MenuItem("Fruit Tingle");
 
-        Queue q = new Queue();
         Customer kevin = new Customer("Kevin");
         Customer nguyen = new Customer("Long");
         Customer carlos = new Customer("Carlos");
         Customer petros = new Customer("Petros");
         Customer jenny= new Customer("Jenny");
-
-        q.enqueue(kevin);
-        q.enqueue(nguyen);
-        q.enqueue(carlos);
-        q.enqueue(petros);
-        q.enqueue(jenny);
 
         kevin.addItem(vodka);
         kevin.addItem(redbull);
@@ -32,7 +26,20 @@ public class main{
         jenny.removeItem(fruittingle);
 
         jenny.sendOrder();
+        kevin.sendOrder();
+        nguyen.sendOrder();
+        petros.sendOrder();
+        carlos.sendOrder();
 
         carlos.showOrder();
+        petros.showOrder();
+        jenny.showOrder();
+
+        System.out.println(q.peek());
+
+        for (int i=1;i<=q.getSize();i++) {
+            System.out.print("Position "+i+": ");
+            System.out.println(q.getCustomer(i-1));
+        }
     }
 }
