@@ -1,11 +1,11 @@
 public class main{
     public static Queue q = new Queue();
     public static void main(String[]args){
-        MenuItem vodka = new MenuItem("Vodka");
-        MenuItem whiskey = new MenuItem("Whiskey");
-        MenuItem redbull = new MenuItem("Redbull");
-        MenuItem pinacolada = new MenuItem("Pina Colada");
-        MenuItem fruittingle = new MenuItem("Fruit Tingle");
+        Product vodka = new Product("Vodka","Alcohol",20);
+        Product whiskey = new Product("Whiskey","Alcohol",20);
+        Product redbull = new Product("Redbull","Alcohol",20);
+        Product pinacolada = new Product("Pina Colada","Alcohol",20);
+        Product fruittingle = new Product("Fruit Tingle","Alcohol",20);
 
         Customer kevin = new Customer("Kevin");
         Customer nguyen = new Customer("Long");

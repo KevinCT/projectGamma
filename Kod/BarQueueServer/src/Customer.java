@@ -4,7 +4,7 @@ import java.util.List;
 public class Customer {
 
         public String name;
-        public List<MenuItem>order = new ArrayList<MenuItem>();
+        public List<Product>order = new ArrayList<Product>();
         //Constructor that sets name of customer
         public Customer(String name){
 
@@ -18,20 +18,29 @@ public class Customer {
 
         }
         //Adds an item to customer's order
-        public void addItem(MenuItem item){
+        public void addItem(Product item){
             order.add(item);
             System.out.println("Added "+item.getName()+" for "+name);
         }
         //Removes an item from customer's order specified by order element index
-        public void removeItem(MenuItem item){
+        public void removeItem(Product item){
             order.remove(order.indexOf(item));
             System.out.println("Removed "+item.getName()+" for "+name);
         }
         public void showOrder(){
+
             System.out.println("Customer "+name+": ");
-            for (MenuItem value :order) {
+
+
+                int totalCost = 0;
+                System.out.println(name + ": ");
+
+            for (Product value :order) {
+
                 System.out.println(value.getName());
+                totalCost=totalCost+value.getPrice();
             }
+            System.out.println("Amount to pay:"+ totalCost +"kr");
         }
         //Removes all items and resets the order
         public void resetOrder(){
