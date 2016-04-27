@@ -19,8 +19,8 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
     public DatabaseManagerBar() {
     }
 
-    //@Override
-    //public Order getOrder() {}
+    @Override
+    public Order getOrder() {}
 
     @Override
     public void sendNotifications() {

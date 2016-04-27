@@ -5,7 +5,7 @@ package service;
  */
 public interface IDatabaseManagerBar extends IDatabaseManager {
 
-    //public Order getOrder();
+    public Order getOrder();
 
     public void sendNotifications();
 
