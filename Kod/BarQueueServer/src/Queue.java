@@ -34,12 +34,12 @@ public class Queue {
         //   remove it from the list.
         // Note: list.get(...) returns null if item not found at
         //   specified index. See postcondition.
-        Object item = list.get(1);
+        Object item = list.get(0);
         // Remove the item from the list.
         // My implementation of the linked list is based on the
         //   J2SE API reference. In both, elements start at 1,
         //   unlike arrays which start at 0.
-        list.remove(1);
+        list.remove(0);
 
         // Return the item
         return item;
@@ -53,6 +53,14 @@ public class Queue {
     {
         // This method is very similar to dequeue().
         // See Queue.dequeue() for comments.
-        return list.get(1);
+        return list.get(0);
+    }
+
+    public int getSize(){
+        return list.size();
+    }
+
+    public Object getCustomer(int i){
+        return list.get(i);
     }
 }

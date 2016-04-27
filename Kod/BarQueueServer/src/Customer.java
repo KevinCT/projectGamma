@@ -28,9 +28,15 @@ public class Customer {
             System.out.println("Removed "+item.getName()+" for "+name);
         }
         public void showOrder(){
-            int totalCost=0;
-            System.out.println(name+": ");
+
+            System.out.println("Customer "+name+": ");
+
+
+                int totalCost = 0;
+                System.out.println(name + ": ");
+
             for (Product value :order) {
+
                 System.out.println(value.getName());
                 totalCost=totalCost+value.getPrice();
             }
@@ -48,6 +54,7 @@ public class Customer {
         }
         //sends in the current order to the bar
         public void sendOrder(){
+            main.q.enqueue(name);
             System.out.println(name+"'s order sent!");
         }
 
