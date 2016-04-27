@@ -13,8 +13,8 @@ import pekl.gasqueue.com.gasqueue.Product;
  */
 public class DatabaseManagerCustomer implements IDatabaseManagerCustomer {
 
-    private static Firebase databaseReference = new Firebase("https://dazzling-torch-9680.firebaseio.com/");
-    private static Firebase ordersReference = databaseReference.child("Orders");
+    private Firebase databaseReference = new Firebase("https://dazzling-torch-9680.firebaseio.com/");
+    private Firebase ordersReference = databaseReference.child("Orders");
 
     public DatabaseManagerCustomer() {
 
