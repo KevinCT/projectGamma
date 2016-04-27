@@ -5,9 +5,9 @@ package service;
  */
 public interface IDatabaseManagerCustomer extends IDatabaseManager {
 
-    //public void placeOrder(Order order);
+    public void placeOrder(Order order);
 
-    //public void cancelOrder(Order order);
+    public void cancelOrder(Order order);
 
     public int getPosition(String clientID);
 
