@@ -13,14 +13,15 @@ import service.DatabaseManagerCustomer;
 import static java.security.AccessController.getContext;
 
 public class Customer {
-
+    private String clientID = "APA";
     public String name;
     public List<Product> order = new ArrayList<Product>();
     private static DatabaseManagerCustomer dbManager = new DatabaseManagerCustomer();
-    private final static String clientID = Secure.getString(getContext().getContentResolver(),
-            Secure.ANDROID_ID); //Måste testas
+   // private final static String clientID = Secure.getString(getContext().getContentResolver(),
+     //       Secure.ANDROID_ID); //Måste testas
 
     public Customer() {
+
     }
     //Returns the name of the customer
     public String getName(){
