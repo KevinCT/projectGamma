@@ -21,6 +21,7 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
         Button vodkaBtn = (Button) findViewById(R.id.vodkaBtn);
         Button whiskeyBtn = (Button) findViewById(R.id.whiskeyBtn);
