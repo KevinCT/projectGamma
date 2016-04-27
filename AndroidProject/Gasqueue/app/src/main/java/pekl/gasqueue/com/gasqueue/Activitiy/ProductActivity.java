@@ -15,8 +15,8 @@ import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class ProductActivity extends AppCompatActivity {
-
     private Customer customer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class ProductActivity extends AppCompatActivity {
         Button vodkaBtn = (Button) findViewById(R.id.vodkaBtn);
         Button whiskeyBtn = (Button) findViewById(R.id.whiskeyBtn);
         Button sendOrderBtn=(Button) findViewById(R.id.sendOrderBtn);
-        customer = new Customer();
+        customer=new Customer();
         final Product vodka = new Product("vodka","alcohol",20);
         final Product whiskey = new Product("whiskey","alcohol",20);
 
