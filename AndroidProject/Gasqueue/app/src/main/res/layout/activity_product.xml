@@ -34,8 +34,8 @@
         <Button
             android:layout_width="170dp"
             android:layout_height="120dp"
-            android:text="New Button"
-            android:id="@+id/button4"
+            android:text="Order"
+            android:id="@+id/sendOrderBtn"
             android:layout_row="1"
             android:layout_column="0"
             />

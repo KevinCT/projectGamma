@@ -23,6 +23,7 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
 
     @Override
     public List<Product> getOrder() {
+        return null;
     }
 
     @Override
