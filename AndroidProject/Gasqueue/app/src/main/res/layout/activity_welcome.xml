@@ -9,4 +9,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pekl.gasqueue.com.gasqueue.Activitiy.WelcomeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Välkommen till Gasqueue"
+        android:id="@+id/welcomeTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/inputCodeField"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Var vänlig skriv in koden nedan"
+        android:id="@+id/inputTextView"
+        android:layout_marginTop="69dp"
+        android:layout_below="@+id/welcomeTextView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
