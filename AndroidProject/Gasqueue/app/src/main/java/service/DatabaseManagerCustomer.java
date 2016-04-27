@@ -2,7 +2,11 @@ package service;
 
 import com.firebase.client.Firebase;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import pekl.gasqueue.com.gasqueue.Product;
 
 /**
  * Created by Petros on 2016-04-27.
@@ -16,9 +20,9 @@ public class DatabaseManagerCustomer implements IDatabaseManagerCustomer {
 
     }
 
-    //@Override
-    public void placeOrder(String clientID, Order order) {
-        Map<String, Order> newOrder = new HashMap<String, Order>();
+    @Override
+    public void placeOrder(String clientID, List<Product> order) {
+        Map<String, List<Product>> newOrder = new HashMap<String, List<Product>>();
         newOrder.put(clientID, order);
         ordersReference.setValue(newOrder);
     }

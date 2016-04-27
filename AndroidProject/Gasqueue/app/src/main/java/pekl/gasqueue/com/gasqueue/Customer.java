@@ -3,18 +3,24 @@ package pekl.gasqueue.com.gasqueue;
 /**
  * Created by kevin on 19/04/2016.
  */
+
+
+import android.provider.Settings.Secure;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import service.DatabaseManagerCustomer;
+import static java.security.AccessController.getContext;
+
 public class Customer {
 
     public String name;
-    public List<Product>order = new ArrayList<Product>();
-    //Constructor that sets name of customer
-    public Customer(String name){
+    public List<Product> order = new ArrayList<Product>();
+    private static DatabaseManagerCustomer dbManager = new DatabaseManagerCustomer();
+    private final static String clientID = Secure.getString(getContext().getContentResolver(),
+            Secure.ANDROID_ID); //Måste testas
 
-        this.name = name;
-
+    public Customer() {
     }
     //Returns the name of the customer
     public String getName(){
@@ -53,7 +59,7 @@ public class Customer {
     }
     //sends in the current order to the bar
     public void sendOrder(){
-        System.out.println(name+"'s order sent!");
+        dbManager.placeOrder(clientID, order);
     }
 
 

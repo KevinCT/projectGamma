@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pekl.gasqueue.com.gasqueue.Product;
+
 /**
  * Created by Petros on 2016-04-27.
  */
@@ -20,7 +22,8 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
     }
 
     @Override
-    public Order getOrder() {}
+    public List<Product> getOrder() {
+    }
 
     @Override
     public void sendNotifications() {
