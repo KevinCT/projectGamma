@@ -1,11 +1,9 @@
-package service;
+package pekl.gasqueue.com.gasqueue.service;
 
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.Product;
 

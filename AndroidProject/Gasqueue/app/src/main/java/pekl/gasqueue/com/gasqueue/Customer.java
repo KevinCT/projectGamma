@@ -7,13 +7,11 @@ package pekl.gasqueue.com.gasqueue;
 
 import android.provider.Settings.Secure;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import service.DatabaseManagerCustomer;
+import pekl.gasqueue.com.gasqueue.service.DatabaseManagerCustomer;
 
-public class Customer {
-    private String clientID = "APA";
-    private List<Product> order = new ArrayList<Product>();
+public class Customer implements User{
+    private String clientID = Secure.ANDROID_ID;
+    private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     private DatabaseManagerCustomer dbManager;
 
     public Customer() {
@@ -24,6 +22,15 @@ public class Customer {
     public void addItem(Product item){
         order.add(item);;
     }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    public ArrayList<Product> getOrder() {
+        return (ArrayList<Product>) order.clone(); //Rätt?
+    }
+
     //Removes an item from customer's order specified by order element index
     public void removeItem(Product item){
         order.remove(order.indexOf(item));;
@@ -46,12 +53,6 @@ public class Customer {
         StopWatch timer = new StopWatch();
 
     }
-    //sends in the current order to the bar
-    public void sendOrder(){
-        dbManager.placeOrder(clientID, order);
-    }
-
-
 
 }
 
