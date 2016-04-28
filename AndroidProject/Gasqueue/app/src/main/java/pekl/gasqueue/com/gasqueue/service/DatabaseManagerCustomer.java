@@ -1,4 +1,4 @@
-package service;
+package pekl.gasqueue.com.gasqueue.service;
 
 import com.firebase.client.Firebase;
 
@@ -22,9 +22,9 @@ public class DatabaseManagerCustomer implements IDatabaseManagerCustomer {
 
     @Override
     public void placeOrder(String clientID, List<Product> order) {
-        Map<String, List<Product>> newOrder = new HashMap<String, List<Product>>();
+        Map<String, List<Product>> newOrder = new HashMap<String, List<Product>>();//borde flyttas upp så ny inte skapas hela tiden
         newOrder.put(clientID, order);
-        ordersReference.setValue(newOrder);
+        ordersReference.setValue(newOrder); //Tar vi bort den tidigare ordern här?
     }
 
     @Override
