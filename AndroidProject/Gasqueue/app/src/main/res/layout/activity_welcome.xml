@@ -37,4 +37,13 @@
         android:layout_marginTop="69dp"
         android:layout_below="@+id/welcomeTextView"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEEROY JENKINS"
+        android:id="@+id/logInBtn"
+        android:layout_below="@+id/inputCodeField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp" />
 </RelativeLayout>
