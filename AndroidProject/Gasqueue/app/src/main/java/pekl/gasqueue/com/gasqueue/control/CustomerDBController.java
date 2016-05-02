@@ -17,6 +17,7 @@ public class CustomerDBController {
 
     public CustomerDBController() {
         new DatabaseManager(new Firebase("https://dazzling-torch-9680.firebaseio.com/")); //Referensen ska kunnas sättas dynamiskt
+        customer= new Customer();
     }
 
     public void sendOrder(){
