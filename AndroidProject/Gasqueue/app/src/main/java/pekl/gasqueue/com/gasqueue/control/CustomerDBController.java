@@ -13,6 +13,7 @@ public class CustomerDBController {
     private DatabaseManagerCustomer dbManagerCustomer = new DatabaseManagerCustomer();
 
     public CustomerDBController() {
+        customer= new Customer();
 
     }
 
