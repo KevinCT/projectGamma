@@ -1,8 +1,11 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import com.firebase.client.Firebase;
+
 import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.Product;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManagerCustomer;
+import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
  * Created by Petros on 2016-04-28.
@@ -10,19 +13,21 @@ import pekl.gasqueue.com.gasqueue.service.DatabaseManagerCustomer;
 public class CustomerDBController {
 
     private Customer customer;
-    private DatabaseManagerCustomer dbManagerCustomer = new DatabaseManagerCustomer();
+    private IDatabaseManager dbManagerCustomer;
 
     public CustomerDBController() {
-
+        new DatabaseManager(new Firebase("https://dazzling-torch-9680.firebaseio.com/")); //Referensen ska kunnas sättas dynamiskt
+        customer= new Customer();
     }
 
     public void sendOrder(){
-        dbManagerCustomer.placeOrder(customer.getClientID(), customer.getOrder());
+        dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
+        orderSent(true); //Lägg till metod senare.
     }
 
     public void cancelOrder() {
         customer.resetOrder();
-        dbManagerCustomer.placeOrder(customer.getClientID(), customer.getOrder());
+        dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
     }
 
     public void addItem(Product product) {
