@@ -2,6 +2,10 @@ package pekl.gasqueue.com.gasqueue.control;
 
 import com.firebase.client.Firebase;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
@@ -21,20 +25,20 @@ public class CustomerDBController {
     }
 
     public void sendOrder(){
-        dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
+        Map<String, List<Product>> map = new HashMap<>();
+        map.put(customer.getClientID(),customer.getOrder());
+        dbManagerCustomer.saveMap("Orders", map);
         //customer.orderSent(true);
         //Lägg till metod senare.
     }
 
     public void cancelOrder() {
         customer.resetOrder();
-        dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
+        //dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
     }
 
     public void addItem(Product product) {
         customer.addItem(product);
     }
-
-
 
 }

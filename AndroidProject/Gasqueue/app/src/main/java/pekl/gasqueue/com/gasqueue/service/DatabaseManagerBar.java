@@ -37,13 +37,19 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
         banListReference.push().setValue(bannedUser);
     }
 
+
     @Override
-    public void saveMap(String address, Map<String, Object> map) {
+    public void saveMap(String address, Map<String, List<Product>> map) {
 
     }
 
     @Override
-    public void addToMap(String address, String clientID, Object object) {
+    public void addToMap(String address, String clientID, List<Product> list) {
 
+    }
+
+    @Override
+    public boolean checkCode(String barCode) {
+        return false;
     }
 }
