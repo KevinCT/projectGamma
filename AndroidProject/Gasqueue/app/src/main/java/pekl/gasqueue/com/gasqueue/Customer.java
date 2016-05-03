@@ -13,7 +13,7 @@ public class Customer implements User{
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     private DatabaseManagerCustomer dbManager;
-
+    public StopWatch timer;
     public Customer() {
         this.dbManager = new DatabaseManagerCustomer();
     }
@@ -49,8 +49,8 @@ public class Customer implements User{
         order.clear();
     }
     //creates a 60 second timer
-    public void timer(){
-        StopWatch timer = new StopWatch();
+    public void startTimer(){
+        timer.run();
 
     }
 
