@@ -48,8 +48,8 @@ public class Customer implements User{
         order.clear();
     }
     //creates a 60 second timer
-    public void timer(){
-        StopWatch timer = new StopWatch();
+    public void startTimer(){
+        timer.run();
 
     }
 

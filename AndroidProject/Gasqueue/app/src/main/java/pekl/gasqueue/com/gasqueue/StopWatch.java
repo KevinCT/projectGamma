@@ -11,7 +11,7 @@ public class StopWatch {
     static int interval;
     static Timer timer;
 
-    public static void main(String[] args) {
+    public void run() {
         Scanner sc = new Scanner(System.in);
         int delay = 1000;
         int period = 1000;
