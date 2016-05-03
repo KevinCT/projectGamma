@@ -1,6 +1,9 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,11 +28,52 @@ public class CustomerDBController {
     }
 
     public void sendOrder(){
-        Map<String, List<Product>> map = new HashMap<>();
-        map.put(customer.getClientID(),customer.getOrder());
-        dbManagerCustomer.saveMap("Orders", map);
+        if(!customer.isBanned()) {
+            Map<String, List<Product>> map = new HashMap<>();
+            map.put(customer.getClientID(), customer.getOrder());
+            dbManagerCustomer.saveMap("Orders", map);
+        }
         //customer.orderSent(true);
         //Lägg till metod senare.
+    }
+
+    public void updateBanState() {
+
+        Firebase ref = new Firebase("Referencevärde till bannlistan");
+
+        ref.addChildEventListener(new ChildEventListener() {
+            // Retrieve new posts as they are added to the database
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+                String id = snapshot.getValue(String.class);
+                if (id.equals(customer.getClientID())) {
+                    customer.setBan(true);
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String id = snapshot.getValue(String.class);
+                if (id.equals(customer.getClientID())) {
+                    customer.setBan(false);
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
     public void cancelOrder() {
