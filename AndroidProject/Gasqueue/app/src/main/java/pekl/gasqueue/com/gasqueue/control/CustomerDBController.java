@@ -15,14 +15,15 @@ public class CustomerDBController {
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
 
-    public CustomerDBController() {
-        new DatabaseManager(new Firebase("https://dazzling-torch-9680.firebaseio.com/")); //Referensen ska kunnas sättas dynamiskt
-        customer= new Customer();
+    public CustomerDBController(String databaseReference) {
+        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference)); //Referensen ska kunnas sättas dynamiskt
+        customer = new Customer();
     }
 
     public void sendOrder(){
         dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
-        orderSent(true); //Lägg till metod senare.
+        //customer.orderSent(true);
+        //Lägg till metod senare.
     }
 
     public void cancelOrder() {
@@ -33,5 +34,7 @@ public class CustomerDBController {
     public void addItem(Product product) {
         customer.addItem(product);
     }
+
+
 
 }

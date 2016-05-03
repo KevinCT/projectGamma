@@ -27,7 +27,7 @@ public class ProductActivity extends AppCompatActivity {
         Button vodkaBtn = (Button) findViewById(R.id.vodkaBtn);
         Button whiskeyBtn = (Button) findViewById(R.id.whiskeyBtn);
         Button sendOrderBtn=(Button) findViewById(R.id.sendOrderBtn);
-        this.customerDB = new CustomerDBController();
+        this.customerDB = new CustomerDBController("https://dazzling-torch-9680.firebaseio.com/");
         final Product vodka = new Product("vodka","alcohol",20);
         final Product whiskey = new Product("whiskey","alcohol",20);
 

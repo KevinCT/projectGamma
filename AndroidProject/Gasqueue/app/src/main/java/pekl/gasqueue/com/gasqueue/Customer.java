@@ -12,10 +12,9 @@ import pekl.gasqueue.com.gasqueue.service.DatabaseManagerCustomer;
 public class Customer implements User{
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
-    private DatabaseManagerCustomer dbManager;
 
     public Customer() {
-        this.dbManager = new DatabaseManagerCustomer();
+
     }
 
     //Adds an item to customer's order
