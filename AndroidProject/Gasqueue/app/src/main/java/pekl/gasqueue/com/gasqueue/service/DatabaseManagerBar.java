@@ -4,6 +4,7 @@ import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.Product;
 
@@ -34,5 +35,21 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
         List<String> bannedUser = new ArrayList<String>();
         bannedUser.add(clientID);
         banListReference.push().setValue(bannedUser);
+    }
+
+
+    @Override
+    public void saveMap(String address, Map<String, List<Product>> map) {
+
+    }
+
+    @Override
+    public void addToMap(String address, String clientID, List<Product> list) {
+
+    }
+
+    @Override
+    public boolean checkCode(String barCode) {
+        return false;
     }
 }

@@ -44,4 +44,20 @@ public class DatabaseManagerCustomer implements IDatabaseManagerCustomer {
     public boolean isNotBanned(String clientID) {
         return false;
     }
+
+    @Override
+    public void saveMap(String address, Map<String, List<Product>> map) {
+
+    }
+
+    @Override
+    public void addToMap(String address, String clientID, List<Product> list) {
+
+    }
+
+    @Override
+    public boolean checkCode(String barCode) {
+        return false;
+    }
+
 }

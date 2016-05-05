@@ -4,18 +4,16 @@ package pekl.gasqueue.com.gasqueue;
  * Created by kevin on 19/04/2016.
  */
 
-
 import android.provider.Settings.Secure;
 import java.util.ArrayList;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManagerCustomer;
 
 public class Customer implements User{
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
-    private DatabaseManagerCustomer dbManager;
-    public StopWatch timer;
+    StopWatch timer = new StopWatch();
+
     public Customer() {
-        this.dbManager = new DatabaseManagerCustomer();
+
     }
 
     //Adds an item to customer's order
@@ -55,4 +53,3 @@ public class Customer implements User{
     }
 
 }
-
