@@ -41,5 +41,9 @@ public class main{
             System.out.print("Position "+i+": ");
             System.out.println(q.getCustomer(i-1));
         }
+
+        carlos.resetOrder();
+
+        jenny.startTimer();
     }
 }
