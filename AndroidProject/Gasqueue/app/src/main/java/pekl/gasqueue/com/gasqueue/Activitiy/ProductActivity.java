@@ -13,6 +13,7 @@ import com.firebase.client.ValueEventListener;
 import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
 public class ProductActivity extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class ProductActivity extends AppCompatActivity {
         this.customerDB = new CustomerDBController("https://dazzling-torch-9680.firebaseio.com/");
         final Product vodka = new Product("vodka","alcohol",20);
         final Product whiskey = new Product("whiskey","alcohol",20);
+
+
 
 
 
