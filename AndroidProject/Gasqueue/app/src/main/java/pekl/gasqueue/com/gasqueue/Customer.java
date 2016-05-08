@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Customer implements User{
 
+    private boolean orderSent;
     private boolean banned;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
@@ -20,7 +21,7 @@ public class Customer implements User{
 
     //Adds an item to customer's order
     public void addItem(Product item){
-        order.add(item);;
+        order.add(item);
     }
 
     public String getClientID() {
@@ -41,7 +42,7 @@ public class Customer implements User{
 
     //Removes an item from customer's order specified by order element index
     public void removeItem(Product item){
-        order.remove(order.indexOf(item));;
+        order.remove(order.indexOf(item));
     }
     public void showOrder(){
         int totalCost=0;
@@ -59,7 +60,14 @@ public class Customer implements User{
     //creates a 60 second timer
     public void startTimer(){
         timer.run();
+    }
 
+    public void setOrderStatus(Boolean orderSent) {
+        this.orderSent = orderSent;
+    }
+
+    public boolean isOrderSent() {
+        return orderSent;
     }
 
 }
