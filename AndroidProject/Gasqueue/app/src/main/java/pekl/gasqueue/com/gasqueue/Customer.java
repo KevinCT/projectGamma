@@ -8,6 +8,8 @@ import android.provider.Settings.Secure;
 import java.util.ArrayList;
 
 public class Customer implements User{
+
+    private boolean banned;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     StopWatch timer = new StopWatch();
@@ -23,6 +25,14 @@ public class Customer implements User{
 
     public String getClientID() {
         return clientID;
+    }
+
+    public void setBan(Boolean banState) {
+        this.banned = banState;
+    }
+
+    public boolean isBanned() {
+        return banned;
     }
 
     public ArrayList<Product> getOrder() {
