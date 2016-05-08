@@ -17,7 +17,7 @@ public class AuthenticatorController {
 
     public AuthenticatorController(){
         targetReference= databaseReference.child("Authenticator");
-        authenticator = new Authenticator();
+        authenticator = new Authenticator("change later", "change later");
 
     }
     //avoid conflicts
