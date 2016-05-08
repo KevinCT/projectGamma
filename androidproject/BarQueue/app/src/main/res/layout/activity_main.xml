@@ -24,19 +24,21 @@
         android:layout_height="wrap_content"
         android:text="Vodka"
         android:id="@+id/vodkaButton"
-        android:layout_marginBottom="95dp"
-        android:layout_above="@+id/whiskeyButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/chooseTitle"
+        android:layout_toLeftOf="@+id/drinkChoice"
+        android:layout_toStartOf="@+id/drinkChoice"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Whiskey"
         android:id="@+id/whiskeyButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/vodkaButton"
-        android:layout_alignStart="@+id/vodkaButton"
-        android:layout_marginBottom="154dp" />
+        android:layout_alignTop="@+id/vodkaButton"
+        android:layout_toRightOf="@+id/chooseTitle"
+        android:layout_toEndOf="@+id/chooseTitle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,5 +48,77 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Who are you?"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/vodkaButton"
+        android:layout_alignEnd="@+id/vodkaButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/nameText"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="42dp"
+        android:autoText="false"
+        android:contextClickable="false"
+
+        android:hint="Enter Name Here" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Order"
+        android:id="@+id/submitButton"
+        android:layout_above="@+id/drinkChoice"
+        android:layout_alignLeft="@+id/vodkaButton"
+        android:layout_alignStart="@+id/vodkaButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/chosenView"
+        android:layout_above="@+id/vodkaButton"
+        android:layout_toRightOf="@+id/submitButton"
+        android:layout_toEndOf="@+id/submitButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Queue"
+        android:id="@+id/viewQueueButton"
+        android:layout_above="@+id/drinkChoice"
+        android:layout_toRightOf="@+id/nameText"
+        android:layout_toEndOf="@+id/nameText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Push Queue"
+        android:id="@+id/pushButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/submitButton"
+        android:layout_alignStart="@+id/submitButton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel Waiting Guest"
+        android:id="@+id/cancelButton"
+        android:layout_alignTop="@+id/pushButton"
+        android:layout_toRightOf="@+id/chosenView"
+        android:layout_toEndOf="@+id/chosenView" />
 
 </RelativeLayout>
