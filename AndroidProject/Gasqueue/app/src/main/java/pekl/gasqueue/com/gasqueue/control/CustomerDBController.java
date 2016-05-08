@@ -58,10 +58,10 @@ public class CustomerDBController {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-               /* String id = snapshot.getValue(String.class);
+                String id = snapshot.getValue(String.class);
                 if (id.equals(customer.getClientID())) {
                     customer.setBan(false);
-                }*/
+                }
             }
 
             @Override
