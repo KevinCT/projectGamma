@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 public class Customer {
-
+        public StopWatch timer;
         public String name;
         public List<Product>order = new ArrayList<Product>();
         //Constructor that sets name of customer
         public Customer(String name){
-
+            this.timer = new StopWatch();
             this.name = name;
 
         }
@@ -48,8 +48,10 @@ public class Customer {
             System.out.println(name+"'s order cleared");
         }
         //creates a 60 second timer
-        public void timer(){
-            StopWatch timer = new StopWatch();
+
+        public void startTimer(){
+            String[] arguments = new String[] {"123"};
+            timer.main(arguments);
 
         }
         //sends in the current order to the bar
