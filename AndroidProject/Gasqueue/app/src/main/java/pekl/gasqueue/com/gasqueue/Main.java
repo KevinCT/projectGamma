@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Customer eric = new Customer();
         QueueController qc = new QueueController();
-        
+
         qc.nextCustomer(eric);
     }
 }

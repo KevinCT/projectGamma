@@ -44,6 +44,7 @@ public class Customer implements User{
     public void removeItem(Product item){
         order.remove(order.indexOf(item));
     }
+    //ska väl inte finnas någon system print metod
     public void showOrder(){
         int totalCost=0;
 
