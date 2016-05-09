@@ -1,62 +1,63 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import android.view.View;
+
 import pekl.gasqueue.com.gasqueue.Customer;
+import pekl.gasqueue.com.gasqueue.Menu;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
     private CustomerDBController customerDB;
-
+    private List<Product> productsSameCategory;
+    private Menu tempMenu = new Menu();
+    private Map<Button, Product> productMap;
+    private Product tempProduct = new Product();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        productsSameCategory = new ArrayList<>();
+        productsSameCategory = tempMenu.getProductsSameCategory();
+        productMap = new HashMap<>();
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
-        Button vodkaBtn = (Button) findViewById(R.id.vodkaBtn);
-        Button whiskeyBtn = (Button) findViewById(R.id.whiskeyBtn);
-        Button sendOrderBtn=(Button) findViewById(R.id.sendOrderBtn);
-        this.customerDB = new CustomerDBController("https://dazzling-torch-9680.firebaseio.com/");
-        final Product vodka = new Product("vodka","alcohol",20);
-        final Product whiskey = new Product("whiskey","alcohol",20);
+        //this.customerDB = new CustomerDBController();
 
+        GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
+        listLayout.removeAllViews();
+        for (int i = 0; i < productsSameCategory.size(); i++) {
+            Button button = new Button(this);
+            button.setText(productsSameCategory.get(i).getName());
+            productMap.put(button, productsSameCategory.get(i));
+            button.setOnClickListener(this);
+            listLayout.addView(button);
+        }
+    }
 
-
-
-
-
-        vodkaBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                customerDB.addItem(vodka);
-            }
-        });
-        whiskeyBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                customerDB.addItem(whiskey);
-            }
-        });
-
-        sendOrderBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                customerDB.sendOrder();
-            }
-        });
-
+    @Override
+    public void onClick(View view) {
+        tempProduct.setChosenProduct(productMap.get(view));
+        Intent temp = new Intent(this, ProductDetailActivity.class);
+        startActivity(temp);
 
     }
 }
