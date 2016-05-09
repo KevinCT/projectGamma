@@ -20,10 +20,12 @@ public class DatabaseManager implements IDatabaseManager {
     }
 
     @Override
-    public void saveMap(String childReference1, Map<String, List<Product>> map) {
-        Firebase targetReference = reference.child(childReference1);
+    public void saveMap(String childReference, Map<String, List<Product>> map) {
+        Firebase targetReference = reference.child(childReference);
         targetReference.setValue(map);
     }
+
+
 
     @Override
     public void addToMap(String childReference, String key, List<Product> list) { //Behövs ej tror jag
@@ -34,6 +36,19 @@ public class DatabaseManager implements IDatabaseManager {
         targetReference.updateChildren(addedObject);
          */
     }
+
+    @Override
+    public void saveStringList(String address, List<String> list) {
+        Firebase targetReference = reference.child(address);
+        targetReference.setValue(list);
+    }
+
+    @Override
+    public void addToStringList(String address, String clientID) {
+        Firebase targetReference = reference.child(address);
+        targetReference.push().setValue(clientID);
+    }
+
 
     @Override
     public boolean checkCode(String barCode) {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Customer implements User{
 
     private boolean orderSent;
-    private boolean banned;
+    private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     StopWatch timer = new StopWatch();
