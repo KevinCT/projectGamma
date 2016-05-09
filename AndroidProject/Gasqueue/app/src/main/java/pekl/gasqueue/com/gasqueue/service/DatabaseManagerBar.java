@@ -49,6 +49,16 @@ public class DatabaseManagerBar implements IDatabaseManagerBar {
     }
 
     @Override
+    public void saveStringList(String address, List<String> list) {
+
+    }
+
+    @Override
+    public void addToStringList(String address, String clientID) {
+
+    }
+
+    @Override
     public boolean checkCode(String barCode) {
         return false;
     }

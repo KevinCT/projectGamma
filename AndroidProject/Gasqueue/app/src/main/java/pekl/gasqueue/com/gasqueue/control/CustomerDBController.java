@@ -23,8 +23,9 @@ public class CustomerDBController {
     private IDatabaseManager dbManagerCustomer;
 
     public CustomerDBController(String databaseReference) {
-        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference)); //Referensen ska kunnas sättas dynamiskt
+        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference));
         customer = new Customer();
+        updateBanState();
     }
 
     public void sendOrder(){
@@ -32,17 +33,17 @@ public class CustomerDBController {
             Map<String, List<Product>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             dbManagerCustomer.saveMap("Orders", map);
+            customer.setOrderStatus(true);
         }
-        //customer.orderSent(true);
-        //Lägg till metod senare.
     }
 
     public void updateBanState() {
 
-        Firebase ref = new Firebase("Referencevärde till bannlistan");
+        Firebase ref0 = new Firebase("https://dazzling-torch-9680.firebaseio.com/");
+        Firebase ref = ref0.child("banList");
 
         ref.addChildEventListener(new ChildEventListener() {
-            // Retrieve new posts as they are added to the database
+
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
                 String id = snapshot.getValue(String.class);
@@ -53,7 +54,6 @@ public class CustomerDBController {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override

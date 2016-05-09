@@ -14,6 +14,10 @@ public interface IDatabaseManager {
 
     public void addToMap(String address, String clientID, List<Product> list);
 
+    public void saveStringList(String address, List<String> list);
+
+    public void addToStringList(String address, String clientID);
+
     public boolean checkCode(String barCode);
 
 }
