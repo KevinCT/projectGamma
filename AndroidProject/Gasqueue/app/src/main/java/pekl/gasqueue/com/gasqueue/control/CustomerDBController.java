@@ -28,7 +28,7 @@ public class CustomerDBController {
     }
 
     public void sendOrder(){
-        if(!customer.isBanned()) {
+        if(!customer.isBanned() && !customer.isOrderSent()) {
             Map<String, List<Product>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             dbManagerCustomer.saveMap("Orders", map);
@@ -58,7 +58,7 @@ public class CustomerDBController {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String id = snapshot.getValue(String.class);
+                String id = dataSnapshot.getValue(String.class);
                 if (id.equals(customer.getClientID())) {
                     customer.setBan(false);
                 }
