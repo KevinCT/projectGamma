@@ -22,6 +22,7 @@ public class Menu {
 
     public Menu()
     {
+        allProducts = new ArrayList<Product>();
         final Product vodka = new Product("vodka", Product.Category.DRINK,45);
         final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
         final Product chicken = new Product("kyckling", Product.Category.FOOD,30);
@@ -40,13 +41,9 @@ public class Menu {
 
     public List<Product> getProductsSameCategory() {
         productsSameCategory = new ArrayList<>();
-        if (chosenCategory.equals(null)) {
-            System.out.println("välja en jävla categoryrå");
-        } else {
-            for (int i = 0; i < allProducts.size(); i++) {
-                if (allProducts.get(i).getCategory().equals(chosenCategory))
-                    productsSameCategory.add(allProducts.get(i));
-            }
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getCategory().equals(chosenCategory))
+                productsSameCategory.add(allProducts.get(i));
         }
         return productsSameCategory;
     }

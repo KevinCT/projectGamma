@@ -14,7 +14,7 @@ import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class CategoryActivity extends AppCompatActivity  implements View.OnClickListener {
-    private Map<Button,String> categoryButtonMap = new HashMap<>();
+    private Map<Button,Product.Category> categoryButtonMap = new HashMap<>();
     private Menu tempMenu = new Menu();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,6 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
         alkfriaBtn.setOnClickListener(this);
         Button matBtn = (Button) findViewById(R.id.matBtn);
         matBtn.setOnClickListener(this);
-
-
-    }
-    public void buttonListener(View view){
-        Button a = (Button) view;
-        a.setText("Pripp");
     }
 
     @Override
