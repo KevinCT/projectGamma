@@ -1,4 +1,4 @@
-package service;
+package pekl.gasqueue.com.gasqueue.service;
 
 import java.util.List;
 

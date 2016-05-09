@@ -13,9 +13,11 @@ import com.firebase.client.ValueEventListener;
 import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
 public class ProductActivity extends AppCompatActivity {
-    private Customer customer;
+    private CustomerDBController customerDB;
 
 
     @Override
@@ -26,9 +28,11 @@ public class ProductActivity extends AppCompatActivity {
         Button vodkaBtn = (Button) findViewById(R.id.vodkaBtn);
         Button whiskeyBtn = (Button) findViewById(R.id.whiskeyBtn);
         Button sendOrderBtn=(Button) findViewById(R.id.sendOrderBtn);
-        customer=new Customer();
+        this.customerDB = new CustomerDBController("https://dazzling-torch-9680.firebaseio.com/");
         final Product vodka = new Product("vodka","alcohol",20);
         final Product whiskey = new Product("whiskey","alcohol",20);
+
+
 
 
 
@@ -36,20 +40,20 @@ public class ProductActivity extends AppCompatActivity {
         vodkaBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                customer.addItem(vodka);
+                customerDB.addItem(vodka);
             }
         });
         whiskeyBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                customer.addItem(whiskey);
+                customerDB.addItem(whiskey);
             }
         });
 
         sendOrderBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                customer.sendOrder();
+                customerDB.sendOrder();
             }
         });
 
