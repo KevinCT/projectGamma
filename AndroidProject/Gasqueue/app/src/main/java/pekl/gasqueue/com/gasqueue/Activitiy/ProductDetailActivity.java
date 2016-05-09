@@ -13,7 +13,7 @@ import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class ProductDetailActivity extends AppCompatActivity {
-    private Product chosenProduct;
+    private Product chosenProduct = new Product();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
