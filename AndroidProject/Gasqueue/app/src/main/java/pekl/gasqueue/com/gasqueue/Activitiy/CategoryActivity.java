@@ -6,12 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import pekl.gasqueue.com.gasqueue.Menu;
+import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class CategoryActivity extends AppCompatActivity  implements View.OnClickListener {
-
+    private Map<Button,Product.Category> categoryButtonMap = new HashMap<>();
+    private Menu tempMenu = new Menu();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         Button beerBtn = (Button) findViewById(R.id.beerBtn);
@@ -25,36 +33,28 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
         Button matBtn = (Button) findViewById(R.id.matBtn);
         matBtn.setOnClickListener(this);
     }
-    public void buttonListener(View view){
-        Button a = (Button) view;
-        a.setText("Pripp");
-    }
 
     @Override
     public void onClick(View v) {
-        Intent temp;
+        Intent temp = new Intent(this,ProductActivity.class);
         switch (v.getId())
         {
             case R.id.beerBtn:
-                temp = new Intent(this,ProductActivity.class);
-                startActivity(temp);
+                tempMenu.setChosenCategory(Product.Category.BEER);
                 break;
             case R.id.drinksBtn:
-                temp = new Intent(this,ProductActivity.class);
-                startActivity(temp);
+                tempMenu.setChosenCategory(Product.Category.DRINK);
                 break;
             case R.id.ciderBtn:
-                temp = new Intent(this,ProductActivity.class);
-                startActivity(temp);
+                tempMenu.setChosenCategory(Product.Category.CIDER);
                 break;
             case R.id.alkfriaBtn:
-                temp = new Intent(this,ProductActivity.class);
-                startActivity(temp);
+                tempMenu.setChosenCategory(Product.Category.NON_ALCOHOLIC);
                 break;
             case R.id.matBtn:
-                temp = new Intent(this,ProductActivity.class);
-                startActivity(temp);
+                tempMenu.setChosenCategory(Product.Category.FOOD);
                 break;
         }
+        startActivity(temp);
     }
 }

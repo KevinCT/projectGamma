@@ -17,18 +17,21 @@ public class AuthenticatorController {
 
     public AuthenticatorController(){
         targetReference= databaseReference.child("Authenticator");
-        authenticator = new Authenticator("change later", "change later");
+        authenticator = new Authenticator();
 
     }
     //avoid conflicts
     public void sendBarReference(){
         Map<String, String> map = new HashMap<>();
-        map.put(authenticator.getPassword(),authenticator.getDatabaseRef());
+        map.put(authenticator.getPassword(),"test");
         targetReference.setValue(map);
     }
     public String Authenticate(String password){
         return null;
 
 
+    }
+    public void setPassword(String password){
+        authenticator.setPassword(password);
     }
 }

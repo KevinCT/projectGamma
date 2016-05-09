@@ -3,15 +3,15 @@ package pekl.gasqueue.com.gasqueue;
 /**
  * Created by Kevin on 2016-05-08.
  */
+// might be useless..
 public class Authenticator {
     private String password;
     private String databaseRef;
-    public Authenticator(String password, String databaseRef){
-        this.password=password;
-        this.databaseRef=databaseRef;
+    public Authenticator(){
 
 
     }
+
     public void setPassword(String password){
         this.password=password;
     }
