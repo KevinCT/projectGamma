@@ -46,12 +46,12 @@
                 android:id="@+id/textView" />
 
             <EditText
-                android:layout_width="107dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
+                android:maxLength="2"
                 android:id="@+id/quantity" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
