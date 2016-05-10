@@ -78,7 +78,10 @@ public class CustomerDBController {
 
     public void cancelOrder() {
         customer.resetOrder();
-        //dbManagerCustomer.addToMap("Orders",customer.getClientID(), customer.getOrder());
+        if(customer.isOrderSent()) {
+            dbManagerCustomer.sendObject("cancelOrder", customer.getClientID());
+            customer.setOrderStatus(false);
+        }
     }
 
     public void addItem(Product product) {
