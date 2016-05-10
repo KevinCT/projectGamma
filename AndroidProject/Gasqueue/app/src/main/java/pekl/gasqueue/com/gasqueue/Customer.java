@@ -1,9 +1,5 @@
 package pekl.gasqueue.com.gasqueue;
 
-/**
- * Created by kevin on 19/04/2016.
- */
-
 import android.provider.Settings.Secure;
 import java.util.ArrayList;
 
@@ -13,7 +9,7 @@ public class Customer implements User{
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
-    StopWatch timer = new StopWatch();
+    public StopWatch timer = new StopWatch();
 
     public Customer() {
 
@@ -59,7 +55,7 @@ public class Customer implements User{
     }
     //creates a 60 second timer
     public void startTimer(){
-        timer.run();
+        timer.main(null);
     }
 
     public void setOrderStatus(Boolean orderSent) {

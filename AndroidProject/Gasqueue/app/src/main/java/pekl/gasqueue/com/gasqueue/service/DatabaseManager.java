@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 /**
  * Created by Petros on 2016-05-02.
@@ -23,6 +24,7 @@ public class DatabaseManager implements IDatabaseManager {
     public void saveMap(String childReference, Map<String, List<Product>> map) {
         Firebase targetReference = reference.child(childReference);
         targetReference.setValue(map);
+
     }
 
 
