@@ -34,4 +34,5 @@ public class AuthenticatorController {
     public void setPassword(String password){
         authenticator.setPassword(password);
     }
+
 }
