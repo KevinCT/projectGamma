@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue.service;
 
+import com.firebase.client.Firebase;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +18,11 @@ public interface IDatabaseManager {
 
     public void saveStringList(String address, List<String> list);
 
-    public void addToStringList(String address, String clientID);
+    public void sendObject(String address, Object object);
+
+    public Firebase createChildReference(String childReference);
+
+    //public void addUpdateListener(String address);
 
     public boolean checkCode(String barCode);
 
