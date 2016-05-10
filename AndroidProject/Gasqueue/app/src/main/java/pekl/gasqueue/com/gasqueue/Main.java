@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue;
 
+import java.util.Date;
+
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 /**
@@ -11,6 +13,10 @@ public class Main {
         QueueController qc = new QueueController();
 
         qc.nextCustomer(eric);
+        FormatDate date = new FormatDate();
+        System.out.println(date.getCurrentDate());
+
     }
+
 }
 
