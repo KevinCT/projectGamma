@@ -61,8 +61,13 @@ public class DatabaseManagerCustomer implements IDatabaseManagerCustomer {
     }
 
     @Override
-    public void addToStringList(String address, String clientID) {
+    public void sendObject(String address, Object object) {
 
+    }
+
+    @Override
+    public Firebase createChildReference(String childReference) {
+        return null;
     }
 
     @Override
