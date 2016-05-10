@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FIREBASE_URL = "https://blinding-heat-4643.firebaseio.com/";
     private Firebase FirebaseRef;
+    private Firebase c1;
+    private Firebase c2;
+    private Firebase c3;
+    private Firebase Queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Button mviewQueueButton = (Button) findViewById(R.id.viewQueueButton);
         Button mpushButton = (Button) findViewById(R.id.pushButton);
         Button mcancelButton = (Button) findViewById(R.id.cancelButton);
-        final TextView mTextChoose = (TextView) findViewById(R.id.chooseTitle);
+
         final TextView mchosenView = (TextView) findViewById(R.id.chosenView);
         final EditText mnameText = (EditText) findViewById(R.id.nameText);
         final Queue queue = new Queue();
@@ -45,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
         final StopWatch timer = new StopWatch();
 
         FirebaseRef = new Firebase(FIREBASE_URL).child("Users").child("Customers").child("TestCustomer");
+        c1 = new Firebase(FIREBASE_URL).child("Users").child("Customers").child("C1");
+        c2 = new Firebase(FIREBASE_URL).child("Users").child("Customers").child("C2");
+        c3 = new Firebase(FIREBASE_URL).child("Users").child("Customers").child("C3");
+        Queue = new Firebase(FIREBASE_URL).child("Queue");
 
         FirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Ayylmao");
                 System.out.println("You ordered a "+ dataSnapshot.getValue());
                 String drinkOrder = (String) dataSnapshot.getValue();
                 mchosenView.setText(drinkOrder);
@@ -84,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
         msubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(mnameText.toString().equals("")){
+
+
+                if(mnameText.toString().isEmpty()){
                     System.out.println("Type your name please!");
                 }
                 else{
@@ -92,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 queue.enqueue(name);
                 System.out.println("Added "+name+" to the queue!");
                 mnameText.setText("");
+                Queue.setValue(queue.list);
+
                 }
             }
         });
@@ -108,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
 
                     timer.main(null);
+                    Queue.setValue(queue.list);
                 } catch (IndexOutOfBoundsException noGuests) {
                     System.out.println("There are no guests in the current queue.");
                     }

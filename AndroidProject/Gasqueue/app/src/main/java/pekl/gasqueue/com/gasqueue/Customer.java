@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Customer implements User{
 
     private boolean orderSent;
-    private boolean banned;
+    private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     StopWatch timer = new StopWatch();
@@ -44,15 +44,14 @@ public class Customer implements User{
     public void removeItem(Product item){
         order.remove(order.indexOf(item));
     }
-    //ska väl inte finnas någon system print metod
-    public void showOrder(){
-        int totalCost=0;
 
-        for (Product value :order) {
-            System.out.println(value.getName());
-            totalCost=totalCost+value.getPrice();
+    public int getTotalCost() {
+        int totalCost = 0;
+
+        for (Product value : order) {
+            totalCost = totalCost + value.getPrice();
         }
-        System.out.println("Amount to pay:"+ totalCost +"kr");
+        return totalCost;
     }
     //Removes all items and resets the order
     public void resetOrder(){

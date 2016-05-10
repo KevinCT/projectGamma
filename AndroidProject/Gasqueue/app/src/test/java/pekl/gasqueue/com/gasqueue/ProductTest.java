@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
  * Created by Kevin on 2016-04-27.
  */
 public class ProductTest {
-    //Creating product to be tested
-        private Product product = new Product("name","cateogry",20);
+   //Creating product to be tested
+    private Product product = new Product("name",Product.Category.CIDER,20);
     @Test
     public void getNameTest(){
         String name =product.getName();
@@ -19,7 +19,7 @@ public class ProductTest {
     }
     @Test
     public void getCategoryTest(){
-        String category =product.getCategory();
+        Product.Category category =product.getCategory();
         assertEquals(category,category);
     }
     @Test
