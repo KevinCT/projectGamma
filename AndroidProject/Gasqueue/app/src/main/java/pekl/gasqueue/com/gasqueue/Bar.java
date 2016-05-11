@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pekl.gasqueue.com.gasqueue.control.QueueController;
+
 /**
  * Created by Petros on 2016-05-09.
  */
@@ -42,10 +44,12 @@ public class Bar implements User {
 
     public void addOrder(String clientID, HashMap<Product, Integer> order) { //Får läggas till en kö senare istället, eller så räcker det med att lägga in clientID i kön
         this.orders.put(clientID, order);
+        //QueueController.addToQueue();
     }
 
     public void removeOrder(String clientID) {
         this.orders.remove(clientID);
+        //QueueController.removeFromQueue();
     }
 
 }

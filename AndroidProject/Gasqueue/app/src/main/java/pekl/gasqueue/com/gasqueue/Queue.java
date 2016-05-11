@@ -8,7 +8,6 @@ public class Queue {
     public LinkedList list;
     public Object deletedGuest;
 
-
     public Queue(){
         list = new LinkedList();
     }
@@ -29,6 +28,8 @@ public class Queue {
 
         return item;
     }
+
+
 
     public Object peek(){
         return list.get(0);
