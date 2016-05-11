@@ -3,7 +3,7 @@ package com.example.user.barqueue;
 import java.util.LinkedList;
 
 public class Queue {
-    private LinkedList list;
+    public LinkedList list;
     public Object deletedGuest;
 
     // Queue constructor
@@ -12,6 +12,7 @@ public class Queue {
         // Create a new LinkedList.
         list = new LinkedList();
     }
+
 
     public boolean isEmpty()
     // Post: Returns true if the queue is empty. Otherwise, false.
