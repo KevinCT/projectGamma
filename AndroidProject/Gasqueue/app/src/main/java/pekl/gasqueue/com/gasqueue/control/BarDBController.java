@@ -22,10 +22,20 @@ public class BarDBController {
     private IDatabaseManager dbManagerBar;
     private String databaseReference;
     public QueueController qc;
+    public CustomerDBController customerDBC;
+    public int Total = 0;
+    private Firebase total = new Firebase("https://dazzling-torch-9680.firebaseio.com/").child("Total");
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
+
         updateOrders();
+    }
+
+    public void push(){
+        qc.nextCustomer();
+        Total++;
+        total.setValue(Total);
     }
 
 
@@ -38,6 +48,7 @@ public class BarDBController {
                 String onlyKey = (String) order.keySet().toArray()[0];
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 qc.queue.enqueue(onlyKey);
+
             }
 
             @Override
@@ -90,5 +101,10 @@ public class BarDBController {
 
             }
         });
+
+        public void createPositionQueue(){
+        dbManagerBar.createChildReference("Position").
     }
+    }
+
 }

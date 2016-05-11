@@ -10,7 +10,7 @@ public class Customer implements User{
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     public StopWatch timer = new StopWatch();
-
+    public int Position;
     public Customer() {
 
     }
