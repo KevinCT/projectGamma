@@ -34,6 +34,7 @@ public class CustomerDBController {
             map.put(customer.getClientID(), customer.getOrder());
             dbManagerCustomer.saveMap("Orders", map);
             customer.setOrderStatus(true);
+
         }
     }
 

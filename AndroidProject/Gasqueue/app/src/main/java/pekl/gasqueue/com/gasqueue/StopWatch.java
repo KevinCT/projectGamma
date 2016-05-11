@@ -1,17 +1,14 @@
 package pekl.gasqueue.com.gasqueue;
 
-/**
- * Created by kevin on 19/04/2016.
- */
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class StopWatch {
+public class StopWatch{
     static int interval;
     static Timer timer;
 
-    public void run() {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int delay = 1000;
         int period = 1000;
@@ -31,5 +28,17 @@ public class StopWatch {
         if (interval == 1)
             timer.cancel();
         return --interval;
+    }
+
+    public void cancelTimer(){
+        timer.cancel();
+        interval = 0;
+    }
+
+    public boolean isRunning(){
+        if (interval == 0){
+            return false;
+        }
+        else{return true;}
     }
 }
