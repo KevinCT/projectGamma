@@ -14,7 +14,7 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
  */
 public class DatabaseManager implements IDatabaseManager {
 
-    Firebase reference;
+    private Firebase reference;
 
     public DatabaseManager(Firebase reference) {
         this.reference = reference;
@@ -22,7 +22,7 @@ public class DatabaseManager implements IDatabaseManager {
 
     @Override
     public void saveMap(String childReference, Map<String, List<Product>> map) {
-        Firebase targetReference = reference.child(childReference);
+        Firebase targetReference = createChildReference(childReference);
         targetReference.setValue(map);
 
     }
@@ -41,14 +41,22 @@ public class DatabaseManager implements IDatabaseManager {
 
     @Override
     public void saveStringList(String address, List<String> list) {
-        Firebase targetReference = reference.child(address);
+        Firebase targetReference = createChildReference(address);
         targetReference.setValue(list);
     }
 
+
     @Override
-    public void addToStringList(String address, String clientID) {
-        Firebase targetReference = reference.child(address);
-        targetReference.push().setValue(clientID);
+    public void sendObject(String address, Object object) {
+        Firebase targetReference = createChildReference(address);
+        targetReference.push().setValue(object);
+    }
+
+
+    @Override
+    public Firebase createChildReference(String childReference) {
+        Firebase ref = reference.child(childReference);
+        return ref;
     }
 
 

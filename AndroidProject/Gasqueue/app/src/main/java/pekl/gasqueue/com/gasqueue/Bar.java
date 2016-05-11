@@ -18,8 +18,12 @@ import java.util.Map;
  * skicka notifikationer
  */
 public class Bar implements User {
-    Map<String, Integer> strikeMap = new HashMap<>();
+    private HashMap<String, HashMap<Product, Integer>> orders;
+    private Map<String, Integer> strikeMap = new HashMap<>();
 
+    public Bar() {
+        this.orders = new HashMap<>();
+    }
 
     public void addStrike(String clientID) {
         if(strikeMap.containsKey(clientID)) {
@@ -35,4 +39,13 @@ public class Bar implements User {
     private void banUser(String clientID) {
 
     }
+
+    public void addOrder(String clientID, HashMap<Product, Integer> order) { //Får läggas till en kö senare istället, eller så räcker det med att lägga in clientID i kön
+        this.orders.put(clientID, order);
+    }
+
+    public void removeOrder(String clientID) {
+        this.orders.remove(clientID);
+    }
+
 }
