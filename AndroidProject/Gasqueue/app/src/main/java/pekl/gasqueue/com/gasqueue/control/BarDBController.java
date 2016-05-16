@@ -21,12 +21,24 @@ public class BarDBController {
     private Bar bar;
     private IDatabaseManager dbManagerBar;
     private String databaseReference;
-
+    public QueueController qc;
+    public CustomerDBController customerDBC;
+    public int Total = 0;
+    private Firebase total = new Firebase("https://dazzling-torch-9680.firebaseio.com/").child("Total");
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
+
         updateOrders();
     }
+
+    public void push(){
+        qc.nextCustomer();
+        Total++;
+        total.setValue(Total);
+    }
+
+
 
     public void updateOrders() {
         dbManagerBar.createChildReference("Orders").addChildEventListener(new ChildEventListener() {
@@ -35,6 +47,8 @@ public class BarDBController {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 String onlyKey = (String) order.keySet().toArray()[0];
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
+                qc.queue.enqueue(onlyKey);
+
             }
 
             @Override
@@ -46,6 +60,7 @@ public class BarDBController {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 bar.removeOrder((String) order.keySet().toArray()[0]);
+                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -63,6 +78,7 @@ public class BarDBController {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String clientID = dataSnapshot.getValue(String.class);
                 bar.removeOrder(clientID);
+                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -85,5 +101,10 @@ public class BarDBController {
 
             }
         });
+
+        public void createPositionQueue(){
+        dbManagerBar.createChildReference("Position").
     }
+    }
+
 }
