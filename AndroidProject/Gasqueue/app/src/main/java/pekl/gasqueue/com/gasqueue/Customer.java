@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Customer implements User{
 
     private boolean orderSent;
+    private int queueNumber;
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
@@ -64,6 +65,14 @@ public class Customer implements User{
 
     public boolean isOrderSent() {
         return orderSent;
+    }
+
+    public int getQueueNumber() {
+        return queueNumber;
+    }
+
+    public void setQueueNumber(int queueNumber) {
+        this.queueNumber = queueNumber;
     }
 
 }

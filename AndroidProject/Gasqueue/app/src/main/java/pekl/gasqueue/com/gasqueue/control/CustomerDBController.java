@@ -4,6 +4,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class CustomerDBController {
         if(!customer.isBanned() && !customer.isOrderSent()) {
             Map<String, List<Product>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
+            updateQueueNumber();
             dbManagerCustomer.saveMap("Orders", map);
             customer.setOrderStatus(true);
 
@@ -39,9 +41,7 @@ public class CustomerDBController {
     }
 
     public void updateBanState() {
-
-        Firebase ref0 = new Firebase("https://dazzling-torch-9680.firebaseio.com/");
-        Firebase ref = ref0.child("banList");
+        Firebase ref = dbManagerCustomer.createChildReference("banList");
 
         ref.addChildEventListener(new ChildEventListener() {
 
@@ -73,6 +73,20 @@ public class CustomerDBController {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
+            }
+        });
+    }
+
+    public void updateQueueNumber() {
+        Firebase ref = dbManagerCustomer.createChildReference("queueNumber");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                customer.setQueueNumber(snapshot.getValue(Integer.class));
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
             }
         });
     }
