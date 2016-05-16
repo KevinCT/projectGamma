@@ -89,6 +89,7 @@ public class CustomerDBController {
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
+
     }
 
     public void cancelOrder() {
