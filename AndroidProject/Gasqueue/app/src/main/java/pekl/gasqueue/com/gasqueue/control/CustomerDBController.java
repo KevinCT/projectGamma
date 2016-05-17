@@ -22,6 +22,7 @@ public class CustomerDBController {
 
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
+    private int queueNumber;
 
     public CustomerDBController(String databaseReference) {
         dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference));
@@ -83,13 +84,54 @@ public class CustomerDBController {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                customer.setQueueNumber(snapshot.getValue(Integer.class));
+                queueNumber = snapshot.getValue(Integer.class);
+                updateQueuePosition(); //Activate listeners
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
 
+    }
+
+    public void updateQueuePosition() {
+        Firebase ref = dbManagerCustomer.createChildReference("customerNumberServed");
+
+        ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                if(customer.isOrderSent()) {
+                    if( ! (customer.getQueuePosition() == 1)) { //Or 0?
+                        customer.setQueuePosition(queueNumber - dataSnapshot.getValue(Integer.class));
+                    } else {
+                        //Your turn to be served, send notifications etc.
+                        //orderSent = false,  etc
+                        customer.setOrderStatus(false);
+                        customer.startTimer();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
     public void cancelOrder() {

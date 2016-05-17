@@ -22,9 +22,20 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
 public class Bar implements User {
     private HashMap<String, HashMap<Product, Integer>> orders;
     private Map<String, Integer> strikeMap = new HashMap<>();
+    private int totalOrders = 0;
+    private int customerNumberServed = 0;
 
     public Bar() {
         this.orders = new HashMap<>();
+    }
+
+    public void push(){
+        customerNumberServed++;
+
+    }
+
+    public int getCustomerNumberServed() {
+        return customerNumberServed;
     }
 
     public void addStrike(String clientID) {
@@ -44,7 +55,12 @@ public class Bar implements User {
 
     public void addOrder(String clientID, HashMap<Product, Integer> order) { //Får läggas till en kö senare istället, eller så räcker det med att lägga in clientID i kön
         this.orders.put(clientID, order);
+        totalOrders++;
         //QueueController.addToQueue();
+    }
+
+    public int getTotalOrders() {
+        return totalOrders;
     }
 
     public void removeOrder(String clientID) {

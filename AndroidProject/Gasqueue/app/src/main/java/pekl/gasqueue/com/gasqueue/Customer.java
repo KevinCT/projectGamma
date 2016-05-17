@@ -6,12 +6,13 @@ import java.util.ArrayList;
 public class Customer implements User{
 
     private boolean orderSent;
-    private int queueNumber;
+    private int queuePosition;
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
     public StopWatch timer = new StopWatch();
     public int Position;
+
     public Customer() {
 
     }
@@ -67,12 +68,16 @@ public class Customer implements User{
         return orderSent;
     }
 
-    public int getQueueNumber() {
-        return queueNumber;
+    public int getQueuePosition() {
+        return queuePosition;
     }
 
-    public void setQueueNumber(int queueNumber) {
-        this.queueNumber = queueNumber;
+    public void decrementQueuePosition() {
+            this.queuePosition--;
+    }
+
+    public void setQueuePosition(int queuePosition) {
+        this.queuePosition = queuePosition;
     }
 
 }
