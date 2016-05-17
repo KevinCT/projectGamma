@@ -10,6 +10,7 @@ public class Customer implements User{
     private CustomerDBController cdbc;
     private BarDBController bdbc;
     private boolean orderSent;
+    private int queueNumber;
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
@@ -73,5 +74,12 @@ public class Customer implements User{
         return orderSent;
     }
 
+    public int getQueueNumber() {
+        return queueNumber;
+    }
+
+    public void setQueueNumber(int queueNumber) {
+        this.queueNumber = queueNumber;
+    }
 
 }

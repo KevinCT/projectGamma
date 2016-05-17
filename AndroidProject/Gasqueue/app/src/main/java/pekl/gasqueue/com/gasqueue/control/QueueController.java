@@ -13,8 +13,17 @@ import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
  */
 public class QueueController {
     public Queue queue;
+
     public QueueController(){
 
+    }
+
+    public void addCustomer(String clientID) {
+        queue.enqueue(clientID);
+    }
+
+    public boolean isCustomerServed(Customer customer) {
+        return customer.timer.isRunning() == true;
     }
 
     public void nextCustomer(Customer customer){
