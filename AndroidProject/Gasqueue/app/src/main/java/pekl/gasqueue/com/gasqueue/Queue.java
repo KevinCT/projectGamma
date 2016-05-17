@@ -25,7 +25,9 @@ public class Queue {
         return item;
     }
 
-
+    public void removeItem(Customer customer){
+        list.remove(customer.Position);
+    }
 
     public Object peek(){
         return list.get(0);
@@ -44,5 +46,8 @@ public class Queue {
     }
     public void resetDeletedCustomer(){
         deletedGuest = null;
+    }
+    public void RemoveGuestOrder(String key){
+        list.remove(key);
     }
 }

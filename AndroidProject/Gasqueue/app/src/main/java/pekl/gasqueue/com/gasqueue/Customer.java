@@ -3,8 +3,10 @@ package pekl.gasqueue.com.gasqueue;
 import android.provider.Settings.Secure;
 import java.util.ArrayList;
 
-public class Customer implements User{
+import pekl.gasqueue.com.gasqueue.control.BarDBController;
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
+public class Customer implements User{
     private boolean orderSent;
     private int queuePosition;
     private boolean banned = false;
@@ -13,9 +15,11 @@ public class Customer implements User{
     public StopWatch timer = new StopWatch();
     public int Position;
 
+
     public Customer() {
 
     }
+
 
     //Adds an item to customer's order
     public void addItem(Product item){

@@ -26,7 +26,6 @@ public class BarDBController {
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
-
         updateOrders();
     }
 
@@ -39,7 +38,6 @@ public class BarDBController {
                 newCustomer(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 qc.queue.enqueue(onlyKey);
-
             }
 
             @Override
@@ -99,6 +97,7 @@ public class BarDBController {
         qc.queue.enqueue(clientID);
         Firebase ref = dbManagerBar.createChildReference("totalOrders");
         ref.setValue(bar.getTotalOrders());
+
     }
 
     //Update queue as well
