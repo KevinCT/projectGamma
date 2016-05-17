@@ -21,6 +21,15 @@ public class Message {
         this.timeStamp=timeStamp;
 
     }
+    public void setName(String name){
+        this.name=name;
+    }
+    public void setMessage(String message){
+        this.message=message;
+    }
+    public void setTimeStamp(String timeStamp){
+        this.timeStamp=timeStamp;
+    }
 
     public String getName() {
         return name;
@@ -33,4 +42,5 @@ public class Message {
     public String getTimeStamp() {
         return timeStamp;
     }
+
 }

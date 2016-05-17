@@ -92,7 +92,7 @@ public class BarDBController {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                
+
             }
 
             @Override
