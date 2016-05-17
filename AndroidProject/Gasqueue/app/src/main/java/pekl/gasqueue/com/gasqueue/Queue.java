@@ -47,4 +47,7 @@ public class Queue {
     public void resetDeletedCustomer(){
         deletedGuest = null;
     }
+    public void RemoveGuestOrder(String key){
+        list.remove(key);
+    }
 }

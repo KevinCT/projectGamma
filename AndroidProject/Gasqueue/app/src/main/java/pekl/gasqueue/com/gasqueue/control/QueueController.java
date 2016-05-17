@@ -55,4 +55,8 @@ public class QueueController {
             }
         }
     }
+
+    public void givePosition(Customer customer, int Total, int position){
+        customer.Position = position-Total;
+    }
 }

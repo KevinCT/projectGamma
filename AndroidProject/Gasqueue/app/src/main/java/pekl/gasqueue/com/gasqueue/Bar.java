@@ -22,7 +22,7 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
 public class Bar implements User {
     private HashMap<String, HashMap<Product, Integer>> orders;
     private Map<String, Integer> strikeMap = new HashMap<>();
-
+    private QueueController qc;
     public Bar() {
         this.orders = new HashMap<>();
     }
