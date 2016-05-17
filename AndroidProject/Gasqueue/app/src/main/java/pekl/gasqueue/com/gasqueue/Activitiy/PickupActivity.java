@@ -9,14 +9,21 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 /**
  * Created by User on 5/11/2016.
  */
 public class PickupActivity extends AppCompatActivity {
-
+    public QueueController qc;
+    public Customer customer;
     @Override
+
+    public PickupActivity(){
+
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -35,7 +42,7 @@ public class PickupActivity extends AppCompatActivity {
         mcancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            qc.queue.removeItem(customer);
 
             }
         });

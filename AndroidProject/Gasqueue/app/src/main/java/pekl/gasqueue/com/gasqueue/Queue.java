@@ -29,7 +29,9 @@ public class Queue {
         return item;
     }
 
-
+    public void removeItem(Customer customer){
+        list.remove(customer.Position);
+    }
 
     public Object peek(){
         return list.get(0);
