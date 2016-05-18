@@ -56,9 +56,6 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
             case R.id.matBtn:
                 shoppingController.setChosenCategory(Product.Category.FOOD);
                 break;
-            case R.id.cartBTn:
-                temp = new Intent(this,CartActivity.class);
-                break;
         }
         startActivity(temp);
     }

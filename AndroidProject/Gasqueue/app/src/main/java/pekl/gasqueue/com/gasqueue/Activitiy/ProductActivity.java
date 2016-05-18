@@ -27,7 +27,6 @@ import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private CustomerDBController customerDB;
     private List<Product> productsSameCategory;
     private Map<Button, Product> productMap;
 
@@ -41,7 +40,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
-        //this.customerDB = new CustomerDBController();
 
         GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
         listLayout.removeAllViews();

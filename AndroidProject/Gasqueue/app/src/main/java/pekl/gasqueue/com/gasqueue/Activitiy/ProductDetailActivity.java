@@ -27,7 +27,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
         chosenProduct = shoppingController.getChosenProduct();
         TextView nameLabel = (TextView) findViewById(R.id.nameLabel);
-        TextView descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
+        //TextView descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
         TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
         final TextView totalLabel = (TextView) findViewById(R.id.totalLabel);
         final EditText quantity = (EditText) findViewById(R.id.quantity);
