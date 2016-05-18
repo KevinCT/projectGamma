@@ -3,6 +3,7 @@ package pekl.gasqueue.com.gasqueue.Activitiy;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -101,7 +102,20 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return new ChatFragment();  //.newInstance(position + 1);
+          switch(position){
+              case 0: return new DialogFragment();
+
+              case 1: return new DialogFragment();
+
+              case 2: return new ChatFragment();
+
+
+
+
+          }
+                return new ChatFragment();  //.newInstance(position + 1);
+
+
         }
 
         @Override
@@ -114,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Beställ";
                 case 1:
                     return "SECTION 2";
                 case 2:
-                    return "SECTION 3";
+                    return "Chat";
             }
             return null;
         }
