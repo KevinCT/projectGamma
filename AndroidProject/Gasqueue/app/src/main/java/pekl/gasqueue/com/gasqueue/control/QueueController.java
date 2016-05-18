@@ -52,7 +52,7 @@ public class QueueController {
         }
     }
 
-    public void viewQueue(){
+    /*public void viewQueue(){
         if(queue.isEmpty()==true){
             System.out.println("Queue is empty!");
         }
@@ -63,7 +63,7 @@ public class QueueController {
                 System.out.println("Position " + j + ": " + queue.getCustomer(i).toString());
             }
         }
-    }
+    }*/
 
     public void givePosition(Customer customer, int Total, int position){
         customer.Position = position-Total;

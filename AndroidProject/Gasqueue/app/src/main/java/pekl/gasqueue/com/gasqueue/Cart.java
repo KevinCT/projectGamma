@@ -7,13 +7,12 @@ import java.util.Map;
  * Created by Kotex on 09/05/2016.
  */
 public class Cart {
-    private HashMap<Product,Integer> cart = new HashMap<>();
+    private static HashMap<Product,Integer> cart = new HashMap<>();
 
     public void addProduct (Product product,int quantity) {
         if (cart.containsKey(product)) {
             int temp = cart.get(product);
             temp = temp + quantity;
-            cart.remove(product);
             cart.put(product,temp);
         }
         else cart.put(product,quantity);

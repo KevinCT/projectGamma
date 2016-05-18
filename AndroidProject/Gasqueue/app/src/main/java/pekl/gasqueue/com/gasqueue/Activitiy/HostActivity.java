@@ -24,7 +24,7 @@ import pekl.gasqueue.com.gasqueue.StopWatch;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 public class HostActivity extends AppCompatActivity {
-
+/*
     private static final String FIREBASE_URL = "https://dazzling-torch-9680.firebaseio.com/";
     private Firebase fbQueue;
     @Override
@@ -58,7 +58,7 @@ public class HostActivity extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read messed up: "+firebaseError.getMessage());
             }
-        });*/
+        });
 
         assert mviewQueueButton != null;
         mviewQueueButton.setOnClickListener(new View.OnClickListener(){
@@ -116,5 +116,5 @@ public class HostActivity extends AppCompatActivity {
 
 
     }
-
+*/
 }

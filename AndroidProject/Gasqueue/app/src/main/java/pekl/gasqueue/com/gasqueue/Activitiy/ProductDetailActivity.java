@@ -14,17 +14,20 @@ import java.util.IllegalFormatException;
 import pekl.gasqueue.com.gasqueue.Cart;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private Product chosenProduct = new Product();
     private Cart temp = new Cart();
+
+    private ShoppingController shoppingController = new ShoppingController();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        chosenProduct = chosenProduct.getChosenProduct();
+        chosenProduct = shoppingController.getChosenProduct();
         TextView nameLabel = (TextView) findViewById(R.id.nameLabel);
-        TextView descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
+        //TextView descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
         TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
         final TextView totalLabel = (TextView) findViewById(R.id.totalLabel);
         final EditText quantity = (EditText) findViewById(R.id.quantity);
