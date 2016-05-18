@@ -12,10 +12,11 @@ import java.util.Map;
 import pekl.gasqueue.com.gasqueue.Menu;
 import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class CategoryActivity extends AppCompatActivity  implements View.OnClickListener {
-    private Map<Button,Product.Category> categoryButtonMap = new HashMap<>();
-    private Menu tempMenu = new Menu();
+
+    private ShoppingController shoppingController = new ShoppingController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +44,19 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
         switch (v.getId())
         {
             case R.id.beerBtn:
-                tempMenu.setChosenCategory(Product.Category.BEER);
+                shoppingController.setChosenCategory(Product.Category.BEER);
                 break;
             case R.id.drinksBtn:
-                tempMenu.setChosenCategory(Product.Category.DRINK);
+                shoppingController.setChosenCategory(Product.Category.DRINK);
                 break;
             case R.id.ciderBtn:
-                tempMenu.setChosenCategory(Product.Category.CIDER);
+                shoppingController.setChosenCategory(Product.Category.CIDER);
                 break;
             case R.id.alkfriaBtn:
-                tempMenu.setChosenCategory(Product.Category.NON_ALCOHOLIC);
+                shoppingController.setChosenCategory(Product.Category.NON_ALCOHOLIC);
                 break;
             case R.id.matBtn:
-                tempMenu.setChosenCategory(Product.Category.FOOD);
-                break;
-            case R.id.cartBTn:
-                temp = new Intent(this,CartActivity.class);
+                shoppingController.setChosenCategory(Product.Category.FOOD);
                 break;
         }
         startActivity(temp);

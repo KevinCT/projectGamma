@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 activity=ChatActivity.class;
                 break;
             case R.id.cartBtn:
-                activity=ChatActivity.class;
+                activity=CartActivity.class;
                 break;
 
         }

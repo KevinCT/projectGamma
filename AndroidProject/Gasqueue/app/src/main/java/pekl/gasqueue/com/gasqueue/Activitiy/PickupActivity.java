@@ -18,6 +18,7 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
  * Created by User on 5/11/2016.
  */
 public class PickupActivity extends AppCompatActivity {
+    /*
     public QueueController qc;
     public Customer customer;
     public BarDBController bdbc;
@@ -69,5 +70,5 @@ public class PickupActivity extends AppCompatActivity {
         }
         //create code that displays the STATUS and POSITION of the guest and order
 
-    }
+    }*/
 }
