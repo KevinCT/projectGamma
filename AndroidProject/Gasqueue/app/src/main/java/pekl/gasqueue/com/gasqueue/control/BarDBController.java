@@ -37,7 +37,6 @@ public class BarDBController {
                 String onlyKey = (String) order.keySet().toArray()[0];
                 newCustomer(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
-                qc.queue.enqueue(onlyKey);
             }
 
             @Override
@@ -105,6 +104,6 @@ public class BarDBController {
         bar.push();
         Firebase ref = dbManagerBar.createChildReference("customerNumberServed");
         ref.setValue(bar.getCustomerNumberServed());
-
+        //ta bort från kön
     }
 }

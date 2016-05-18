@@ -37,6 +37,10 @@ public class Queue {
         return list.size();
     }
 
+    public boolean isEmpty() {
+        return getSize() == 0;
+    }
+
     public void removeGuest(Object object) {
         list.remove(object);
     }

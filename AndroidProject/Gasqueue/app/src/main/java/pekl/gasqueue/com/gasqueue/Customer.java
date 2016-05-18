@@ -2,6 +2,8 @@ package pekl.gasqueue.com.gasqueue;
 
 import android.provider.Settings.Secure;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
@@ -11,19 +13,19 @@ public class Customer implements User{
     private int queuePosition;
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
-    private ArrayList<Product> order = new ArrayList<Product>(); //Fel listtyp?
-    public StopWatch timer = new StopWatch();
-    public int Position;
+    private Cart cart;
+    public StopWatch timer = new StopWatch(); //Varför public???
+    public int Position; //Varför public???
 
 
     public Customer() {
-
+        cart = new Cart();
     }
 
 
     //Adds an item to customer's order
-    public void addItem(Product item){
-        order.add(item);
+    public void addItem(Product item, int quantity){
+        cart.addProduct(item, quantity);
     }
 
     public String getClientID() {
@@ -38,27 +40,28 @@ public class Customer implements User{
         return banned;
     }
 
-    public ArrayList<Product> getOrder() {
-        return (ArrayList<Product>) order.clone(); //Rätt?
+    public HashMap<Product,Integer> getOrder() {
+        return cart.getCart();
     }
 
     //Removes an item from customer's order specified by order element index
     public void removeItem(Product item){
-        order.remove(order.indexOf(item));
+        cart.removeProduct(item);
     }
 
     public int getTotalCost() {
         int totalCost = 0;
 
-        for (Product value : order) {
-            totalCost = totalCost + value.getPrice();
+
+
+        Set<Product> products = cart.getCart().keySet();
+
+        for (Product value : products) {
+            totalCost = totalCost + value.getPrice() * cart.getCart().get(value);
         }
         return totalCost;
     }
-    //Removes all items and resets the order
-    public void resetOrder(){
-        order.clear();
-    }
+
     //creates a 60 second timer
     public void startTimer(){
         timer.main(null);
@@ -82,6 +85,10 @@ public class Customer implements User{
 
     public void setQueuePosition(int queuePosition) {
         this.queuePosition = queuePosition;
+    }
+
+    public void resetOrder() {
+
     }
 
 }
