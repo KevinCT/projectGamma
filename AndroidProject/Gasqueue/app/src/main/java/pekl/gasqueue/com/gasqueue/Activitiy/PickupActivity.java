@@ -21,7 +21,6 @@ public class PickupActivity extends AppCompatActivity {
     public QueueController qc;
     public Customer customer;
     public BarDBController bdbc;
-    @Override
 
     public PickupActivity(){
 
@@ -59,7 +58,7 @@ public class PickupActivity extends AppCompatActivity {
 
          });
 
-        mpositionView.setText(Integer.toString((bdbc.SentOrders - bdbc.Total)));
+        //mpositionView.setText(Integer.toString((bdbc.SentOrders - bdbc.Total)));
         if(mpositionView.getText() == "0"){
             customer.startTimer();
             mpositionView.setText("");

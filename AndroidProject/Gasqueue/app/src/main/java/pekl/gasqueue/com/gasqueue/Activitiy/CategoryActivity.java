@@ -16,6 +16,7 @@ import pekl.gasqueue.com.gasqueue.R;
 public class CategoryActivity extends AppCompatActivity  implements View.OnClickListener {
     private Map<Button,Product.Category> categoryButtonMap = new HashMap<>();
     private Menu tempMenu = new Menu();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -32,7 +32,7 @@ public class CustomerDBController {
 
     public void sendOrder(){
         if(!customer.isBanned() && !customer.isOrderSent()) {
-            Map<String, List<Product>> map = new HashMap<>();
+            Map<String, Map<Product, Integer>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             updateQueueNumber();
             dbManagerCustomer.saveMap("Orders", map);
@@ -142,8 +142,8 @@ public class CustomerDBController {
         }
     }
 
-    public void addItem(Product product) {
-        customer.addItem(product);
+    public void addToCart(Product product, int quantity) {
+        customer.addItem(product, quantity);
     }
 
 
