@@ -32,6 +32,8 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
         alkfriaBtn.setOnClickListener(this);
         Button matBtn = (Button) findViewById(R.id.matBtn);
         matBtn.setOnClickListener(this);
+        Button toCart = (Button) findViewById(R.id.cartBTn);
+        toCart.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +55,9 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
                 break;
             case R.id.matBtn:
                 tempMenu.setChosenCategory(Product.Category.FOOD);
+                break;
+            case R.id.cartBTn:
+                temp = new Intent(this,CartActivity.class);
                 break;
         }
         startActivity(temp);
