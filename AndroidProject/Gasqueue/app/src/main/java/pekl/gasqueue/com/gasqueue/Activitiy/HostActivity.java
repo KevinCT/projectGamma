@@ -21,12 +21,15 @@ import java.util.HashMap;
 import pekl.gasqueue.com.gasqueue.Queue;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.StopWatch;
+import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 public class HostActivity extends AppCompatActivity {
-/*
+
     private static final String FIREBASE_URL = "https://dazzling-torch-9680.firebaseio.com/";
     private Firebase fbQueue;
+    private BarDBController barController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +44,14 @@ public class HostActivity extends AppCompatActivity {
         Button mcancelButton = (Button) findViewById(R.id.cancelButton);
         Button mviewQueueButton = (Button) findViewById(R.id.viewButton);
 
-        final QueueController qc = new QueueController();
+
+
         final StopWatch timer = new StopWatch();
+        /**
+         final QueueController qc = new QueueController();
+         fbQueue = new Firebase(FIREBASE_URL).child("Queue");
 
-        fbQueue = new Firebase(FIREBASE_URL).child("Queue");
-
-        /*FirebaseRef.addValueEventListener(new ValueEventListener() {
+        FirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println("You ordered a "+ dataSnapshot.getValue());
@@ -59,12 +64,13 @@ public class HostActivity extends AppCompatActivity {
                 System.out.println("The read messed up: "+firebaseError.getMessage());
             }
         });
-
+        */
+        /**
         assert mviewQueueButton != null;
         mviewQueueButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(qc.queue.isEmpty()==true){
+                if(qc.queue.isEmpty() == true){
                     System.out.println("Queue is empty!");
                 }
                 else{
@@ -77,7 +83,18 @@ public class HostActivity extends AppCompatActivity {
 
             }
         });
-
+        */
+        mpushButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                try {
+                    barController.orderDone();
+                } catch (IndexOutOfBoundsException noGuests) {
+                    System.out.println("There are no guests in the current queue.");
+                }
+            }
+        });
+        /**
         assert mpushButton != null;
         mpushButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -87,17 +104,16 @@ public class HostActivity extends AppCompatActivity {
                 }
                 else {
                     try {
-                        System.out.println(qc.queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
-
+                        barController.orderDone();
                         timer.main(null);
-                        fbQueue.setValue(qc.queue.list);
                     } catch (IndexOutOfBoundsException noGuests) {
                         System.out.println("There are no guests in the current queue.");
                     }
                 }
             }
         });
-
+        */
+        /**
         assert mcancelButton != null;
         mcancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -112,9 +128,10 @@ public class HostActivity extends AppCompatActivity {
 
 
             }
-        });
+
+        });*/
 
 
     }
-*/
+
 }
