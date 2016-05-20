@@ -1,9 +1,4 @@
-package pekl.gasqueue.com.gasqueue;
-
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-
+package com.example.user.testapp;
 
 import java.util.Scanner;
 import java.util.Timer;

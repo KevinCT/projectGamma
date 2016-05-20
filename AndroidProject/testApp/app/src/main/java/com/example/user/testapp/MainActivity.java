@@ -11,26 +11,25 @@ import java.util.TimerTask;
 import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.TimeUnit;
 
-import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.StopWatch;
-
 /**
  * Created by User on 5/11/2016.
  */
-public class PickupActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
+   // public QueueController qc;
 
     public StopWatch sw = new StopWatch();
     public int pos = 10;
+   // public BarDBController bdbc;
 
 
-    public PickupActivity(){
+    public MainActivity(){
 
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_pickup);
+        setContentView(R.layout.activity_main);
 
     }
     protected void onStart() {
@@ -113,10 +112,10 @@ public class PickupActivity extends AppCompatActivity {
             }
         });
 
+        }
+
+
+
+
     }
-
-
-
-
-}
 
