@@ -20,7 +20,7 @@ public interface IDatabaseManager {
 
     public void sendObject(String address, Object object);
 
-    public Firebase createChildReference(String childReference);
+    public Object createChildReference(String childReference);
 
     //public void addUpdateListener(String address);
 

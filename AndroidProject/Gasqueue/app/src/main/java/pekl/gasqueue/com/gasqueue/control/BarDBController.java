@@ -30,7 +30,8 @@ public class BarDBController {
     }
 
     public void updateOrders() {
-        dbManagerBar.createChildReference("Orders").addChildEventListener(new ChildEventListener() {
+        Firebase ref1 = (Firebase) dbManagerBar.createChildReference("Orders"); //Temporary solution to avoid errors
+        ref1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
@@ -61,7 +62,8 @@ public class BarDBController {
 
             }
         });
-        dbManagerBar.createChildReference("cancelOrder").addChildEventListener(new ChildEventListener() {
+        Firebase ref0 = (Firebase) dbManagerBar.createChildReference("cancelOrder"); //Temporary solution to avoid errors
+        ref0.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String clientID = dataSnapshot.getValue(String.class);
@@ -93,17 +95,17 @@ public class BarDBController {
 
     public void newCustomer(String clientID, HashMap<Product, Integer> order) {
         bar.addOrder(clientID, order);
-        qc.queue.enqueue(clientID);
-        Firebase ref = dbManagerBar.createChildReference("totalOrders");
-        ref.setValue(bar.getTotalOrders());
+        qc.addCustomer(clientID);
+        Firebase ref = (Firebase) dbManagerBar.createChildReference("totalOrders"); //Ska verkligen Firebase finnas här?
+        ref.setValue(bar.getTotalOrders()); //Fel metod används..... använd db manager
 
     }
 
     //Update queue as well
     public void orderDone() {
         bar.push();
-        Firebase ref = dbManagerBar.createChildReference("customerNumberServed");
-        ref.setValue(bar.getCustomerNumberServed());
+        Firebase ref = (Firebase) dbManagerBar.createChildReference("customerNumberServed"); //Ska verkligen Firebase finnas här?
+        ref.setValue(bar.getCustomerNumberServed()); //Fel metod används..... använd db manager
         //ta bort från kön
     }
 }

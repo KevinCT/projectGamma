@@ -35,10 +35,11 @@ public class AuthenticatorController {
     }
 
     public void sendBarReference(){
-        dbManagerAuthenticator.createChildReference("Authenticators").push().setValue(authenticator);
+        Firebase ref0 = (Firebase) dbManagerAuthenticator.createChildReference("Authenticators"); //Temporary solution to avoid errors
+        ref0.push().setValue(authenticator); //Finns en metod i dbmanager
     }
     public boolean authenticate(String input){
-        Firebase passwordRef = dbManagerAuthenticator.createChildReference("Authenticators");
+        Firebase passwordRef = (Firebase) dbManagerAuthenticator.createChildReference("Authenticators"); //Temporary solution to avoid errors
         passwordRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
