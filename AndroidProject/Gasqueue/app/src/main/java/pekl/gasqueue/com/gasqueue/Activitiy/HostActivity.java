@@ -63,9 +63,8 @@ public class HostActivity extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read messed up: "+firebaseError.getMessage());
             }
-        });
-        */
-        /**
+
+        });*/
         assert mviewQueueButton != null;
         mviewQueueButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -83,7 +82,6 @@ public class HostActivity extends AppCompatActivity {
 
             }
         });
-        */
         mpushButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -104,8 +102,15 @@ public class HostActivity extends AppCompatActivity {
                 }
                 else {
                     try {
+<<<<<<< HEAD
                         barController.orderDone();
                         timer.main(null);
+=======
+                        System.out.println(qc.queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
+
+                        timer.runTimer();
+                        fbQueue.setValue(qc.queue.list);
+>>>>>>> origin/master
                     } catch (IndexOutOfBoundsException noGuests) {
                         System.out.println("There are no guests in the current queue.");
                     }

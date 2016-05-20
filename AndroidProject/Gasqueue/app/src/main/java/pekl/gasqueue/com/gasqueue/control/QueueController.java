@@ -37,7 +37,7 @@ public class QueueController {
         else {
             try {
                 System.out.println(queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
-                customer.timer.main(null);
+                customer.timer.runTimer();
             } catch (IndexOutOfBoundsException noGuests) {
                 System.out.println("There are no guests in the current queue.");
             }

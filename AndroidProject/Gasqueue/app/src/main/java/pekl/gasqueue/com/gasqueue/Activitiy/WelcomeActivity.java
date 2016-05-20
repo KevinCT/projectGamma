@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(authController.authenticate(passwordText.getText().toString()) && authController.getClientType().equals("Customer")) {
-                    Intent temp = new Intent(WelcomeActivity.this,HomeActivity.class);
+                    Intent temp = new Intent(WelcomeActivity.this,MainActivity.class);
                     startActivity(temp);
                 }
                 else if (authController.authenticate(passwordText.getText().toString()) && authController.getClientType().equals("Bar")){
