@@ -18,7 +18,7 @@ import pekl.gasqueue.com.gasqueue.Message;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ChatController;
 
-public class ChatActivity extends AppCompatActivity implements UserDialogFragment.Listener {
+public class ChatActivity extends AppCompatActivity  {
     private EditText messageInput;
     private Button sendBtn;
     private ChatController dbChatController;
@@ -39,10 +39,11 @@ public class ChatActivity extends AppCompatActivity implements UserDialogFragmen
                 String text = messageInput.getText().toString();
                 dbChatController.setMessage(text);
                 dbChatController.sendMessage();
+                messageInput.setText("");
 
             }
         });
-        FirebaseListAdapter<Message> adapter = new FirebaseListAdapter<Message>(this,Message.class,android.R.layout.simple_list_item_2,dbChatController.getMessage()) {
+        FirebaseListAdapter<Message> adapter = new FirebaseListAdapter<Message>(this,Message.class,android.R.layout.simple_list_item_2,dbChatController.getMessage().limitToLast(10)) {
            @Override
            protected void populateView(View view, Message message, int i) {
                TextView text =(TextView)view.findViewById(android.R.id.text1);
@@ -57,12 +58,17 @@ public class ChatActivity extends AppCompatActivity implements UserDialogFragmen
 
         ListView chatView = (ListView)findViewById(R.id.chatView);
         chatView.setAdapter(adapter);
-        showDialog();
+        //showDialog();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String name = extras.getString("username");
+            dbChatController.setUserName(name);
+        }
 
 
 
     }
-    public void showDialog(){
+    /*public void showDialog(){
         FragmentManager manager = getFragmentManager();
         userFragment= new UserDialogFragment();
         userFragment.setCancelable(false);
@@ -72,9 +78,11 @@ public class ChatActivity extends AppCompatActivity implements UserDialogFragmen
     }
 
 
+
     @Override
     public void onNameSet(String username) {
         dbChatController.setUserName(username);
         userFragment.dismiss();
     }
+    */
 }

@@ -63,7 +63,7 @@ public class Customer implements User{
 
     //creates a 60 second timer
     public void startTimer(){
-        timer.main(null);
+        timer.runTimer();
     }
 
     public void setOrderStatus(Boolean orderSent) {
