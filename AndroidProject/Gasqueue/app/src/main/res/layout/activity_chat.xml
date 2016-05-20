@@ -30,6 +30,8 @@
         android:layout_alignParentEnd="true" />
 
     <ListView
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chatView"

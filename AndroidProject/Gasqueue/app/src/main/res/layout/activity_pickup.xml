@@ -51,9 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="time left"
             android:id="@+id/timeView"
             android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PUSH"
+            android:id="@+id/pushButton"
+            android:layout_above="@+id/cancelButton"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </LinearLayout>

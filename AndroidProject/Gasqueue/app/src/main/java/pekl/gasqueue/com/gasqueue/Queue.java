@@ -12,10 +12,6 @@ public class Queue {
         list = new LinkedList();
     }
 
-    public boolean isEmpty(){
-        return (list.size() == 0);
-    }
-
     public void enqueue(Object item)
     {
         list.add(item);
@@ -39,6 +35,14 @@ public class Queue {
 
     public int getSize(){
         return list.size();
+    }
+
+    public boolean isEmpty() {
+        return getSize() == 0;
+    }
+
+    public void removeGuest(Object object) {
+        list.remove(object);
     }
 
     public Object getCustomer(int i){

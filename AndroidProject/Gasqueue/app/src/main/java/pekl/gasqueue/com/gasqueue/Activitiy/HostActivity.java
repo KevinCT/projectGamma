@@ -89,7 +89,7 @@ public class HostActivity extends AppCompatActivity {
                     try {
                         System.out.println(qc.queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
 
-                        timer.main(null);
+                        timer.runTimer();
                         fbQueue.setValue(qc.queue.list);
                     } catch (IndexOutOfBoundsException noGuests) {
                         System.out.println("There are no guests in the current queue.");

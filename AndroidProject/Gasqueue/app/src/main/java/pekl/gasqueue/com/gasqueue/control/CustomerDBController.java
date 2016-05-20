@@ -4,6 +4,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ public class CustomerDBController {
 
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
+    private int queueNumber;
 
     public CustomerDBController(String databaseReference) {
         dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference));
@@ -30,8 +32,9 @@ public class CustomerDBController {
 
     public void sendOrder(){
         if(!customer.isBanned() && !customer.isOrderSent()) {
-            Map<String, List<Product>> map = new HashMap<>();
+            Map<String, Map<Product, Integer>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
+            updateQueueNumber();
             dbManagerCustomer.saveMap("Orders", map);
             customer.setOrderStatus(true);
 
@@ -39,9 +42,7 @@ public class CustomerDBController {
     }
 
     public void updateBanState() {
-
-        Firebase ref0 = new Firebase("https://dazzling-torch-9680.firebaseio.com/");
-        Firebase ref = ref0.child("banList");
+        Firebase ref = dbManagerCustomer.createChildReference("banList");
 
         ref.addChildEventListener(new ChildEventListener() {
 
@@ -77,6 +78,62 @@ public class CustomerDBController {
         });
     }
 
+    public void updateQueueNumber() {
+        Firebase ref = dbManagerCustomer.createChildReference("queueNumber");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                queueNumber = snapshot.getValue(Integer.class);
+                updateQueuePosition(); //Activate listeners
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
+    }
+
+    public void updateQueuePosition() {
+        Firebase ref = dbManagerCustomer.createChildReference("customerNumberServed");
+
+        ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                if(customer.isOrderSent()) {
+                    if( ! (customer.getQueuePosition() == 1)) { //Or 0?
+                        customer.setQueuePosition(queueNumber - dataSnapshot.getValue(Integer.class));
+                    } else {
+                        //Your turn to be served, send notifications etc.
+                        //orderSent = false,  etc
+                        customer.setOrderStatus(false);
+                        customer.startTimer();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
     public void cancelOrder() {
         customer.resetOrder();
         if(customer.isOrderSent()) {
@@ -85,8 +142,8 @@ public class CustomerDBController {
         }
     }
 
-    public void addItem(Product product) {
-        customer.addItem(product);
+    public void addToCart(Product product, int quantity) {
+        customer.addItem(product, quantity);
     }
 
 

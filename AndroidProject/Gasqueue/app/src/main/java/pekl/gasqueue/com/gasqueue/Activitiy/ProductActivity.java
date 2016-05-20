@@ -24,23 +24,22 @@ import pekl.gasqueue.com.gasqueue.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private CustomerDBController customerDB;
     private List<Product> productsSameCategory;
-    private Menu tempMenu = new Menu();
     private Map<Button, Product> productMap;
-    private Product tempProduct = new Product();
+
+    private ShoppingController shoppingController = new ShoppingController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         productsSameCategory = new ArrayList<>();
-        productsSameCategory = tempMenu.getProductsSameCategory();
+        productsSameCategory = shoppingController.getProductSameCategory();
         productMap = new HashMap<>();
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
-        //this.customerDB = new CustomerDBController();
 
         GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
         listLayout.removeAllViews();
@@ -55,7 +54,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        tempProduct.setChosenProduct(productMap.get(view));
+        shoppingController.setChosenProduct(productMap.get(view));
         Intent temp = new Intent(this, ProductDetailActivity.class);
         startActivity(temp);
 

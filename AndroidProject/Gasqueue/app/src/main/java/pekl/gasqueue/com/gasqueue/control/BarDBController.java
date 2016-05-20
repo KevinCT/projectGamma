@@ -21,27 +21,13 @@ public class BarDBController {
     private Bar bar;
     private IDatabaseManager dbManagerBar;
     private String databaseReference;
-    public QueueController qc;
-    public CustomerDBController customerDBC;
-    public int Total = 0;
-    public int SentOrders = 0;
-    private Firebase total = new Firebase("https://dazzling-torch-9680.firebaseio.com/").child("Total");
-    private Firebase sentOrders = new Firebase("https://dazzling-torch-9680.firebaseio.com/").child("sentOrders");
+    private QueueController qc;
+
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
-        total.setValue(Total);
         updateOrders();
     }
-
-    public void push(){
-       // qc.nextCustomer();
-        Total++;
-        total.setValue(Total);
-
-    }
-
-
 
     public void updateOrders() {
         dbManagerBar.createChildReference("Orders").addChildEventListener(new ChildEventListener() {
@@ -49,10 +35,8 @@ public class BarDBController {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 String onlyKey = (String) order.keySet().toArray()[0];
+                newCustomer(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
-                qc.queue.enqueue(onlyKey);
-                SentOrders++;
-                sentOrders.setValue(SentOrders);
             }
 
             @Override
@@ -92,7 +76,7 @@ public class BarDBController {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                
+
             }
 
             @Override
@@ -105,8 +89,21 @@ public class BarDBController {
 
             }
         });
+    }
 
+    public void newCustomer(String clientID, HashMap<Product, Integer> order) {
+        bar.addOrder(clientID, order);
+        qc.queue.enqueue(clientID);
+        Firebase ref = dbManagerBar.createChildReference("totalOrders");
+        ref.setValue(bar.getTotalOrders());
 
     }
 
+    //Update queue as well
+    public void orderDone() {
+        bar.push();
+        Firebase ref = dbManagerBar.createChildReference("customerNumberServed");
+        ref.setValue(bar.getCustomerNumberServed());
+        //ta bort från kön
+    }
 }
