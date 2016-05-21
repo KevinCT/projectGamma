@@ -1,7 +1,14 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import pekl.gasqueue.com.gasqueue.FormatDate;
 import pekl.gasqueue.com.gasqueue.Message;
@@ -32,9 +39,12 @@ public class ChatController {
         chatMessage.setName(username);
     }
 
-    public Firebase getMessage(){
+    public Query getMessageRef(){
         return dbManagerChat.createChildReference("Messages");
+
+
     }
+
 
 
 
