@@ -5,12 +5,12 @@ package pekl.gasqueue.com.gasqueue.service;
  */
 public interface IChildChangeListener<T> {
 
-    public void onChildAdded(T data, String s);
+    public void childAdded(T data, String s);
 
-    public void onChildChanged(T data, String s);
+    public void childChanged(T data, String s);
 
-    public void onChildRemoved(T data);
+    public void childRemoved(T data);
 
-    public void onChildMoved(T data, String s);
+    public void childMoved(T data, String s);
 
 }

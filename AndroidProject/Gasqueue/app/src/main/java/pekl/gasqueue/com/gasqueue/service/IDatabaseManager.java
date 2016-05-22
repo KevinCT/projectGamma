@@ -22,6 +22,8 @@ public interface IDatabaseManager<T> {
 
     public T getReference();
 
+    public void setValue(String address, Object object);
+
     public T createChildReference(String childReference);
 
     //public void addUpdateListener(String address);

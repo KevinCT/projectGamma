@@ -18,23 +18,22 @@ public abstract class ChildChangeListener implements IChildChangeListener<DataSn
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                onChildAdded(dataSnapshot, s);
+                childAdded(dataSnapshot, s);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                onChildChanged(dataSnapshot, s);
+                childChanged(dataSnapshot, s);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                onChildRemoved(dataSnapshot);
+                childRemoved(dataSnapshot);
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                onChildMoved(dataSnapshot, s);
+                childMoved(dataSnapshot, s);
             }
 
             @Override
@@ -44,11 +43,11 @@ public abstract class ChildChangeListener implements IChildChangeListener<DataSn
         });
     }
 
-    public abstract void onChildAdded(DataSnapshot data, String s);
+    public abstract void childAdded(DataSnapshot data, String s);
 
-    public abstract void onChildChanged(DataSnapshot data, String s);
+    public abstract void childChanged(DataSnapshot data, String s);
 
-    public abstract void onChildRemoved(DataSnapshot data);
+    public abstract void childRemoved(DataSnapshot data);
 
-    public abstract void onChildMoved(DataSnapshot data, String s);
+    public abstract void childMoved(DataSnapshot data, String s);
 }

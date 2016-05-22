@@ -10,17 +10,22 @@ import org.w3c.dom.Text;
 
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
+import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 
 /**
  * Created by User on 5/11/2016.
  */
 public class HostActivity extends AppCompatActivity {
-    private BarDBController bdbc;
+    private BarDBController barController;
+    private QueueController queueController;
+
     public HostActivity(){
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        barController = new BarDBController("reference"); //kan sättas dynamiskt om det behövs
+        queueController = barController.getQueueController();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
 
@@ -37,10 +42,15 @@ public class HostActivity extends AppCompatActivity {
         mpushButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bdbc.orderDone();
+                barController.orderDone();
+                updateView(mnameView, mdetailsView);
             }
         });
 
+    }
+
+    private void updateView(TextView nameView, TextView orderView) {
+        nameView.setText(queueController.getFirstInQueue());
     }
 }
 

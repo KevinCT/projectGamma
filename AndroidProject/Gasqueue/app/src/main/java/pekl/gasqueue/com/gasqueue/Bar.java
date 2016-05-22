@@ -64,6 +64,10 @@ public class Bar implements User {
         return totalOrders;
     }
 
+    public HashMap<Product, Integer> getOrder(String clientID) {
+        return orders.get(clientID);
+    }
+
     public void removeOrder(String clientID) {
         this.orders.remove(clientID);
     }

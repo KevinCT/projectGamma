@@ -18,6 +18,10 @@ public class QueueController {
 
     }
 
+    public String getFirstInQueue() {
+        return (String) queue.peek();
+    }
+
     public void addCustomer(String clientID) {
         queue.enqueue(clientID);
     }

@@ -21,11 +21,12 @@ public class BarDBController {
     private Bar bar;
     private IDatabaseManager dbManagerBar;
     private String databaseReference;
-    private QueueController qc;
+    private QueueController queueController;
 
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
+        queueController = new QueueController();
         updateOrders();
     }
 
@@ -49,7 +50,7 @@ public class BarDBController {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 bar.removeOrder((String) order.keySet().toArray()[0]);
-                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
+                //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -68,7 +69,7 @@ public class BarDBController {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String clientID = dataSnapshot.getValue(String.class);
                 bar.removeOrder(clientID);
-                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
+                //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -95,19 +96,26 @@ public class BarDBController {
 
     public void newCustomer(String clientID, HashMap<Product, Integer> order) {
         bar.addOrder(clientID, order);
-        qc.addCustomer(clientID);
-        Firebase ref = (Firebase) dbManagerBar.createChildReference("totalOrders"); //Ska verkligen Firebase finnas här?
-        ref.setValue(bar.getTotalOrders()); //Fel metod används..... använd db manager
+        queueController.addCustomer(clientID);
 
+        dbManagerBar.setValue("totalOrders",bar.getTotalOrders());
+
+    }
+
+    public QueueController getQueueController() {
+        return queueController;
+    }
+
+    public HashMap<Product, Integer> getOrder(String clientID) {
+        return bar.getOrder(clientID);
     }
 
     //Update queue as well
     public void orderDone() {
         bar.push(); //ökar int för completed orders med 1
-        qc.pushQueue(); //pushar fysiska kön i order framåt
-        bar.removeOrder((String) qc.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
+        queueController.pushQueue(); //pushar fysiska kön i order framåt
+        bar.removeOrder((String) queueController.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
 
-        Firebase ref = (Firebase) dbManagerBar.createChildReference("customerNumberServed"); //Ska verkligen Firebase finnas här?
-        ref.setValue(bar.getCustomerNumberServed()); //Fel metod används..... använd db manager
+        dbManagerBar.setValue("customerNumberServed", bar.getCustomerNumberServed());
     }
 }
