@@ -8,13 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
-
-import pekl.gasqueue.com.gasqueue.Bar;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 
-public class CreateBarACtivity extends AppCompatActivity {
+public class CreateBarActivity extends AppCompatActivity {
    // private AuthenticatorController AuthController;
     private Button createBarBtn;
     private EditText barPasswordInput;
@@ -44,7 +40,7 @@ public class CreateBarACtivity extends AppCompatActivity {
                 barPassword=barPasswordInput.getText().toString();
                 if(barPassword.length()==4 && customerPassword.length()==4 && !barPassword.equals(customerPassword)){
 
-                    Intent temp = new Intent(CreateBarACtivity.this, WelcomeActivity.class);
+                    Intent temp = new Intent(CreateBarActivity.this, WelcomeActivity.class);
                     temp.putExtra("barPassword",barPasswordInput.getText().toString());
                     temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
                     startActivity(temp);

@@ -23,7 +23,7 @@
         <activity android:name=".Activitiy.CategoryActivity"></activity>
         <activity android:name=".Activitiy.ProductActivity" />
         <activity android:name=".Activitiy.CartActivity" />
-        <activity android:name=".Activitiy.CreateBarACtivity" />
+        <activity android:name=".Activitiy.CreateBarActivity" />
         <activity android:name=".Activitiy.ProductDetailActivity" />
         <activity android:name=".Activitiy.ChatActivity" />
         <activity android:name=".Activitiy.HomeActivity" />
