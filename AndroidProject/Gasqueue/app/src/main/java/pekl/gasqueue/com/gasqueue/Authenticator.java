@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Kevin on 2016-05-08.
  */
-// might be useless..
+// might be useless.. // maybe create a client and bar password in same.
 public class Authenticator {
     private String password;
     private Bar bar;

@@ -24,7 +24,7 @@ import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 public class AuthenticatorController {
     private Authenticator authenticator;
     private List<Authenticator> authenticatorList;
-    private IDatabaseManager dbManagerAuthenticator;
+    private IDatabaseManager<Firebase> dbManagerAuthenticator;
 
 
     public AuthenticatorController(String databaseRef){
@@ -35,11 +35,11 @@ public class AuthenticatorController {
     }
 
     public void sendBarReference(){
-        Firebase ref0 = (Firebase) dbManagerAuthenticator.createChildReference("Authenticators"); //Temporary solution to avoid errors
-        ref0.push().setValue(authenticator); //Finns en metod i dbmanager
+        dbManagerAuthenticator.sendObject("Authenticators",authenticator);
+
     }
     public boolean authenticate(String input){
-        Firebase passwordRef = (Firebase) dbManagerAuthenticator.createChildReference("Authenticators"); //Temporary solution to avoid errors
+        Firebase passwordRef = dbManagerAuthenticator.createChildReference("Authenticators");
         passwordRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

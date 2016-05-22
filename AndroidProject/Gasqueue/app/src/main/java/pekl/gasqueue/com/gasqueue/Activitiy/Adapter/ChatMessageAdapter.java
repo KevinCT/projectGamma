@@ -26,10 +26,11 @@ public class ChatMessageAdapter extends BaseAdapter {
     private List<Message> messageList= new ArrayList<>();
     ValueChangeListener listener;
 
-    public ChatMessageAdapter(String databaseRef,String messageRef){
-            listener = new ValueChangeListener(databaseRef, messageRef) {
+    public ChatMessageAdapter(String databaseRef){
+            listener = new ValueChangeListener(databaseRef) {
             @Override
             public void dataChanged(DataSnapshot dataSnapshot) {
+                //clear list to avoid duplicate messages
                 messageList.clear();
                 for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
                     messageList.add(messageSnapshot.getValue(Message.class));

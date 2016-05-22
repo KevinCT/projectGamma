@@ -11,42 +11,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-        android:name=".Activitiy.WelcomeActivity">
+        <activity android:name=".Activitiy.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activitiy.HostActivity">
-
-        </activity>
-        <activity android:name=".Activitiy.PickupActivity">
-
-        </activity>
+        <activity android:name=".Activitiy.HostActivity"></activity>
+        <activity android:name=".Activitiy.PickupActivity"></activity>
+        <activity android:name=".Activitiy.CategoryActivity"></activity>
+        <activity android:name=".Activitiy.ProductActivity" />
+        <activity android:name=".Activitiy.CartActivity" />
+        <activity android:name=".Activitiy.CreateBarACtivity" />
+        <activity android:name=".Activitiy.ProductDetailActivity" />
+        <activity android:name=".Activitiy.ChatActivity" />
+        <activity android:name=".Activitiy.HomeActivity" />
         <activity
-        android:name=".Activitiy.CategoryActivity" >
-
-        </activity>
-        <activity
-        android:name=".Activitiy.ProductActivity" ></activity>
-        <activity
-        android:name=".Activitiy.CartActivity" ></activity>
-        <activity
-        android:name=".Activitiy.CreateBarACtivity" ></activity>
-        <activity
-        android:name=".Activitiy.ProductDetailActivity" ></activity>
-        <activity
-        android:name=".Activitiy.ChatActivity" ></activity>
-        <activity
-        android:name=".Activitiy.HomeActivity" ></activity>
-        <activity
-        android:name=".Activitiy.MainActivity"
-        android:label="@string/title_activity_main"
-        android:theme="@style/AppTheme.NoActionBar">
-
-
-        </activity>
+            android:name=".Activitiy.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activitiy.WelcomeBarActivity"></activity>
     </application>
 
 </manifest>

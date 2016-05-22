@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
+        android:text="timestamp"
         android:id="@+id/timestampView"
         android:layout_gravity="right" />
 
@@ -23,6 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="MEssage"
-        android:id="@+id/messageView" />
+        android:id="@+id/messageView"
+        android:text="message" />
 </LinearLayout>

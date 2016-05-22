@@ -1,5 +1,6 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,26 +15,44 @@ import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 
 public class CreateBarACtivity extends AppCompatActivity {
-    private AuthenticatorController AuthController;
+   // private AuthenticatorController AuthController;
     private Button createBarBtn;
-    private EditText passwordText;
+    private EditText barPasswordInput;
+    private EditText customerPasswordInput;
+    private String customerPassword;
+    private String barPassword;
+    private TextView errorLabel;
 
-    //private Bar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bar_activity);
-        Firebase.setAndroidContext(this);
-  //      bar= new Bar();
-        this.AuthController=new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
+        //Firebase.setAndroidContext(this);
+        //this.AuthController=new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
         createBarBtn = (Button) findViewById(R.id.createBarBtn);
-        passwordText = (EditText) findViewById(R.id.passwordTextField);
+        barPasswordInput = (EditText) findViewById(R.id.barPWInput);
+        customerPasswordInput=(EditText)findViewById(R.id.customerPWInput);
+        errorLabel=(TextView)findViewById(R.id.errorLabel);
+        errorLabel.setVisibility(View.GONE);
         createBarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AuthController.setPassword(passwordText.getText().toString());
-                AuthController.sendBarReference();
+               // AuthController.setPassword(passwordText.getText().toString());
+                //AuthController.sendBarReference();
+                customerPassword=customerPasswordInput.getText().toString();
+                barPassword=barPasswordInput.getText().toString();
+                if(barPassword.length()==4 && customerPassword.length()==4 && !barPassword.equals(customerPassword)){
+
+                    Intent temp = new Intent(CreateBarACtivity.this, WelcomeActivity.class);
+                    temp.putExtra("barPassword",barPasswordInput.getText().toString());
+                    temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
+                    startActivity(temp);
+
+                }
+                else{
+                    errorLabel.setVisibility(View.VISIBLE);
+                }
             }
         });
 
