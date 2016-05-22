@@ -28,8 +28,6 @@ public class DatabaseManager implements IDatabaseManager<Firebase> {
         targetReference.setValue(map);
     }
 
-
-
     @Override
     public void addToMap(String childReference, String key, List<Product> list) { //Behövs ej tror jag
         /**
@@ -46,11 +44,16 @@ public class DatabaseManager implements IDatabaseManager<Firebase> {
         targetReference.setValue(list);
     }
 
-
     @Override
     public void sendObject(String address, Object object) {
         Firebase targetReference = createChildReference(address);
         targetReference.push().setValue(object);
+    }
+
+    @Override
+    public void setValue(String address, Object object) {
+        Firebase targetReference = createChildReference(address);
+        targetReference.setValue(object);
     }
 
     @Override
