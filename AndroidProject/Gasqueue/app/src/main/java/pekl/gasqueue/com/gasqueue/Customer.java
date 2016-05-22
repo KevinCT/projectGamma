@@ -10,12 +10,11 @@ import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
 public class Customer implements User{
     private boolean orderSent;
-    private int queuePosition;
+    private Integer queuePosition;
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private Cart cart;
     public StopWatch timer = new StopWatch(); //Varför public???
-    public int Position; //Varför public???
 
 
     public Customer() {
@@ -75,7 +74,7 @@ public class Customer implements User{
         return orderSent;
     }
 
-    public int getQueuePosition() {
+    public Integer getQueuePosition() {
         return queuePosition;
     }
 

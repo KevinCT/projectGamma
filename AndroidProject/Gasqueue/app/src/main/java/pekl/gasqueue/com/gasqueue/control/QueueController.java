@@ -12,7 +12,7 @@ import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
  * Created by User on 5/3/2016.
  */
 public class QueueController {
-    public Queue queue;
+    private Queue queue;
 
     public QueueController(){
 
@@ -20,6 +20,10 @@ public class QueueController {
 
     public void addCustomer(String clientID) {
         queue.enqueue(clientID);
+    }
+
+    public void removeServedCustomer() {
+        queue.dequeue();
     }
 
     public boolean isCustomerServed(Customer customer) {
@@ -64,8 +68,4 @@ public class QueueController {
             }
         }
     }*/
-
-    public void givePosition(Customer customer, int Total, int position){
-        customer.Position = position-Total;
-    }
 }

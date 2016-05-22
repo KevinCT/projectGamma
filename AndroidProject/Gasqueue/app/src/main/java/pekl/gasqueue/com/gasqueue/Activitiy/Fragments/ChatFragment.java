@@ -17,16 +17,7 @@ import pekl.gasqueue.com.gasqueue.R;
  * A simple {@link Fragment} subclass.
  */
 public class ChatFragment extends Fragment {
-   /* public interface Listener{
-        public void onNameSet(String username);
-    }
-    private Listener listener;
 
-    public void setListener(Listener listener){
-        this.listener=listener;
-    }
-
-*/
 
     public ChatFragment() {
         // Required empty public constructor
