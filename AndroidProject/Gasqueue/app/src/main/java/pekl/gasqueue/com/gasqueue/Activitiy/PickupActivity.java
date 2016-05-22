@@ -15,8 +15,8 @@ import pekl.gasqueue.com.gasqueue.StopWatch;
  */
 public class PickupActivity extends AppCompatActivity {
 
-    public StopWatch sw = new StopWatch();
-    public int pos = 10;
+    private StopWatch sw = new StopWatch();
+    private int pos = 10;
     public PickupActivity(){
     }
     @Override
@@ -79,7 +79,7 @@ public class PickupActivity extends AppCompatActivity {
                     Runnable myRunnable = new Runnable() {
                         @Override
                         public void run() {
-                            while (sw.currentTime != 0) {
+                            while (sw.getCurrentTime() != 0) {
                                 try {
                                     Thread.sleep(1000);
                                 } catch (InterruptedException e) {
@@ -90,10 +90,10 @@ public class PickupActivity extends AppCompatActivity {
                                 mpositionView.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (sw.currentTime == 0) {
+                                        if (sw.getCurrentTime() == 0) {
                                             mpositionView.setText("You're too slow!");
                                         } else {
-                                            mpositionView.setText(Integer.toString(sw.currentTime));
+                                            mpositionView.setText(Integer.toString(sw.getCurrentTime()));
                                         }
                                     }
                                 });
