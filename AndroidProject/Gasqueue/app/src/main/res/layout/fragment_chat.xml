@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     tools:context="pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:text="Gasqueue Chat"
-        android:textSize="50dp"
+        android:textSize="35dp"
         android:textAlignment="center"
         android:id="@+id/chatText"
         android:layout_gravity="center_horizontal|top" />
@@ -34,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Namn"
         android:textAlignment="center"
         android:ems="10"
         android:id="@+id/nameInput"

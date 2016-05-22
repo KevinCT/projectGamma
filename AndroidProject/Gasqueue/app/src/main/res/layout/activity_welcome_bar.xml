@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="pekl.gasqueue.com.gasqueue.Activitiy.WelcomeBarActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/barmanager"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:id="@+id/barManagerHeader"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Bar"
+        android:textSize="25dp"
+        android:id="@+id/editBarBtn"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/barManagerHeader"
+        android:layout_alignRight="@+id/createBarBtn"
+        android:layout_alignEnd="@+id/createBarBtn"
+        android:layout_alignLeft="@+id/createBarBtn"
+        android:layout_alignStart="@+id/createBarBtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Bar"
+        android:textSize="25dp"
+        android:id="@+id/createBarBtn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manage Bar"
+        android:textSize="25dp"
+        android:id="@+id/mangeBarBtn"
+        android:layout_below="@+id/createBarBtn"
+        android:layout_alignLeft="@+id/createBarBtn"
+        android:layout_alignStart="@+id/createBarBtn"
+        android:layout_marginTop="37dp" />
+
+</RelativeLayout>
