@@ -8,8 +8,6 @@ package pekl.gasqueue.com.gasqueue.service;
  */
 public interface IValueChangeListener {
 
-    public void dataChanged();
-
-
+    public void dataChanged(Object object);
 
 }

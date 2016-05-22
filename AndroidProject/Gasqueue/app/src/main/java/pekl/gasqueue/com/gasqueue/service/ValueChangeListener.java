@@ -17,7 +17,7 @@ public abstract class ValueChangeListener implements IValueChangeListener {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dataChanged();
+                dataChanged(dataSnapshot);
             }
 
             @Override
@@ -28,5 +28,5 @@ public abstract class ValueChangeListener implements IValueChangeListener {
     }
 
     @Override
-    public abstract void dataChanged();
+    public abstract void dataChanged(Object object);
 }
