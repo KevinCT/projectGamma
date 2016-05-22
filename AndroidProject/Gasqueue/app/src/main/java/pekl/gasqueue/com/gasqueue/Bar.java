@@ -66,7 +66,6 @@ public class Bar implements User {
 
     public void removeOrder(String clientID) {
         this.orders.remove(clientID);
-        //QueueController.removeFromQueue();
     }
 
 }
