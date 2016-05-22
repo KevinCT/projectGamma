@@ -24,10 +24,10 @@ public class HostActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        barController = new BarDBController("reference"); //kan sättas dynamiskt om det behövs
-        queueController = barController.getQueueController();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
+        barController = new BarDBController("reference"); //kan sättas dynamiskt om det behövs
+        queueController = barController.getQueueController();
 
     }
     protected void onStart() {

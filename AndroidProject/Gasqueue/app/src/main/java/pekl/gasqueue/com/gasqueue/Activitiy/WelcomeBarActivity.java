@@ -3,7 +3,6 @@ package pekl.gasqueue.com.gasqueue.Activitiy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,7 +35,7 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
                 //todo
                 break;
             case R.id.createBarBtn:
-                activity = CreateBarACtivity.class;
+                activity = CreateBarActivity.class;
                 break;
             case R.id.mangeBarBtn:
                 break;
