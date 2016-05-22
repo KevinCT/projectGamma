@@ -17,9 +17,7 @@ public class PickupActivity extends AppCompatActivity {
 
     public StopWatch sw = new StopWatch();
     public int pos = 10;
-
     public PickupActivity(){
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
