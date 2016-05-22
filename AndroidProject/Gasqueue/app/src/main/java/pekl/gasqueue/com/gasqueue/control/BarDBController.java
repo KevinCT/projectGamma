@@ -103,9 +103,11 @@ public class BarDBController {
 
     //Update queue as well
     public void orderDone() {
-        bar.push();
+        bar.push(); //ökar int för completed orders med 1
+        qc.pushQueue(); //pushar fysiska kön i order framåt
+        bar.removeOrder((String) qc.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
+
         Firebase ref = (Firebase) dbManagerBar.createChildReference("customerNumberServed"); //Ska verkligen Firebase finnas här?
         ref.setValue(bar.getCustomerNumberServed()); //Fel metod används..... använd db manager
-        //ta bort från kön
     }
 }

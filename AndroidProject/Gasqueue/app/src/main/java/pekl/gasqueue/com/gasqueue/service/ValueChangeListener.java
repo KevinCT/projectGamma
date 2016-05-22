@@ -8,13 +8,14 @@ import com.firebase.client.ValueEventListener;
 /**
  * Created by Petros on 2016-05-19.
  */
-public abstract class ValueChangeListener implements IValueChangeListener {
+public abstract class ValueChangeListener implements IValueChangeListener<DataSnapshot> {
 
-    IDatabaseManager test;
+    IDatabaseManager<Firebase> databaseManager;
 
-    public ValueChangeListener(String ref) {
-        Firebase reference = new Firebase(ref);
-        reference.addValueEventListener(new ValueEventListener() {
+    public ValueChangeListener(String reference) {
+        databaseManager = new DatabaseManager(new Firebase(reference));
+        Firebase ref = databaseManager.getReference();
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataChanged(dataSnapshot);
@@ -27,6 +28,6 @@ public abstract class ValueChangeListener implements IValueChangeListener {
         });
     }
 
-    @Override
-    public abstract void dataChanged(Object object);
+    public abstract void dataChanged(DataSnapshot data);
+
 }

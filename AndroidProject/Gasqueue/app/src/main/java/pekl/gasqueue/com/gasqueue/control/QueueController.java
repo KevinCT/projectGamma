@@ -30,6 +30,16 @@ public class QueueController {
         return customer.timer.isRunning() == true;
     }
 
+    public void pushQueue(){
+        queue.dequeue(); //fysiska queue som är i order
+
+
+    }
+
+    public Object returnGuestID(){
+        return queue.deletedGuest;
+    }
+
     public void nextCustomer(Customer customer){
         if(customer.timer.isRunning() == true){
             System.out.println("There is already an order waiting to be picked up!");

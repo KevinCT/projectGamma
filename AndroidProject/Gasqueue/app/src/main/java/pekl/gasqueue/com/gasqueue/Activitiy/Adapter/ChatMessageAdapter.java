@@ -17,19 +17,19 @@ import java.util.List;
 
 import pekl.gasqueue.com.gasqueue.Message;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by kevin on 19/05/2016.
  */
 public class ChatMessageAdapter extends BaseAdapter {
     private List<Message> messageList= new ArrayList<>();
-    //abstract later to support any reference
-    public ChatMessageAdapter(Query messageRef){
+    ValueChangeListener listener;
 
-
-        messageRef.addValueEventListener(new ValueEventListener() {
+    public ChatMessageAdapter(String databaseRef,String messageRef){
+            listener = new ValueChangeListener(databaseRef, messageRef) {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void dataChanged(DataSnapshot dataSnapshot) {
                 messageList.clear();
                 for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
                     messageList.add(messageSnapshot.getValue(Message.class));
@@ -37,11 +37,7 @@ public class ChatMessageAdapter extends BaseAdapter {
                 }
             }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
+        };
 
     }
 
