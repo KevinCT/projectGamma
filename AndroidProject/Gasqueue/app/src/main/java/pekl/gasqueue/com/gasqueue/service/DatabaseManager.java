@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue.service;
 
+import android.widget.TextView;
+
 import com.firebase.client.Firebase;
 
 import java.util.HashMap;
@@ -12,7 +14,7 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
 /**
  * Created by Petros on 2016-05-02.
  */
-public class DatabaseManager implements IDatabaseManager {
+public class DatabaseManager implements IDatabaseManager<Firebase> {
 
     private Firebase reference;
 
@@ -63,4 +65,5 @@ public class DatabaseManager implements IDatabaseManager {
     public boolean checkCode(String barCode) {
         return false;
     }
+
 }
