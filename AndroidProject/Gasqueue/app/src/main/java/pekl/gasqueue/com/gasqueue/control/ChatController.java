@@ -13,13 +13,14 @@ import java.util.List;
 import pekl.gasqueue.com.gasqueue.FormatDate;
 import pekl.gasqueue.com.gasqueue.Message;
 import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
  * Created by kevin on 15/05/2016.
  */
 public class ChatController {
     private Message chatMessage;
-    private DatabaseManager dbManagerChat;
+    private IDatabaseManager dbManagerChat;
     public ChatController(String databaseRef){
         chatMessage = new Message();
         dbManagerChat = new DatabaseManager(new Firebase(databaseRef));
@@ -28,7 +29,7 @@ public class ChatController {
     public void sendMessage(){
         FormatDate currentDate = new FormatDate();
         chatMessage.setTimeStamp(currentDate.getCurrentDate());
-        dbManagerChat.createChildReference("Messages").push().setValue(chatMessage);
+        dbManagerChat.sendObject("Messages",chatMessage);
     }
     public void setMessage(String message){
         chatMessage.setMessage(message);
@@ -39,8 +40,8 @@ public class ChatController {
         chatMessage.setName(username);
     }
 
-    public Query getMessageRef(){
-        return dbManagerChat.createChildReference("Messages");
+    public String getMessageRef(){
+        return "Messages";
 
 
     }

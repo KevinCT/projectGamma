@@ -6,9 +6,9 @@ package pekl.gasqueue.com.gasqueue.service;
 /**
  * Created by Petros on 2016-05-19.
  */
-public interface IValueChangeListener {
+public interface IValueChangeListener<T> {
 
-    public void dataChanged();
+    public void dataChanged(T data);
 
 
 
