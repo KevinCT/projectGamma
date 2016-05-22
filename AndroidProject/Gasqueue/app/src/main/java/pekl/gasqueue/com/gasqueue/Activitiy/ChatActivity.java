@@ -42,7 +42,7 @@ public class ChatActivity extends AppCompatActivity  {
             }
         });
 
-        adapter = new ChatMessageAdapter(dbChatController.getMessageRef());
+        adapter = new ChatMessageAdapter("https://dazzling-torch-9680.firebaseio.com/",dbChatController.getMessageRef());
         chatView = (ListView)findViewById(R.id.chatView);
         chatView.setAdapter(adapter);
         Bundle extras = getIntent().getExtras();
