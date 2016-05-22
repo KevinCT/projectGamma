@@ -28,7 +28,7 @@ public class PickupActivity extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-        Button mcancelButton = (Button) findViewById(R.id.cancelButton);
+        Button mcancelButton = (Button) findViewById(R.id.pushButton);
         Button mviewOrderButton = (Button) findViewById(R.id.viewOrderButton);
         Button mpushButton = (Button) findViewById(R.id.pushButton);
         final TextView mstatusView = (TextView) findViewById(R.id.statusView);
