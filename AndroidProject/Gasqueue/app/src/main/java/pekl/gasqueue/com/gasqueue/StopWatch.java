@@ -11,9 +11,9 @@ import java.util.TimerTask;
 
 
 public class StopWatch {
-    public static int interval;
+    private static int interval;
     static Timer timer;
-    public static int currentTime = 60;
+    private static int currentTime = 60;
 
     public StopWatch(){
 
@@ -52,6 +52,8 @@ public class StopWatch {
         else{return true;}
     }
 
-
+    public int getCurrentTime(){
+        return currentTime;
+    }
 
 }
