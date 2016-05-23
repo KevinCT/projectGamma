@@ -10,11 +10,8 @@ public class Menu {
     private String barCode;
     private String barName;
     private List<Product> allProducts;
-    private List<Product> productsSameCategory;
 
     //The category user chooses in CategoryActivity
-    private static Product.Category chosenCategory;
-
     public void downloadMenu() {
         allProducts = new ArrayList<>();
         //allProducts.add()
@@ -37,20 +34,6 @@ public class Menu {
         allProducts.add(vatten);
         allProducts.add(falcon);
         allProducts.add(brookly);
-    }
-
-    public List<Product> getProductsSameCategory() {
-        productsSameCategory = new ArrayList<>();
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getCategory().equals(chosenCategory))
-                productsSameCategory.add(allProducts.get(i));
-        }
-        return productsSameCategory;
-    }
-
-    public void setChosenCategory(Product.Category category)
-    {
-        chosenCategory = category;
     }
 
     public List<Product> getMenu()

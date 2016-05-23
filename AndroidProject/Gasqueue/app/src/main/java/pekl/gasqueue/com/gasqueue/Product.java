@@ -34,29 +34,11 @@ public class Product {
         this.price=price;
     }
 
-    public void setChosenProduct(Product temp)
+    public void setChanges(String newName, Category newCategory, int newPrice )
     {
-        chosenProduct = new Product(temp.getName(),temp.getCategory(),temp.getPrice());
-    }
-
-    public Product getChosenProduct()
-    {
-        Product temp = new Product();
-        temp = chosenProduct;
-        return temp;
-    }
-
-    public void setPrice(int temp)
-    {
-        price=temp;
-    }
-    public void setName(String temp)
-    {
-        name = temp;
-    }
-    public void setCategory(Category temp)
-    {
-        category = temp;
+        name = newName;
+        category = newCategory;
+        price = newPrice;
     }
 
     public int getPrice(){

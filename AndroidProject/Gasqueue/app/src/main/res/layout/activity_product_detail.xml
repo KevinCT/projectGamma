@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="Description: "
             android:id="@+id/descriptionLabel"
             android:layout_weight="0.41" />
 
@@ -73,5 +73,11 @@
             android:text="Add to cart"
             android:id="@+id/addBtn"
             android:layout_gravity="right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/amountLbl" />
     </LinearLayout>
 </RelativeLayout>

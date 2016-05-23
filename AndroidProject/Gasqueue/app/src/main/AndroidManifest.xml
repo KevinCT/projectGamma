@@ -17,7 +17,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Activitiy.CategoryActivity" />
         <activity android:name=".Activitiy.ProductActivity" />
@@ -25,9 +24,7 @@
         <activity android:name=".Activitiy.CreateBarACtivity" />
         <activity android:name=".Activitiy.ProductDetailActivity" />
         <activity android:name=".Activitiy.ChatActivity" />
-        <activity android:name=".Activitiy.HomeActivity">
-
-        </activity>
+        <activity android:name=".Activitiy.HomeActivity"></activity>
     </application>
 
 </manifest>

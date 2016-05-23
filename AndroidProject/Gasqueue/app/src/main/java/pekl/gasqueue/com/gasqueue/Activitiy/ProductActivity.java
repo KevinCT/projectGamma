@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import android.view.View;
+import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.Customer;
 import pekl.gasqueue.com.gasqueue.Menu;
@@ -43,12 +44,14 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
         GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
         listLayout.removeAllViews();
-        for (int i = 0; i < productsSameCategory.size(); i++) {
-            Button button = new Button(this);
-            button.setText(productsSameCategory.get(i).getName());
-            productMap.put(button, productsSameCategory.get(i));
-            button.setOnClickListener(this);
-            listLayout.addView(button);
+        if (productsSameCategory.size() > 0) {
+            for (int i = 0; i < productsSameCategory.size(); i++) {
+                Button button = new Button(this);
+                button.setText(productsSameCategory.get(i).getName());
+                productMap.put(button, productsSameCategory.get(i));
+                button.setOnClickListener(this);
+                listLayout.addView(button);
+            }
         }
     }
 

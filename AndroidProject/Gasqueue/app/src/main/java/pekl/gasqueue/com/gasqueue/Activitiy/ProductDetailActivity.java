@@ -18,7 +18,6 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private Product chosenProduct = new Product();
-    private Cart temp = new Cart();
 
     private ShoppingController shoppingController = new ShoppingController();
     @Override
@@ -31,11 +30,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
         final TextView totalLabel = (TextView) findViewById(R.id.totalLabel);
         final EditText quantity = (EditText) findViewById(R.id.quantity);
+        final TextView amount = (TextView) findViewById(R.id.amountLbl);
+        amount.setText(shoppingController.getProductQuantity() + " st in cart");
 
-
-        totalLabel.setText("");
+        totalLabel.setText(chosenProduct.getPrice() + " kr");
         nameLabel.setText(chosenProduct.getName());
         priceLabel.setText("* " + chosenProduct.getPrice() + " kr = ");
+
 
         quantity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -51,7 +52,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                         System.out.println("ange ett jävla nummer tack");
                     }
                 }
-                else totalLabel.setText("");
+                else
+                {
+                    totalLabel.setText("0 kr");
+                }
             }
 
             @Override
@@ -63,7 +67,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                temp.addProduct( chosenProduct,Integer.parseInt(quantity.getText().toString()));
+                if(quantity.length() >0)
+                {
+                    shoppingController.addProduct( chosenProduct,Integer.parseInt(quantity.getText().toString()));
+                    amount.setText(shoppingController.getProductQuantity() + " st in cart");
+                }
+                else {
+
+                }
             }
         });
     }

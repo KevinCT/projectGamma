@@ -32,8 +32,6 @@ public class CategoryActivity extends AppCompatActivity  implements View.OnClick
         alkfriaBtn.setOnClickListener(this);
         Button matBtn = (Button) findViewById(R.id.matBtn);
         matBtn.setOnClickListener(this);
-        Button toCart = (Button) findViewById(R.id.cartBTn);
-        toCart.setOnClickListener(this);
     }
 
     @Override

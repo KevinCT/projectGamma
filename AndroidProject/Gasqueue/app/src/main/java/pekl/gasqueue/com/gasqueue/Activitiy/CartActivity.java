@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HashMapAdapter;
 import pekl.gasqueue.com.gasqueue.Cart;
@@ -19,8 +20,10 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ListView listView = (ListView) findViewById(R.id.listView);
-        adapter = new HashMapAdapter(cart.getCart());
+        adapter = new HashMapAdapter();
         listView.setAdapter(adapter);
+        TextView totalTV = (TextView) findViewById(R.id.totalTV);
+        totalTV.setText(cart.getTotal() + " kr");
     }
 
 }
