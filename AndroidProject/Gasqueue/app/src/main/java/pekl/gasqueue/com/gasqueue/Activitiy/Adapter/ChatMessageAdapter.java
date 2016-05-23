@@ -30,7 +30,7 @@ public class ChatMessageAdapter extends BaseAdapter {
             listener = new ValueChangeListener(databaseRef) {
             @Override
             public void dataChanged(DataSnapshot dataSnapshot) {
-                //clear list to avoid duplicate messages
+
                 messageList.clear();
                 for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
                     messageList.add(messageSnapshot.getValue(Message.class));
