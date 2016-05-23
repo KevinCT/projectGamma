@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -23,6 +24,17 @@ public class HostActivity extends AppCompatActivity {
     private BarDBController barController;
     private QueueController queueController;
     private HashMap<Product,Integer> order;
+    private String firstInQueue;
+
+    private TextView currentGuestView;
+    private TextView detailsView;
+    private TextView nameView;
+    private TextView timerTextView;
+    private TextView totalPriceTextView;
+    private ListView orderListView;
+    private Button pushButton;
+    private Button viewQueueButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +44,35 @@ public class HostActivity extends AppCompatActivity {
         queueController = barController.getQueueController();
 
     }
+
     protected void onStart() {
         super.onStart();
-        final TextView mcurrentGuestView = (TextView) findViewById(R.id.currentGuestView);
-        final TextView mdetailsView = (TextView) findViewById(R.id.detailsView);
-        final TextView mnameView = (TextView) findViewById(R.id.nameView);
-        Button mpushButton = (Button) findViewById(R.id.pushButton);
-        Button mviewQueueButton = (Button) findViewById(R.id.viewQueueButton);
+        currentGuestView = (TextView) findViewById(R.id.currentGuestView);
+        detailsView = (TextView) findViewById(R.id.detailsView);
+        nameView = (TextView) findViewById(R.id.nameView);
+        pushButton = (Button) findViewById(R.id.pushButton);
+        timerTextView = (TextView) findViewById(R.id.timerTextView);
+        totalPriceTextView = (TextView) findViewById(R.id.totalPriceTextView);
+        orderListView = (ListView) findViewById(R.id.orderListView);
+        viewQueueButton = (Button) findViewById(R.id.viewQueueButton);
+        updateView();
 
-        assert mpushButton != null;
-        mpushButton.setOnClickListener(new View.OnClickListener() {
+        assert pushButton != null;
+        pushButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 barController.orderDone();
-                updateView(mnameView, mdetailsView);
-                
+                firstInQueue = queueController.getFirstInQueue();
+                updateView();
+
             }
         });
 
     }
 
-    private void updateView(TextView nameView, TextView orderView) {
-        nameView.setText(queueController.getFirstInQueue());
+    private void updateView() {
+        this.nameView.setText(firstInQueue);
+        order = barController.getOrder(firstInQueue);
     }
 }
 
