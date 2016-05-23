@@ -36,8 +36,8 @@ public class BarDBController {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 String onlyKey = (String) order.keySet().toArray()[0];
-                newCustomer(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
-                bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
+                newCustomer(onlyKey, order.get(onlyKey));
+                bar.addOrder(onlyKey, order.get(onlyKey));
             }
 
             @Override

@@ -11,18 +11,6 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Queue"
-            android:id="@+id/viewQueueButton"
-            android:layout_marginBottom="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="49dp"
-            android:layout_marginStart="49dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="PUSH"
             android:id="@+id/pushButton"
             android:layout_alignTop="@+id/viewQueueButton"
@@ -37,10 +25,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Current Guest:"
             android:id="@+id/currentGuestView"
-            android:layout_marginTop="55dp"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/pushButton"
-            android:layout_toStartOf="@+id/pushButton" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,9 +36,9 @@
             android:text="Order Details:"
             android:id="@+id/detailsView"
             android:layout_below="@+id/currentGuestView"
-            android:layout_alignLeft="@+id/currentGuestView"
-            android:layout_alignStart="@+id/currentGuestView"
-            android:layout_marginTop="47dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="26dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,9 +46,62 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="name"
             android:id="@+id/nameView"
-            android:layout_alignTop="@+id/currentGuestView"
-            android:layout_alignLeft="@+id/pushButton"
-            android:layout_alignStart="@+id/pushButton" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Queue"
+            android:id="@+id/viewQueueButton"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/nameView"
+            android:layout_toStartOf="@+id/nameView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Timer"
+            android:id="@+id/timerTextView"
+            android:layout_above="@+id/pushButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textAlignment="center"
+            android:height="50dp"
+            android:layout_alignRight="@+id/viewQueueButton"
+            android:layout_alignEnd="@+id/viewQueueButton" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderListView"
+            android:layout_below="@+id/detailsView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/timerTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Total price:"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/orderListView"
+            android:layout_above="@+id/pushButton"
+            android:layout_toRightOf="@+id/viewQueueButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/totalPriceTextView"
+            android:layout_below="@+id/orderListView"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_above="@+id/pushButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
+
 </LinearLayout>
