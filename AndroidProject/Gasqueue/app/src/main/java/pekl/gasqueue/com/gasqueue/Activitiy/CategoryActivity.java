@@ -6,11 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import pekl.gasqueue.com.gasqueue.Menu;
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 

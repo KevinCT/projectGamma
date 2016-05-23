@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.Timer;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.StopWatch;
+import pekl.gasqueue.com.gasqueue.model.StopWatch;
 
 
 /**

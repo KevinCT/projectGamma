@@ -7,23 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import android.view.View;
 
-import pekl.gasqueue.com.gasqueue.Customer;
-import pekl.gasqueue.com.gasqueue.Menu;
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
-import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {

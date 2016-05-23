@@ -1,7 +1,6 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Kotex on 09/05/2016.

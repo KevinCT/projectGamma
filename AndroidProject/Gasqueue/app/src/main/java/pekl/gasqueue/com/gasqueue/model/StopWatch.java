@@ -1,4 +1,4 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.Scanner;
 import java.util.Timer;

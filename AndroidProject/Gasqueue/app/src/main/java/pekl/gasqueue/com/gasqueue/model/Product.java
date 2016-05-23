@@ -1,4 +1,4 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 /**
  * Created by kevin on 19/04/2016.

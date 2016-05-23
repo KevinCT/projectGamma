@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 
 /**

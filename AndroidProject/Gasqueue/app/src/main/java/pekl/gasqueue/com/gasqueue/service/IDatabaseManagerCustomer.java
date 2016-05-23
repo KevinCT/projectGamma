@@ -2,7 +2,7 @@ package pekl.gasqueue.com.gasqueue.service;
 
 import java.util.List;
 
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 /**
  * Created by Petros on 2016-04-27.

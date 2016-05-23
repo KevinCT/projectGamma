@@ -1,10 +1,7 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import pekl.gasqueue.com.gasqueue.control.QueueController;
 
 /**
  * Created by Petros on 2016-05-09.

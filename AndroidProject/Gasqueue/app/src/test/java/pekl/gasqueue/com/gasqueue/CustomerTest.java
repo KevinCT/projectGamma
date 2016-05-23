@@ -1,8 +1,9 @@
 package pekl.gasqueue.com.gasqueue;
-import junit.framework.Assert;
 
 import org.junit.Test;
-import java.util.regex.Pattern;
+
+import pekl.gasqueue.com.gasqueue.model.Customer;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
