@@ -17,8 +17,10 @@ public class ChatActivity extends AppCompatActivity  {
     private EditText messageInput;
     private Button sendBtn;
     private ChatController dbChatController;
-    ChatMessageAdapter adapter;
-    ListView chatView;
+    private ChatMessageAdapter adapter;
+    private ListView chatView;
+    private Bundle fragmentData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,33 +29,51 @@ public class ChatActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_chat);
         Firebase.setAndroidContext(this);
         dbChatController = new ChatController("https://dazzling-torch-9680.firebaseio.com/");
-        messageInput =(EditText) findViewById(R.id.messageTextField);
-        sendBtn=(Button) findViewById(R.id.sendBtn);
+        initView();
+        initAdapter();
+        initUserName();
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!messageInput.getText().toString().equals("")) {
-                    String text = messageInput.getText().toString();
-                    dbChatController.setMessage(text);
-                    dbChatController.sendMessage();
-                    messageInput.setText("");
-                }
+                sendBtnClicked();
 
             }
         });
 
-        adapter = new ChatMessageAdapter("https://dazzling-torch-9680.firebaseio.com/Messages");
-        chatView = (ListView)findViewById(R.id.chatView);
-        chatView.setAdapter(adapter);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String name = extras.getString("username");
-            dbChatController.setUserName(name);
-        }
+
 
 
 
     }
+    private void initView(){
+        sendBtn=(Button) findViewById(R.id.sendBtn);
+        messageInput=(EditText)findViewById(R.id.messageTextField);
+        chatView = (ListView)findViewById(R.id.chatView);
+
+    }
+    private void initUserName(){
+        fragmentData = getIntent().getExtras();
+        if (fragmentData != null) {
+            dbChatController.setUserName(fragmentData.getString("username"));
+        }
+
+    }
+    private void initAdapter(){
+        adapter = new ChatMessageAdapter("https://dazzling-torch-9680.firebaseio.com/Messages");
+        chatView.setAdapter(adapter);
+
+    }
+    private void sendBtnClicked(){
+        if(!messageInput.getText().toString().equals("")) {
+            String text = messageInput.getText().toString();
+            dbChatController.setMessage(text);
+            dbChatController.sendMessage();
+            messageInput.setText("");
+        }
+
+    }
+
+
 
 
 }

@@ -17,6 +17,10 @@ import pekl.gasqueue.com.gasqueue.R;
  * A simple {@link Fragment} subclass.
  */
 public class ChatFragment extends Fragment {
+    Intent intentActivity;
+    Button confirmationBtn;
+    EditText nameInput;
+    View view;
 
 
     public ChatFragment() {
@@ -28,20 +32,27 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
-        Button confirmationBtn = (Button)view.findViewById(R.id.okBtn);
-        final EditText nameInput = (EditText)view.findViewById(R.id.nameInput);
+        view = inflater.inflate(R.layout.fragment_chat, container, false);
+        initView();
         confirmationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
-                intent.putExtra("username",nameInput.getText().toString());
-                startActivity(intent);
-
+                nextActivity();
             }
         });
         return view;
     }
+    private void initView(){
+        confirmationBtn = (Button)view.findViewById(R.id.okBtn);
+        nameInput = (EditText)view.findViewById(R.id.nameInput);
+
+    }
+    private void nextActivity(){
+        intentActivity = new Intent(getActivity(), ChatActivity.class);
+        intentActivity.putExtra("username",nameInput.getText().toString());
+        startActivity(intentActivity);
+
+    }
+
 
 }

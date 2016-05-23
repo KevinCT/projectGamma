@@ -17,12 +17,8 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_bar);
-        editBarBtn = (Button) findViewById(R.id.editBarBtn);
-        editBarBtn.setOnClickListener(this);
-        manageBarBtn = (Button) findViewById(R.id.editBarBtn);
-        manageBarBtn.setOnClickListener(this);
-        createBarBtn = (Button) findViewById(R.id.createBarBtn);
-        createBarBtn.setOnClickListener(this);
+        initView();
+
     }
 
 
@@ -42,7 +38,19 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
 
 
         }
-        Intent temp = new Intent(this, activity);
-        startActivity(temp);
+        nextActivity(activity);
+    }
+    private void initView(){
+        editBarBtn = (Button) findViewById(R.id.editBarBtn);
+        editBarBtn.setOnClickListener(this);
+        manageBarBtn = (Button) findViewById(R.id.editBarBtn);
+        manageBarBtn.setOnClickListener(this);
+        createBarBtn = (Button) findViewById(R.id.createBarBtn);
+        createBarBtn.setOnClickListener(this);
+
+    }
+    private void nextActivity(Class activity){
+        Intent intentActivity= new Intent(this,activity);
+        startActivity(intentActivity);
     }
 }

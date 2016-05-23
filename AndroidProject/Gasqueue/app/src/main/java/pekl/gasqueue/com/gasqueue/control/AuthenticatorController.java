@@ -32,7 +32,7 @@ public class AuthenticatorController {
         dbManagerAuthenticator.sendObject("Authenticators",authenticator);
 
     }
-    public boolean authenticate(String input) {
+    public String authenticate(String input) {
          valueListener = new ValueChangeListener(dbManagerAuthenticator.getReference().toString() + "/Authenticators") {
 
             @Override
@@ -44,16 +44,14 @@ public class AuthenticatorController {
             }
 
         };
+
         return authenticator.authenticate(input,authenticatorList);
     }
 
-    public void setPassword(String password){
+  /* public void setPassword(String password){
         authenticator.setPassword(password);
-    }
+    }*/
 
-    public String getClientType(){
-        return authenticator.getClientType();
-    }
 
 
 
