@@ -3,9 +3,9 @@ package pekl.gasqueue.com.gasqueue.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import pekl.gasqueue.com.gasqueue.Cart;
-import pekl.gasqueue.com.gasqueue.Menu;
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Cart;
+import pekl.gasqueue.com.gasqueue.model.Menu;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 /**
  * Created by Kotex on 18/05/2016.

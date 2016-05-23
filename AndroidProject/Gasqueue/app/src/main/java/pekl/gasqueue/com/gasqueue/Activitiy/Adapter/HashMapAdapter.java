@@ -1,6 +1,7 @@
 package pekl.gasqueue.com.gasqueue.Activitiy.Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class HashMapAdapter extends BaseAdapter {
                         break;
                     case R.id.removeBtn:
                         tempCart.removeProduct(temp);
+                        Log.v("temp",temp.getName().toString());
                         notifyDataSetChanged();
                 }
             }
