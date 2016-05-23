@@ -32,6 +32,11 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Product.Category category = (Product.Category)extras.getSerializable("category");
+            shoppingController.setChosenCategory(category);
+        }
 
         GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
         listLayout.removeAllViews();

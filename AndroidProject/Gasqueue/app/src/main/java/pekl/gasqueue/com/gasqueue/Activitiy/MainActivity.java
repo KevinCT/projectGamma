@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChatFragment;
+import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.MenuCategoryFragment;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
           switch(position){
-              case 0: return new DialogFragment();
+              case 0: return new MenuCategoryFragment();
 
               case 1: return new DialogFragment();
 
