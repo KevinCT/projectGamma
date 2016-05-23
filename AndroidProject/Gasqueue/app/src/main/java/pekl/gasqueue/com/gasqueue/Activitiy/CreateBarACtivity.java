@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.R;
 
-class CreateBarActivity extends AppCompatActivity {
+public class CreateBarActivity extends AppCompatActivity {
    // private AuthenticatorController AuthController;
     private Button createBarBtn;
     private EditText barPasswordInput;
