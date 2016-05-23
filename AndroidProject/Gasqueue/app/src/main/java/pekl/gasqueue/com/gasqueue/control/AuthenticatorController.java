@@ -48,9 +48,6 @@ public class AuthenticatorController {
         return authenticator.authenticate(input,authenticatorList);
     }
 
-  /* public void setPassword(String password){
-        authenticator.setPassword(password);
-    }*/
 
 
 

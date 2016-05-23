@@ -31,11 +31,7 @@ public class ChatController {
         chatMessage.setName(username);
     }
 
-    public String getMessageRef(){
-        return "Messages";
 
-
-    }
 
     private void setTimeStamp(){
         FormatDate currentDate = new FormatDate();

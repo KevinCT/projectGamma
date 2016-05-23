@@ -40,14 +40,14 @@ public class WelcomeActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.logInBtn);
     }
     private void authenticate(){
-        activity=MainActivity.class;
         if(authController.authenticate(passwordText.getText().toString()).equals("customer")) {
             activity=MainActivity.class;
 
         }
         else if (authController.authenticate(passwordText.getText().toString()).equals("bar")){
-            activity=HostActivity.class;
+            activity=WelcomeBarActivity.class;
         }
+        if(activity!=null)
         nextActivity(activity);
     }
     private void nextActivity(Class activity){

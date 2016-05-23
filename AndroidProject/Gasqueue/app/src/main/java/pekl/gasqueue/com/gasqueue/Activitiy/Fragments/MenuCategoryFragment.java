@@ -4,6 +4,7 @@ package pekl.gasqueue.com.gasqueue.Activitiy.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import pekl.gasqueue.com.gasqueue.model.Product;
  * A simple {@link Fragment} subclass.
  */
 public class MenuCategoryFragment extends Fragment implements View.OnClickListener {
+    private Product.Category category;
 
 
     public MenuCategoryFragment() {
@@ -44,7 +46,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
 
     }
     public void onClick(View v) {
-        Product.Category category= Product.Category.BEER;
+
         Intent temp = new Intent(getActivity(),ProductActivity.class);
         switch (v.getId())
         {
