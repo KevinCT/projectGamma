@@ -65,16 +65,7 @@ public class QueueController {
         }
     }
 
-    /*public void viewQueue(){
-        if(queue.isEmpty()==true){
-            System.out.println("Queue is empty!");
-        }
-        else{
-            System.out.println("Current queue size: "+queue.getSize());
-            for(int i = 0; i<queue.getSize(); i++) {
-                int j = i + 1;
-                System.out.println("Position " + j + ": " + queue.getCustomer(i).toString());
-            }
-        }
-    }*/
+    public int getQueueSize() {
+        return queue.getSize();
+    }
 }

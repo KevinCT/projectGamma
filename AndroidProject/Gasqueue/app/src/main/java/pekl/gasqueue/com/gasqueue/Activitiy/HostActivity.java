@@ -35,27 +35,21 @@ public class HostActivity extends AppCompatActivity {
     private Button pushButton;
     private Button viewQueueButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
-        barController = new BarDBController("reference"); //kan sättas dynamiskt om det behövs
+        barController = new BarDBController("https://dazzling-torch-9680.firebaseio.com/"); //kan sättas dynamiskt om det behövs
         queueController = barController.getQueueController();
-
+        if(queueController.getQueueSize() > 0) {
+            firstInQueue = queueController.getFirstInQueue();
+        }
     }
 
     protected void onStart() {
         super.onStart();
-        currentGuestView = (TextView) findViewById(R.id.currentGuestView);
-        detailsView = (TextView) findViewById(R.id.detailsView);
-        nameView = (TextView) findViewById(R.id.nameView);
-        pushButton = (Button) findViewById(R.id.pushButton);
-        timerTextView = (TextView) findViewById(R.id.timerTextView);
-        totalPriceTextView = (TextView) findViewById(R.id.totalPriceTextView);
-        orderListView = (ListView) findViewById(R.id.orderListView);
-        viewQueueButton = (Button) findViewById(R.id.viewQueueButton);
-        updateView();
+        initializeViews();
+
 
         assert pushButton != null;
         pushButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +62,18 @@ public class HostActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initializeViews() {
+        currentGuestView = (TextView) findViewById(R.id.currentGuestView);
+        detailsView = (TextView) findViewById(R.id.detailsView);
+        nameView = (TextView) findViewById(R.id.nameView);
+        pushButton = (Button) findViewById(R.id.pushButton);
+        timerTextView = (TextView) findViewById(R.id.timerTextView);
+        totalPriceTextView = (TextView) findViewById(R.id.totalPriceTextView);
+        orderListView = (ListView) findViewById(R.id.orderListView);
+        viewQueueButton = (Button) findViewById(R.id.viewQueueButton);
+        updateView();
     }
 
     private void updateView() {
