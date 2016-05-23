@@ -35,7 +35,6 @@ public class ChatFragment extends Fragment {
         confirmationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // listener.onNameSet(nameInput.getText().toString());
                 Intent intent = new Intent(getActivity(), ChatActivity.class);
                 intent.putExtra("username",nameInput.getText().toString());
                 startActivity(intent);

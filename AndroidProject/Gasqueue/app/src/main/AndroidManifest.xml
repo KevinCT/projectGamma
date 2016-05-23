@@ -32,6 +32,9 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activitiy.WelcomeBarActivity"></activity>
+        <activity android:name=".Activitiy.CreateBarActivity">
+
+        </activity>
     </application>
 
 </manifest>

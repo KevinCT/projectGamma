@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(temp);
                 }
                 else if (authController.authenticate(passwordText.getText().toString()) && authController.getClientType().equals("Bar")){
-                    Intent temp = new Intent(WelcomeActivity.this, WelcomeBarActivity.class);
+                    Intent temp = new Intent(WelcomeActivity.this, HomeActivity.class);
                     startActivity(temp);
                 }
 
