@@ -27,8 +27,7 @@ public class ChatController {
 
     }
     public void sendMessage(){
-        FormatDate currentDate = new FormatDate();
-        chatMessage.setTimeStamp(currentDate.getCurrentDate());
+        setTimeStamp();
         dbManagerChat.sendObject("Messages",chatMessage);
     }
     public void setMessage(String message){
@@ -44,6 +43,11 @@ public class ChatController {
         return "Messages";
 
 
+    }
+
+    private void setTimeStamp(){
+        FormatDate currentDate = new FormatDate();
+        chatMessage.setTimeStamp(currentDate.getCurrentDate());
     }
 
 
