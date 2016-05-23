@@ -7,11 +7,10 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import pekl.gasqueue.com.gasqueue.Customer;
-import pekl.gasqueue.com.gasqueue.Product;
+import pekl.gasqueue.com.gasqueue.model.Customer;
+import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 

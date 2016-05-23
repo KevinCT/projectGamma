@@ -6,7 +6,7 @@ import com.firebase.client.Firebase;
 import java.util.ArrayList;
 import java.util.List;
 
-import pekl.gasqueue.com.gasqueue.Authenticator;
+import pekl.gasqueue.com.gasqueue.model.Authenticator;
 import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;

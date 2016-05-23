@@ -1,12 +1,7 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import com.firebase.client.Firebase;
-
-import java.util.HashMap;
-
-import pekl.gasqueue.com.gasqueue.Customer;
-import pekl.gasqueue.com.gasqueue.Queue;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.model.Customer;
+import pekl.gasqueue.com.gasqueue.model.Queue;
 
 /**
  * Created by User on 5/3/2016.
