@@ -20,7 +20,7 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
     private List<Product> productsSameCategory;
-    private Map<Button, Product> productMap;
+    private Map<Button, Product> productButtonMap;
 
     private ShoppingController shoppingController = new ShoppingController();
 
@@ -28,7 +28,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         productsSameCategory = new ArrayList<>();
         productsSameCategory = shoppingController.getProductSameCategory();
-        productMap = new HashMap<>();
+        productButtonMap = new HashMap<>();
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
@@ -39,7 +39,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             for (int i = 0; i < productsSameCategory.size(); i++) {
                 Button button = new Button(this);
                 button.setText(productsSameCategory.get(i).getName());
-                productMap.put(button, productsSameCategory.get(i));
+                productButtonMap.put(button, productsSameCategory.get(i));
                 button.setOnClickListener(this);
                 listLayout.addView(button);
             }
@@ -48,7 +48,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        shoppingController.setChosenProduct(productMap.get(view));
+        shoppingController.setChosenProduct(productButtonMap.get(view));
         Intent temp = new Intent(this, ProductDetailActivity.class);
         startActivity(temp);
 

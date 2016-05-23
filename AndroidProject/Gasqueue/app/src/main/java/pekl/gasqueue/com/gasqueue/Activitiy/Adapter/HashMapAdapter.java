@@ -47,22 +47,17 @@ public class HashMapAdapter extends BaseAdapter {
         final View result;
         if (convertView == null) {
             result = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_product, parent, false);
-
         }
         else {
 
             result = convertView;
         }
+
         ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
         final TextView quantity = (TextView) result.findViewById(R.id.quantityLbl);
-        try {
-            quantity.setText(tempCart.getCart().get(temp).toString());
-            ((TextView) result.findViewById(R.id.totalLbl)).setText(temp.getPrice() * Integer.parseInt(tempCart.getCart().get(temp).toString()) + " kr");
-        }
-        catch (NullPointerException e)
-        {
-
-        }
+        quantity.setText(tempCart.getCart().get(temp).toString());
+        final TextView totalLbl = (TextView) result.findViewById(R.id.totalLbl);
+        totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -72,16 +67,17 @@ public class HashMapAdapter extends BaseAdapter {
                     case R.id.incBtn:
                         tempCart.incQuantity(temp);
                         quantity.setText("" + tempCart.getQuantity(temp));
-                        ((TextView) result.findViewById(R.id.totalLbl)).setText(temp.getPrice() * Integer.parseInt(tempCart.getCart().get(temp).toString()) + " kr");
+                        totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.decBtn:
                         tempCart.decQuantity(temp);
                         quantity.setText("" + tempCart.getQuantity(temp));
-                        ((TextView) result.findViewById(R.id.totalLbl)).setText(temp.getPrice() * Integer.parseInt(tempCart.getCart().get(temp).toString()) + " kr");
+                        totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.removeBtn:
                         tempCart.removeProduct(temp);
                         Log.v("temp",temp.getName().toString());
+                        mKeys = tempCart.getCart().keySet().toArray(new Product[tempCart.getCart().size()]);
                         notifyDataSetChanged();
                 }
             }

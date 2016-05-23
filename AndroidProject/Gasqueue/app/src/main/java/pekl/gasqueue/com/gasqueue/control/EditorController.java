@@ -6,7 +6,6 @@ import java.util.List;
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
-
 /**
  * Created by Kotex on 18/05/2016.
  */

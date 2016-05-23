@@ -75,4 +75,9 @@ public class Cart {
     {
         addProduct(product,-1);
     }
+
+    public int getTotalOfProduct(Product p)
+    {
+        return p.getPrice()*cart.get(p);
+    }
 }
