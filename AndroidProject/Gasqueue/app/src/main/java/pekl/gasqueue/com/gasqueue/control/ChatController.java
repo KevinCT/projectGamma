@@ -4,7 +4,7 @@ import com.firebase.client.Firebase;
 
 import pekl.gasqueue.com.gasqueue.model.FormatDate;
 import pekl.gasqueue.com.gasqueue.model.Message;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
@@ -15,7 +15,7 @@ public class ChatController {
     private IDatabaseManager dbManagerChat;
     public ChatController(String databaseRef){
         chatMessage = new Message();
-        dbManagerChat = new DatabaseManager(new Firebase(databaseRef));
+        dbManagerChat = new FirebaseDatabaseManager(new Firebase(databaseRef));
 
     }
     public void sendMessage(){

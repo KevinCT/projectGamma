@@ -11,7 +11,7 @@ import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.model.Customer;
 import pekl.gasqueue.com.gasqueue.model.Product;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
@@ -24,7 +24,7 @@ public class CustomerDBController {
     private int queueNumber;
 
     public CustomerDBController(String databaseReference) {
-        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference)); //Firebase ska ej vara här...
+        dbManagerCustomer = new FirebaseDatabaseManager(new Firebase(databaseReference)); //Firebase ska ej vara här...
         customer = new Customer();
         updateBanState();
     }

@@ -13,7 +13,7 @@ public abstract class ChildChangeListener implements IChildChangeListener<DataSn
     IDatabaseManager<Firebase> databaseManager;
 
     public ChildChangeListener(String reference) {
-        databaseManager = new DatabaseManager(new Firebase(reference));
+        databaseManager = new FirebaseDatabaseManager(new Firebase(reference));
         Firebase ref = databaseManager.getReference();
         ref.addChildEventListener(new ChildEventListener() {
             @Override
