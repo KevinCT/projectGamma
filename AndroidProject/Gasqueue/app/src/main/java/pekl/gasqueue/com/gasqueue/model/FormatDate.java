@@ -1,4 +1,4 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

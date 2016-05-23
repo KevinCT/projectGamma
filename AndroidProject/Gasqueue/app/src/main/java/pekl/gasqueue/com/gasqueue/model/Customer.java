@@ -1,12 +1,9 @@
-package pekl.gasqueue.com.gasqueue;
+package pekl.gasqueue.com.gasqueue.model;
 
 import android.provider.Settings.Secure;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Set;
-
-import pekl.gasqueue.com.gasqueue.control.BarDBController;
-import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 
 public class Customer implements User{
     private boolean orderSent;

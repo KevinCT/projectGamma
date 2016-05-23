@@ -1,6 +1,4 @@
-package pekl.gasqueue.com.gasqueue;
-
-import java.util.Date;
+package pekl.gasqueue.com.gasqueue.model;
 
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 

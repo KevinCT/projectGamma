@@ -1,15 +1,11 @@
 package pekl.gasqueue.com.gasqueue.service;
 
-import android.widget.TextView;
-
 import com.firebase.client.Firebase;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pekl.gasqueue.com.gasqueue.Product;
-import pekl.gasqueue.com.gasqueue.control.QueueController;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 /**
  * Created by Petros on 2016-05-02.

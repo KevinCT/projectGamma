@@ -7,9 +7,8 @@ import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 
-import pekl.gasqueue.com.gasqueue.Bar;
-import pekl.gasqueue.com.gasqueue.Product;
-import pekl.gasqueue.com.gasqueue.User;
+import pekl.gasqueue.com.gasqueue.model.Bar;
+import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
