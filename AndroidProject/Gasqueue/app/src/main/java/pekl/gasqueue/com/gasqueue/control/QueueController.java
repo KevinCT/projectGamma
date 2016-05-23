@@ -10,7 +10,7 @@ public class QueueController {
     private Queue queue;
 
     public QueueController(){
-
+        queue = new Queue();
     }
 
     public String getFirstInQueue() {
