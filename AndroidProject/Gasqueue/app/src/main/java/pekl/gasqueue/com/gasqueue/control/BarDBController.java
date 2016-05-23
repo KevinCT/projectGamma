@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import pekl.gasqueue.com.gasqueue.model.Bar;
 import pekl.gasqueue.com.gasqueue.model.Product;
-import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
@@ -23,7 +23,7 @@ public class BarDBController {
     private QueueController queueController;
 
     public BarDBController(String databaseReference) {
-        dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
+        dbManagerBar = new FirebaseDatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
         queueController = new QueueController();
         updateOrders();

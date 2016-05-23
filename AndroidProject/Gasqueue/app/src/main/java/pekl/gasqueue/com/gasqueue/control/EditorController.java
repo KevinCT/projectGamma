@@ -3,14 +3,14 @@ package pekl.gasqueue.com.gasqueue.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import pekl.gasqueue.com.gasqueue.model.Cart;
-import pekl.gasqueue.com.gasqueue.model.Menu;
-import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.Cart;
+import pekl.gasqueue.com.gasqueue.Menu;
+import pekl.gasqueue.com.gasqueue.Product;
 
 /**
  * Created by Kotex on 18/05/2016.
  */
-public class ShoppingController {
+public class EditorController {
     private List<Product> productsSameCategory = new ArrayList<>();
     private Menu tempMenu = new Menu();
     private static Product chosenProduct = new Product();
@@ -18,7 +18,8 @@ public class ShoppingController {
     private List<Product> allProducts = new ArrayList<>();
     private Cart cart = new Cart();
 
-    public ShoppingController()
+
+    public EditorController()
     {
         allProducts = tempMenu.getMenu();
     }
@@ -57,8 +58,16 @@ public class ShoppingController {
         cart.addProduct(p,g);
     }
 
-    public int getProductQuantity()
+    public void changeProduct(String name, Product.Category category, int price)
     {
-        return cart.getQuantity(chosenProduct);
+        chosenProduct.setChanges(name,category,price);
     }
+
+    public void createProduct(String name, Product.Category category, int price)
+    {
+        Product temp = new Product(name,category,price);
+        allProducts.add(temp);
+    }
+
+
 }

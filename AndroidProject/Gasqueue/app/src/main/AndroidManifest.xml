@@ -25,7 +25,8 @@
         <activity android:name=".Activitiy.CartActivity" />
         <activity android:name=".Activitiy.ProductDetailActivity" />
         <activity android:name=".Activitiy.ChatActivity" />
-        <activity android:name=".Activitiy.HomeActivity" />
+
+        <activity android:name=".Activitiy.HomeActivity"></activity>
         <activity
             android:name=".Activitiy.MainActivity"
             android:label="@string/title_activity_main"

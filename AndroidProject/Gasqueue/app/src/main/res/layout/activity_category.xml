@@ -74,13 +74,5 @@
             android:onClick="buttonListener"
             />
 
-        <Button
-            android:layout_width="170dp"
-            android:layout_height="120dp"
-            android:text="To Cart"
-            android:id="@+id/cartBTn"
-            android:layout_row="3"
-            android:layout_column="0" />
-
     </GridLayout>
 </RelativeLayout>

@@ -10,11 +10,11 @@ import pekl.gasqueue.com.gasqueue.model.Product;
 /**
  * Created by Petros on 2016-05-02.
  */
-public class DatabaseManager implements IDatabaseManager<Firebase> {
+public class FirebaseDatabaseManager implements IDatabaseManager<Firebase> {
 
     private Firebase reference;
 
-    public DatabaseManager(Firebase reference) {
+    public FirebaseDatabaseManager(Firebase reference) {
         this.reference = reference;
     }
 

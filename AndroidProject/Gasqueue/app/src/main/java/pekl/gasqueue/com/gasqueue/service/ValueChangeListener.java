@@ -13,7 +13,7 @@ public abstract class ValueChangeListener implements IValueChangeListener<DataSn
     IDatabaseManager<Firebase> databaseManager;
 
     public ValueChangeListener(String reference) {
-        databaseManager = new DatabaseManager(new Firebase(reference));
+        databaseManager = new FirebaseDatabaseManager(new Firebase(reference));
         Firebase ref = databaseManager.getReference();
         ref.addValueEventListener(new ValueEventListener() {
             @Override

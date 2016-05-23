@@ -8,9 +8,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 
 /**
@@ -19,9 +22,8 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
 public class HostActivity extends AppCompatActivity {
     private BarDBController barController;
     private QueueController queueController;
+    private HashMap<Product,Integer> order;
 
-    public HostActivity(){
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class HostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 barController.orderDone();
                 updateView(mnameView, mdetailsView);
+                
             }
         });
 
