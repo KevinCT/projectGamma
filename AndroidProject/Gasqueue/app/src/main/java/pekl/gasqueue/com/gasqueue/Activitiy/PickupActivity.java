@@ -5,28 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-
-import org.w3c.dom.Text;
-
-import pekl.gasqueue.com.gasqueue.Customer;
+import java.util.Timer;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.BarDBController;
-import pekl.gasqueue.com.gasqueue.control.QueueController;
+import pekl.gasqueue.com.gasqueue.StopWatch;
+
 
 /**
  * Created by User on 5/11/2016.
  */
 public class PickupActivity extends AppCompatActivity {
-    /*
-    public QueueController qc;
-    public Customer customer;
-    public BarDBController bdbc;
-    @Override
 
+    private StopWatch sw = new StopWatch();
+    private int pos = 10;
     public PickupActivity(){
-
     }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -35,17 +28,26 @@ public class PickupActivity extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-        Button mcancelButton = (Button) findViewById(R.id.cancelButton);
+        Button mcancelButton = (Button) findViewById(R.id.pushButton);
         Button mviewOrderButton = (Button) findViewById(R.id.viewOrderButton);
-        TextView mstatusView = (TextView) findViewById(R.id.statusView);
-        TextView mpositionView = (TextView) findViewById(R.id.positionView);
-        TextView mtimeView = (TextView) findViewById(R.id.timeView);
+        Button mpushButton = (Button) findViewById(R.id.pushButton);
+        final TextView mstatusView = (TextView) findViewById(R.id.statusView);
+        final TextView mpositionView = (TextView) findViewById(R.id.positionView);
+        final TextView mtimeView = (TextView) findViewById(R.id.timeView);
+        final Timer timer = new Timer();
+        final int delay = 1000;
+        final int period = 1000;
+        mstatusView.setText("Your current position");
+        mpositionView.setText(Integer.toString(pos));
+
+
+
 
         assert mcancelButton != null;
         mcancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            qc.queue.removeItem(customer);
+                //qc.queue.removeItem(customer);
 
             }
         });
@@ -58,18 +60,53 @@ public class PickupActivity extends AppCompatActivity {
             }
 
 
-         });
+        });
 
-        mpositionView.setText(Integer.toString((bdbc.SentOrders - bdbc.Total)));
-        if(mpositionView.getText() == "0"){
-            customer.startTimer();
-            mpositionView.setText("");
-            while(customer.timer.isRunning()==true){
-                mtimeView.setText(customer.timer.currentTime);
+        assert mpushButton != null;
+        System.out.println(mpushButton.toString());
+
+        mpushButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pos--;
+                mpositionView.setText(Integer.toString(pos));
+                if (pos == 0) {
+
+                    sw.runTimer();
+                    mstatusView.setText("Time left to pay and pick up drink");
+
+
+                    Runnable myRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            while (sw.getCurrentTime() != 0) {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    System.out.println("got interrupted!");
+                                }
+
+
+                                mpositionView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (sw.getCurrentTime() == 0) {
+                                            mpositionView.setText("You're too slow!");
+                                        } else {
+                                            mpositionView.setText(Integer.toString(sw.getCurrentTime()));
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    };
+
+                    Thread myThread = new Thread(myRunnable);
+                    myThread.start();
+
+                }
             }
-
-        }
-        //create code that displays the STATUS and POSITION of the guest and order
-
-    }*/
+        });
+    }
 }
+

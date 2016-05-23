@@ -15,7 +15,9 @@ import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class CategoryActivity extends AppCompatActivity  implements View.OnClickListener {
+
     private ShoppingController shoppingController = new ShoppingController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

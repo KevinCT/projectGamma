@@ -10,9 +10,9 @@ import pekl.gasqueue.com.gasqueue.Product;
 /**
  * Created by Petros on 2016-04-27.
  */
-public interface IDatabaseManager {
+public interface IDatabaseManager<T> {
 
-    public void saveMap(String address, Map<String, List<Product>> map);
+    public void saveMap(String address, Map<String, Map<Product, Integer>> map);
 
     public void addToMap(String address, String clientID, List<Product> list);
 
@@ -20,7 +20,11 @@ public interface IDatabaseManager {
 
     public void sendObject(String address, Object object);
 
-    public Firebase createChildReference(String childReference);
+    public T getReference();
+
+    public void setValue(String address, Object object);
+
+    public T createChildReference(String childReference);
 
     //public void addUpdateListener(String address);
 

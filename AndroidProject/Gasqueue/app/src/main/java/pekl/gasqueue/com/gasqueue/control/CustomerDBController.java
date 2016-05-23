@@ -25,14 +25,14 @@ public class CustomerDBController {
     private int queueNumber;
 
     public CustomerDBController(String databaseReference) {
-        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference));
+        dbManagerCustomer = new DatabaseManager(new Firebase(databaseReference)); //Firebase ska ej vara här...
         customer = new Customer();
         updateBanState();
     }
 
     public void sendOrder(){
         if(!customer.isBanned() && !customer.isOrderSent()) {
-            Map<String, List<Product>> map = new HashMap<>();
+            Map<String, Map<Product, Integer>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             updateQueueNumber();
             dbManagerCustomer.saveMap("Orders", map);
@@ -42,7 +42,7 @@ public class CustomerDBController {
     }
 
     public void updateBanState() {
-        Firebase ref = dbManagerCustomer.createChildReference("banList");
+        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("banList"); //Temporary solution to avoid errors
 
         ref.addChildEventListener(new ChildEventListener() {
 
@@ -79,7 +79,7 @@ public class CustomerDBController {
     }
 
     public void updateQueueNumber() {
-        Firebase ref = dbManagerCustomer.createChildReference("queueNumber");
+        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("queueNumber"); //Temporary solution to avoid errors
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,7 +95,7 @@ public class CustomerDBController {
     }
 
     public void updateQueuePosition() {
-        Firebase ref = dbManagerCustomer.createChildReference("customerNumberServed");
+        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("customerNumberServed"); //Temporary solution to avoid errors
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -106,7 +106,7 @@ public class CustomerDBController {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 if(customer.isOrderSent()) {
-                    if( ! (customer.getQueuePosition() == 1)) { //Or 0?
+                    if( ! (customer.getQueuePosition() == 0) ||  customer.getQueuePosition() == null) { //Or 0?
                         customer.setQueuePosition(queueNumber - dataSnapshot.getValue(Integer.class));
                     } else {
                         //Your turn to be served, send notifications etc.
@@ -142,8 +142,8 @@ public class CustomerDBController {
         }
     }
 
-    public void addItem(Product product) {
-        customer.addItem(product);
+    public void addToCart(Product product, int quantity) {
+        customer.addItem(product, quantity);
     }
 
 

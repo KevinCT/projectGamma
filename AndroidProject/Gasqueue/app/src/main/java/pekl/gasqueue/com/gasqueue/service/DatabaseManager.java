@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue.service;
 
+import android.widget.TextView;
+
 import com.firebase.client.Firebase;
 
 import java.util.HashMap;
@@ -12,7 +14,7 @@ import pekl.gasqueue.com.gasqueue.control.QueueController;
 /**
  * Created by Petros on 2016-05-02.
  */
-public class DatabaseManager implements IDatabaseManager {
+public class DatabaseManager implements IDatabaseManager<Firebase> {
 
     private Firebase reference;
 
@@ -21,13 +23,10 @@ public class DatabaseManager implements IDatabaseManager {
     }
 
     @Override
-    public void saveMap(String childReference, Map<String, List<Product>> map) {
+    public void saveMap(String childReference, Map<String, Map<Product, Integer>> map) {
         Firebase targetReference = createChildReference(childReference);
         targetReference.setValue(map);
-
     }
-
-
 
     @Override
     public void addToMap(String childReference, String key, List<Product> list) { //Behövs ej tror jag
@@ -45,11 +44,21 @@ public class DatabaseManager implements IDatabaseManager {
         targetReference.setValue(list);
     }
 
-
     @Override
     public void sendObject(String address, Object object) {
         Firebase targetReference = createChildReference(address);
         targetReference.push().setValue(object);
+    }
+
+    @Override
+    public void setValue(String address, Object object) {
+        Firebase targetReference = createChildReference(address);
+        targetReference.setValue(object);
+    }
+
+    @Override
+    public Firebase getReference() {
+        return reference;
     }
 
 
@@ -64,4 +73,5 @@ public class DatabaseManager implements IDatabaseManager {
     public boolean checkCode(String barCode) {
         return false;
     }
+
 }

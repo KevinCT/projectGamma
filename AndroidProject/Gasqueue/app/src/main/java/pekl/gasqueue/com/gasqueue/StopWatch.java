@@ -4,30 +4,39 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class StopWatch{
-    public static int interval;
+
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+public class StopWatch {
+    private static int interval;
     static Timer timer;
-    public static int currentTime;
-    public static void main(String[] args) {
+    private static int currentTime = 60;
+
+    public StopWatch(){
+
+    }
+
+    public void runTimer() {
+        interval = 60;
         Scanner sc = new Scanner(System.in);
         int delay = 1000;
         int period = 1000;
         timer = new Timer();
-        interval = 60;
-        currentTime = 60;
-        //System.out.println(Integer.toString(interval));
+
         timer.scheduleAtFixedRate(new TimerTask() {
 
-            public void run() {
-               currentTime = setInterval();
+            public void run() {currentTime = setInterval();}}, delay, period);
 
-            }
-        }, delay, period);
     }
 
     public static final int setInterval() {
-        if (interval == 1)
+
+        if (interval == 0)
             timer.cancel();
+
         return --interval;
     }
 
@@ -42,4 +51,9 @@ public class StopWatch{
         }
         else{return true;}
     }
+
+    public int getCurrentTime(){
+        return currentTime;
+    }
+
 }

@@ -21,23 +21,24 @@ public class BarDBController {
     private Bar bar;
     private IDatabaseManager dbManagerBar;
     private String databaseReference;
-    private QueueController qc;
+    private QueueController queueController;
 
     public BarDBController(String databaseReference) {
         dbManagerBar = new DatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
+        queueController = new QueueController();
         updateOrders();
     }
 
     public void updateOrders() {
-        dbManagerBar.createChildReference("Orders").addChildEventListener(new ChildEventListener() {
+        Firebase ref1 = (Firebase) dbManagerBar.createChildReference("Orders"); //Temporary solution to avoid errors
+        ref1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 String onlyKey = (String) order.keySet().toArray()[0];
                 newCustomer(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
                 bar.addOrder(onlyKey,(HashMap<Product, Integer>) order.get(onlyKey));
-                qc.queue.enqueue(onlyKey);
             }
 
             @Override
@@ -49,7 +50,7 @@ public class BarDBController {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 bar.removeOrder((String) order.keySet().toArray()[0]);
-                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
+                //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -62,12 +63,13 @@ public class BarDBController {
 
             }
         });
-        dbManagerBar.createChildReference("cancelOrder").addChildEventListener(new ChildEventListener() {
+        Firebase ref0 = (Firebase) dbManagerBar.createChildReference("cancelOrder"); //Temporary solution to avoid errors
+        ref0.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String clientID = dataSnapshot.getValue(String.class);
                 bar.removeOrder(clientID);
-                //qc.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
+                //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
@@ -94,17 +96,26 @@ public class BarDBController {
 
     public void newCustomer(String clientID, HashMap<Product, Integer> order) {
         bar.addOrder(clientID, order);
-        qc.queue.enqueue(clientID);
-        Firebase ref = dbManagerBar.createChildReference("totalOrders");
-        ref.setValue(bar.getTotalOrders());
+        queueController.addCustomer(clientID);
 
+        dbManagerBar.setValue("totalOrders",bar.getTotalOrders());
+
+    }
+
+    public QueueController getQueueController() {
+        return queueController;
+    }
+
+    public HashMap<Product, Integer> getOrder(String clientID) {
+        return bar.getOrder(clientID);
     }
 
     //Update queue as well
     public void orderDone() {
-        bar.push();
-        Firebase ref = dbManagerBar.createChildReference("customerNumberServed");
-        ref.setValue(bar.getCustomerNumberServed());
+        bar.push(); //ökar int för completed orders med 1
+        queueController.pushQueue(); //pushar fysiska kön i order framåt
+        bar.removeOrder((String) queueController.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
 
+        dbManagerBar.setValue("customerNumberServed", bar.getCustomerNumberServed());
     }
 }

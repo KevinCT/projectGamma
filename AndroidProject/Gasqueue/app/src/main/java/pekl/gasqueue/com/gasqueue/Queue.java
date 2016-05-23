@@ -25,16 +25,16 @@ public class Queue {
         return item;
     }
 
-    public void removeItem(Customer customer){
-        list.remove(customer.Position);
-    }
-
     public Object peek(){
         return list.get(0);
     }
 
     public int getSize(){
         return list.size();
+    }
+
+    public boolean isEmpty() {
+        return getSize() == 0;
     }
 
     public void removeGuest(Object object) {

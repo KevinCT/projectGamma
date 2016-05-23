@@ -12,30 +12,31 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 
+import pekl.gasqueue.com.gasqueue.Authenticator;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 
 public class WelcomeActivity extends AppCompatActivity {
     private EditText passwordText;
     private Button loginBtn;
-
+    private AuthenticatorController authController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Firebase.setAndroidContext(this);
-        final AuthenticatorController authController = new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
+        authController = new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
         passwordText = (EditText) findViewById(R.id.inputCodeField);
         loginBtn = (Button) findViewById(R.id.logInBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(authController.authenticate(passwordText.getText().toString()) && authController.getClientType().equals("Customer")) {
-                    Intent temp = new Intent(WelcomeActivity.this,HomeActivity.class);
+                    Intent temp = new Intent(WelcomeActivity.this,MainActivity.class);
                     startActivity(temp);
                 }
                 else if (authController.authenticate(passwordText.getText().toString()) && authController.getClientType().equals("Bar")){
-                    Intent temp = new Intent(WelcomeActivity.this, CreateBarACtivity.class);
+                    Intent temp = new Intent(WelcomeActivity.this, WelcomeBarActivity.class);
                     startActivity(temp);
                 }
 

@@ -12,18 +12,36 @@ import pekl.gasqueue.com.gasqueue.service.DatabaseManager;
  * Created by User on 5/3/2016.
  */
 public class QueueController {
-    public Queue queue;
+    private Queue queue;
 
     public QueueController(){
 
+    }
+
+    public String getFirstInQueue() {
+        return (String) queue.peek();
     }
 
     public void addCustomer(String clientID) {
         queue.enqueue(clientID);
     }
 
+    public void removeServedCustomer() {
+        queue.dequeue();
+    }
+
     public boolean isCustomerServed(Customer customer) {
         return customer.timer.isRunning() == true;
+    }
+
+    public void pushQueue(){
+        queue.dequeue(); //fysiska queue som är i order
+
+
+    }
+
+    public Object returnGuestID(){
+        return queue.deletedGuest;
     }
 
     public void nextCustomer(Customer customer){
@@ -33,7 +51,7 @@ public class QueueController {
         else {
             try {
                 System.out.println(queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
-                customer.timer.main(null);
+                customer.timer.runTimer();
             } catch (IndexOutOfBoundsException noGuests) {
                 System.out.println("There are no guests in the current queue.");
             }
@@ -64,8 +82,4 @@ public class QueueController {
             }
         }
     }*/
-
-    public void givePosition(Customer customer, int Total, int position){
-        customer.Position = position-Total;
-    }
 }

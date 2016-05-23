@@ -41,9 +41,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LEEROY JENKINS"
+        android:text="Verifiera"
         android:id="@+id/logInBtn"
+        android:layout_marginTop="47dp"
         android:layout_below="@+id/inputCodeField"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
