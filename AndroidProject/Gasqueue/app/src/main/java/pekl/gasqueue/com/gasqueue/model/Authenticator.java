@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * Created by Kevin on 2016-05-08.
  */
-// might be useless.. // maybe create a client and bar password in same.
 public class Authenticator {
     private String barPassword;
     private String customerPassword;
@@ -19,12 +18,6 @@ public class Authenticator {
 
 
     }
-   /* public void setClientType(String client){
-        this.clientType=client;
-    }
-    public String getClientType(){
-        return this.clientType;
-    }*/
 
     public void setBarPassword(String barPassword){
         this.barPassword=barPassword;
