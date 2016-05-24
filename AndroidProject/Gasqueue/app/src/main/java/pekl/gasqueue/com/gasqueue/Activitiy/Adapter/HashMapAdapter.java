@@ -37,20 +37,19 @@ public class HashMapAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int arg0) {
-        return arg0;
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(int position, View view,ViewGroup viewGroup) {
         final Product temp = mKeys[position];
         final View result;
-        if (convertView == null) {
-            result = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_product, parent, false);
+        if (view == null) {
+            result = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_product, viewGroup, false);
         }
         else {
-
-            result = convertView;
+            result = view;
         }
 
         ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
@@ -91,5 +90,4 @@ public class HashMapAdapter extends BaseAdapter {
         removeBtn.setOnClickListener(onClickListener);
         return result;
     }
-
 }

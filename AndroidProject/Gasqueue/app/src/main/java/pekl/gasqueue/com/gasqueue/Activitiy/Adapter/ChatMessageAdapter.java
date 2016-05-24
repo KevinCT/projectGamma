@@ -21,13 +21,12 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  */
 public class ChatMessageAdapter extends BaseAdapter {
     private List<Message> messageList= new ArrayList<>();
-    ValueChangeListener listener;
+    private ValueChangeListener listener;
 
     public ChatMessageAdapter(String databaseRef){
             listener = new ValueChangeListener(databaseRef) {
             @Override
             public void dataChanged(DataSnapshot dataSnapshot) {
-
                 messageList.clear();
                 for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
                     messageList.add(messageSnapshot.getValue(Message.class));
