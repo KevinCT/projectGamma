@@ -40,17 +40,18 @@ public class Authenticator {
     }
 
 
-    public String authenticate(String input, List<Authenticator> authenticatorList){
-        clientType="hi";
-        for(Authenticator authPassword:authenticatorList) {
+    public String authenticate(String input, List<Authenticator> authenticatorList) {
+        clientType="empty";
+        for (Authenticator authPassword : authenticatorList) {
             if (input.equals(authPassword.getBarPassword())) {
-                clientType= "bar";
-            }
-            else if(input.equals(authPassword.getCustomerPassword())){
-                clientType= "customer";
+                clientType = "bar";
+            } else if (input.equals(authPassword.getCustomerPassword())) {
+                clientType = "customer";
             }
         }
         return clientType;
     }
 
-}
+
+
+    }

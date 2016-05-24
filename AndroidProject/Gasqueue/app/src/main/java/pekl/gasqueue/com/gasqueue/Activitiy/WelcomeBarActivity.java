@@ -12,6 +12,7 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
     private Button editBarBtn;
     private Button manageBarBtn;
     private Button createBarBtn;
+    private Class activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +25,16 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Class activity = WelcomeActivity.class;
 
         switch (v.getId()) {
             case R.id.editBarBtn:
-                //todo
+                activity=CreateBarActivity.class;
                 break;
             case R.id.createBarBtn:
                 activity = CreateBarActivity.class;
                 break;
             case R.id.mangeBarBtn:
-                break;
+                activity=HostActivity.class;
 
 
         }
@@ -43,7 +43,7 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
     private void initView(){
         editBarBtn = (Button) findViewById(R.id.editBarBtn);
         editBarBtn.setOnClickListener(this);
-        manageBarBtn = (Button) findViewById(R.id.editBarBtn);
+        manageBarBtn = (Button) findViewById(R.id.mangeBarBtn);
         manageBarBtn.setOnClickListener(this);
         createBarBtn = (Button) findViewById(R.id.createBarBtn);
         createBarBtn.setOnClickListener(this);

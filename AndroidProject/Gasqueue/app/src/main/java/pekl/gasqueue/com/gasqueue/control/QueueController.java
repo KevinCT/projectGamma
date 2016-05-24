@@ -11,6 +11,7 @@ public class QueueController {
 
     public QueueController(){
         queue = new Queue();
+
     }
 
     public String getFirstInQueue() {
