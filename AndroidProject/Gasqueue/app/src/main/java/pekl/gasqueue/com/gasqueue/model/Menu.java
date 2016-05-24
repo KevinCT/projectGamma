@@ -36,6 +36,25 @@ public class Menu {
         allProducts.add(brookly);
     }
 
+    public Menu(String barCode, String barName)
+    {
+        allProducts = new ArrayList<>();
+        this.barCode = barCode;
+        this.barName = barName;
+    }
+
+    public void addProduct(Product p)
+    {
+        allProducts.add(p);
+    }
+
+    public void removeProduct(Product p)
+    {
+        if (allProducts.contains(p)) {
+            allProducts.remove(p);
+        }
+    }
+
     public List<Product> getMenu()
     {
         return allProducts;

@@ -11,16 +11,15 @@ import pekl.gasqueue.com.gasqueue.model.Product;
  */
 public class EditorController {
     private List<Product> productsSameCategory = new ArrayList<>();
-    private Menu tempMenu = new Menu();
+    private Menu menu = new Menu();
     private static Product chosenProduct = new Product();
-    private static Product.Category chosenCategory;
-    private List<Product> allProducts = new ArrayList<>();
+    private static Product.Category chosenCategory = null;
+    private static List<Product> allProducts = new ArrayList<>();
     private Cart cart = new Cart();
-
 
     public EditorController()
     {
-        allProducts = tempMenu.getMenu();
+        allProducts = menu.getMenu();
     }
 
     public List<Product> getProductSameCategory()
@@ -52,9 +51,9 @@ public class EditorController {
         chosenCategory = c;
     }
 
-    public void addProduct(Product p , int g)
+    public void addProductToMenu(Product p)
     {
-        cart.addProduct(p,g);
+        menu.addProduct(p);
     }
 
     public void changeProduct(String name, Product.Category category, int price)
@@ -67,6 +66,5 @@ public class EditorController {
         Product temp = new Product(name,category,price);
         allProducts.add(temp);
     }
-
 
 }
