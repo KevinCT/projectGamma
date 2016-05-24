@@ -13,11 +13,9 @@
             android:layout_height="wrap_content"
             android:text="PUSH"
             android:id="@+id/pushButton"
-            android:layout_alignTop="@+id/viewQueueButton"
-            android:layout_toRightOf="@+id/viewQueueButton"
-            android:layout_toEndOf="@+id/viewQueueButton"
-            android:layout_marginLeft="55dp"
-            android:layout_marginStart="55dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/totalPriceTextView"
+            android:layout_alignEnd="@+id/totalPriceTextView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,8 +53,8 @@
             android:text="View Queue"
             android:id="@+id/viewQueueButton"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/nameView"
-            android:layout_toStartOf="@+id/nameView" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,8 +67,8 @@
             android:layout_alignParentStart="true"
             android:textAlignment="center"
             android:height="50dp"
-            android:layout_alignRight="@+id/viewQueueButton"
-            android:layout_alignEnd="@+id/viewQueueButton" />
+            android:layout_toStartOf="@+id/textView4"
+            android:layout_toLeftOf="@+id/textView4" />
 
         <ListView
             android:layout_width="wrap_content"
@@ -87,9 +85,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Total price:"
             android:id="@+id/textView4"
-            android:layout_below="@+id/orderListView"
             android:layout_above="@+id/pushButton"
-            android:layout_toRightOf="@+id/viewQueueButton" />
+            android:layout_alignLeft="@+id/nameView"
+            android:layout_alignStart="@+id/nameView"
+            android:layout_below="@+id/orderListView" />
 
         <TextView
             android:layout_width="wrap_content"

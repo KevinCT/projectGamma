@@ -7,10 +7,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 
+import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
@@ -25,6 +24,7 @@ public class HostActivity extends AppCompatActivity {
     private QueueController queueController;
     private HashMap<Product,Integer> order;
     private String firstInQueue;
+    private HostListViewAdapter orderAdapter;
 
     private TextView currentGuestView;
     private TextView detailsView;
@@ -49,7 +49,8 @@ public class HostActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initializeViews();
-
+        orderAdapter = new HostListViewAdapter(order);
+        orderListView.setAdapter(orderAdapter);
 
         assert pushButton != null;
         pushButton.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +81,11 @@ public class HostActivity extends AppCompatActivity {
 
     private void updateView() {
         this.nameView.setText(firstInQueue);
+        //Ändra till notifyDataChanged senare
         order = barController.getOrder(firstInQueue);
+        orderAdapter = new HostListViewAdapter(order);
+        orderListView.setAdapter(orderAdapter);
+        orderListView.setAdapter(orderAdapter);
     }
 }
 

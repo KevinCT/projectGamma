@@ -11,12 +11,29 @@ import android.widget.TextView;
 
 import java.util.IllegalFormatException;
 
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
+
+/**
+ * RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+ */
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+/**
+ * RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
+ */
+
 public class ProductDetailActivity extends AppCompatActivity {
+    private CustomerDBController customerDB = CustomerDBController.getInstance();
     private Product chosenProduct = new Product();
 
     private ShoppingController shoppingController = new ShoppingController();
@@ -49,7 +66,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     try {
                         totalLabel.setText((Integer.parseInt(text.toString()) * chosenProduct.getPrice()) + " kr");
                     } catch (IllegalFormatException l) {
-                        System.out.println("ange ett jävla nummer tack");
+                        System.out.println("ange ett nummer, tack");
                     }
                 }
                 else
@@ -69,6 +86,10 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(quantity.length() >0)
                 {
+                    /**
+                     * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));
+                     * amount.setText(customerDB.itemAmountInCart(chosenProduct) + " st in cart");
+                     */
                     shoppingController.addProduct( chosenProduct,Integer.parseInt(quantity.getText().toString()));
                     amount.setText(shoppingController.getProductQuantity() + " st in cart");
                 }
