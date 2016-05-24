@@ -133,6 +133,10 @@ public class CustomerDBController {
         });
     }
 
+    public int getQueuePosition() {
+        return customer.getQueuePosition();
+    }
+
     public void cancelOrder() {
         customer.resetOrder();
         if(customer.isOrderSent()) {
