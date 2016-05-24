@@ -1,6 +1,7 @@
 package pekl.gasqueue.com.gasqueue.control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import pekl.gasqueue.com.gasqueue.model.Cart;
@@ -39,7 +40,8 @@ public class ShoppingController {
 
     public void setChosenProduct(Product p)
     {
-        chosenProduct = new Product(p.getName(),p.getCategory(),p.getPrice());
+        chosenProduct = p;
+        System.out.println(chosenProduct.getName() + "");
     }
 
     public Product.Category getChosenCategory()
@@ -52,13 +54,40 @@ public class ShoppingController {
         chosenCategory = c;
     }
 
-    public void addProduct(Product p , int g)
+    public void addProductToCart(Product p , int g)
     {
         cart.addProduct(p,g);
     }
 
-    public int getProductQuantity()
+    public void incQuantity(Product p)
     {
-        return cart.getQuantity(chosenProduct);
+        cart.addProduct(p,1);
+    }
+
+    public void decQuantity(Product p)
+    {
+        cart.addProduct(p,-1);
+    }
+
+    public void removeProductFromCart(Product p)
+    {
+        cart.removeProduct(p);
+    }
+
+    public HashMap<Product,Integer> getCart()
+    {
+        return cart.getCart();
+    }
+
+    public int getTotalOfProduct(Product p)
+    {
+        return cart.getTotalOfProduct(p);
+    }
+
+    public int getProductQuantity(Product p) {
+        if (cart.getCart().containsKey(p)) {
+            return cart.getCart().get(p);
+        }
+        else return 0;
     }
 }
