@@ -18,15 +18,28 @@ import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
  * Created by Petros on 2016-04-28.
  */
 public class CustomerDBController {
+    private static CustomerDBController customerDBInstance = null;
 
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
     private int queueNumber;
+    private static String reference = "https://dazzling-torch-9680.firebaseio.com/";
 
-    public CustomerDBController(String databaseReference) {
+    private CustomerDBController(String databaseReference) {
         dbManagerCustomer = new FirebaseDatabaseManager(new Firebase(databaseReference)); //Firebase ska ej vara här...
         customer = new Customer();
         updateBanState();
+    }
+
+    public static CustomerDBController getInstance() {
+        if(customerDBInstance == null) {
+            customerDBInstance = new CustomerDBController(reference);
+        }
+        return customerDBInstance;
+    }
+
+    public static void setReference(String databaseReference) {
+        reference = databaseReference;
     }
 
     public void sendOrder(){
@@ -133,6 +146,10 @@ public class CustomerDBController {
         });
     }
 
+    public int getQueuePosition() {
+        return customer.getQueuePosition();
+    }
+
     public void cancelOrder() {
         customer.resetOrder();
         if(customer.isOrderSent()) {
@@ -145,6 +162,8 @@ public class CustomerDBController {
         customer.addItem(product, quantity);
     }
 
-
+    public int itemAmountInCart(Product product) {
+        return customer.getOrder().get(product);
+    }
 
 }
