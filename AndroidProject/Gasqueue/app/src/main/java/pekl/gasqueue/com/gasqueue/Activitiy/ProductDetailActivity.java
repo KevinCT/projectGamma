@@ -36,7 +36,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         totalLabel.setText(chosenProduct.getPrice() + " kr");
         nameLabel.setText(chosenProduct.getName());
         priceLabel.setText("* " + chosenProduct.getPrice() + " kr = ");
-
+        quantity.setText("1", TextView.BufferType.EDITABLE);
 
         quantity.addTextChangedListener(new TextWatcher() {
             @Override

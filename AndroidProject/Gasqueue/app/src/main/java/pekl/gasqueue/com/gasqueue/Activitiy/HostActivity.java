@@ -55,9 +55,11 @@ public class HostActivity extends AppCompatActivity {
         pushButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                barController.orderDone();
-                firstInQueue = queueController.getFirstInQueue();
-                updateView();
+                if(queueController.getQueueSize() > 0) {
+                    barController.orderDone();
+                    firstInQueue = queueController.getFirstInQueue();
+                    updateView();
+                }
 
             }
         });
