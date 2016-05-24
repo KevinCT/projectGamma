@@ -55,8 +55,8 @@
             <Button
                 android:layout_width="147dp"
                 android:layout_height="wrap_content"
-                android:text="Beställa"
-                android:id="@+id/button" />
+                android:text="Order"
+                android:id="@+id/orderButton" />
 
         </LinearLayout>
 
