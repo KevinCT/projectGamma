@@ -3,6 +3,7 @@ package pekl.gasqueue.com.gasqueue.Activitiy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -21,22 +22,24 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
     private List<Product> productsSameCategory;
     private Map<Button, Product> productButtonMap;
-
-    private ShoppingController shoppingController = new ShoppingController();
+    private ShoppingController shoppingController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        productsSameCategory = new ArrayList<>();
-        productsSameCategory = shoppingController.getProductSameCategory();
-        productButtonMap = new HashMap<>();
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_product);
+        Firebase.setAndroidContext(this);
+
+        shoppingController=new ShoppingController();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Product.Category category = (Product.Category)extras.getSerializable("category");
             shoppingController.setChosenCategory(category);
         }
+        productsSameCategory = new ArrayList<>();
+        productsSameCategory = shoppingController.getProductSameCategory();
+        productButtonMap = new HashMap<>();
+
 
         GridLayout listLayout = (GridLayout) findViewById(R.id.listLayout);
         listLayout.removeAllViews();
