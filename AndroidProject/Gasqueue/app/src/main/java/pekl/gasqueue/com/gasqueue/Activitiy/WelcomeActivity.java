@@ -26,14 +26,17 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Firebase.setAndroidContext(this);
         authController = new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
-        initView();
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                authenticate();
 
-            }
-        });
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        initView();
+        initListener();
+
+
     }
     private void initView(){
         passwordText=(EditText)findViewById(R.id.inputCodeField);
@@ -47,12 +50,25 @@ public class WelcomeActivity extends AppCompatActivity {
         else if (authController.authenticate(passwordText.getText().toString()).equals("bar")){
             activity=WelcomeBarActivity.class;
         }
+        else if(authController.authenticate(passwordText.getText().toString()).equals("empty")){
+            activity=WelcomeActivity.class;
+        }
         if(activity!=null)
         nextActivity(activity);
     }
     private void nextActivity(Class activity){
         Intent intentActivity= new Intent(this,activity);
         startActivity(intentActivity);
+
+    }
+    private void initListener(){
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                authenticate();
+
+            }
+        });
 
     }
 }

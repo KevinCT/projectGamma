@@ -13,38 +13,39 @@ public class Authenticator {
     private String clientType;
 
 
-
-    public Authenticator(){
+    public Authenticator() {
 
 
     }
 
-    public void setBarPassword(String barPassword){
-        this.barPassword=barPassword;
+    public void setBarPassword(String barPassword) {
+        this.barPassword = barPassword;
     }
-    public String getBarPassword(){
+
+    public String getBarPassword() {
         return this.barPassword;
     }
-    public void setCustomerPassword(String customerPassword){
-        this.customerPassword=customerPassword;
+
+    public void setCustomerPassword(String customerPassword) {
+        this.customerPassword = customerPassword;
     }
-    public String getCustomerPassword(){
+
+    public String getCustomerPassword() {
         return customerPassword;
     }
 
 
     public String authenticate(String input, List<Authenticator> authenticatorList) {
-        clientType="empty";
         for (Authenticator authPassword : authenticatorList) {
             if (input.equals(authPassword.getBarPassword())) {
                 clientType = "bar";
             } else if (input.equals(authPassword.getCustomerPassword())) {
                 clientType = "customer";
-            }
+            } else clientType = "empty";
         }
-        return clientType;
+        if (clientType != null)
+            return clientType;
+
+
     }
-
-
-
-    }
+}

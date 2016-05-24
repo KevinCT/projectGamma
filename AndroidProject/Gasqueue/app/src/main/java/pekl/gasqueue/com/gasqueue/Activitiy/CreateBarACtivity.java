@@ -24,13 +24,7 @@ public class CreateBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bar_activity);
         initView();
-        createBarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               checkInput();
-            }
-        });
+        initListener();
 
 
     }
@@ -59,5 +53,15 @@ public class CreateBarActivity extends AppCompatActivity {
         temp.putExtra("barPassword",barPasswordInput.getText().toString());
         temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
         startActivity(temp);
+    }
+    private void initListener(){
+        createBarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                checkInput();
+            }
+        });
+
     }
 }

@@ -32,18 +32,7 @@ public class ChatActivity extends AppCompatActivity  {
         initView();
         initAdapter();
         initUserName();
-        sendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendBtnClicked();
-
-            }
-        });
-
-
-
-
-
+        initListener();
     }
     private void initView(){
         sendBtn=(Button) findViewById(R.id.sendBtn);
@@ -70,6 +59,16 @@ public class ChatActivity extends AppCompatActivity  {
             dbChatController.sendMessage();
             messageInput.setText("");
         }
+
+    }
+    private void initListener(){
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendBtnClicked();
+
+            }
+        });
 
     }
 

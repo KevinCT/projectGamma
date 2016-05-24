@@ -45,7 +45,7 @@ public class ChangeProductDetailFragment extends Fragment{
         Button saveBtn = (Button) view.findViewById(R.id.saveBtn);
 
         chosenProduct = editorController.getChosenProduct();
-        nameTextField.setText(chosenProduct.getName().toString(), TextView.BufferType.EDITABLE);
+       // nameTextField.setText(chosenProduct.getName().toString(), TextView.BufferType.EDITABLE);
         priceTextField.setText(chosenProduct.getPrice() + " kr", TextView.BufferType.EDITABLE);
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
