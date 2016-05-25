@@ -32,7 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activitiy.WelcomeBarActivity" />
         <activity android:name=".Activitiy.CreateBarActivity" />
-        <activity android:name=".Activitiy.ChangeProductDetailActivity"></activity>
+        <activity android:name=".Activitiy.ChangeProductDetailActivity" />
+        <activity android:name=".Activitiy.EditCategoryActivity"></activity>
     </application>
 
 </manifest>

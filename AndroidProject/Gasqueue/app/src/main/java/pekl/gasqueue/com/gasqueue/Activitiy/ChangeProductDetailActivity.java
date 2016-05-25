@@ -34,7 +34,6 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_product_detail);
         initializeViews();
-        categorySpinner.setAdapter(spinnerAdapter);
 
         if (isCreating == true)
         {
@@ -43,12 +42,22 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             saveBtn.setText("CREATE PRODUCT");
         }
         else{
+            for (int i =1; i<categories.size();i++)
+            {
+                if (shoppingController.getChosenProduct().getCategory().equals(categories.get(i)))
+                {
+                    Product.Category temp = categories.get(0);
+                    categories.set(0,shoppingController.getChosenProduct().getCategory());
+                    categories.set(i,temp);
+                }
+            }
             nameTextField.setText(shoppingController.getChosenProduct().getName() + "");
             priceTextField.setText(shoppingController.getChosenProduct().getPrice() + "");
         }
 
         spinnerAdapter = new ArrayAdapter<Product.Category>(this, android.R.layout.simple_spinner_item, categories);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(spinnerAdapter);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

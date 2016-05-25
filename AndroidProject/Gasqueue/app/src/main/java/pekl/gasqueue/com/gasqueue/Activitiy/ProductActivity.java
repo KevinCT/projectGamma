@@ -21,7 +21,7 @@ import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private CustomerDBController customerDB = CustomerDBController.getInstance();
+    private CustomerDBController customerDB;
     private List<Product> productsSameCategory;
     private Map<Button, Product> productButtonMap;
     private ShoppingController shoppingController;
@@ -32,6 +32,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         Firebase.setAndroidContext(this);
+        customerDB = CustomerDBController.getInstance();
 
         initializeViews();
 
@@ -60,6 +61,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             createProductBtn.setWidth(500);
             createProductBtn.setHeight(400);
             createProductBtn.setOnClickListener(this);
+            listLayout.addView(createProductBtn);
         }
     }
 
@@ -75,9 +77,11 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             if (shoppingController.getTypeOfUser() == true)
             {
                 shoppingController.setIntention(false);
+                shoppingController.setChosenProduct(productButtonMap.get(view));
                 temp = new Intent(this,ChangeProductDetailActivity.class);
             }
             else {
+                shoppingController.setChosenProduct(productButtonMap.get(view));
                 shoppingController.setChosenProduct(productButtonMap.get(view));
                 temp = new Intent(this, ProductDetailActivity.class);
             }

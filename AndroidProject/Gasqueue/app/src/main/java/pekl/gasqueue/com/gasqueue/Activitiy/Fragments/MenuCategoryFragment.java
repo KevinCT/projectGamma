@@ -22,6 +22,9 @@ import pekl.gasqueue.com.gasqueue.model.Product;
 public class MenuCategoryFragment extends Fragment implements View.OnClickListener {
     private Button cartBtn ;
     private Product.Category category;
+    private String barPW;
+    private String customerPW;
+    private boolean clientType;
     ShoppingController shoppingController = new ShoppingController();
 
     public MenuCategoryFragment() {
@@ -53,6 +56,8 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
 
             }
         });
+
+        shoppingController.setTypeOfUser(getArguments().getBoolean("clientType"));
         return view;
 
 
@@ -81,6 +86,11 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         shoppingController.setChosenCategory(category);
         temp.putExtra("category",category);
         startActivity(temp);
+    }
+    private void getData(){
+        barPW = getArguments().getString("barPassword");
+        customerPW=getArguments().getString("customerPassword");
+        clientType =getArguments().getBoolean("clientType");
     }
 
 }
