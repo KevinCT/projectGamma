@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChangeProductDetailFragment;
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChatFragment;
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.MenuCategoryFragment;
 import pekl.gasqueue.com.gasqueue.R;
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
           switch(position){
               case 0: return new MenuCategoryFragment();
 
-              case 1: return new ChangeProductDetailFragment();
+              case 1: return new MenuCategoryFragment();
 
               case 2: return new ChatFragment();
 

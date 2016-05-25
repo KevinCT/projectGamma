@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.model.Product;
 
 public class CreateBarActivity extends AppCompatActivity {
     private Button createBarBtn;
@@ -53,9 +54,10 @@ public class CreateBarActivity extends AppCompatActivity {
 
     }
     private void nextActivity(){
-        Intent temp = new Intent(CreateBarActivity.this, WelcomeActivity.class);
+        Intent temp = new Intent(CreateBarActivity.this,EditCategoryActivity.class);
         temp.putExtra("barPassword",barPasswordInput.getText().toString());
         temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
+        temp.putExtra("clientType",true);
         startActivity(temp);
     }
     private void initListener(){
