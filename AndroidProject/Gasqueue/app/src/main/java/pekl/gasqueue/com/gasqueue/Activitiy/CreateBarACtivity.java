@@ -17,6 +17,7 @@ public class CreateBarActivity extends AppCompatActivity {
     private String customerPassword;
     private String barPassword;
     private TextView errorLabel;
+    private TextView errorLabel2;
 
 
     @Override
@@ -33,7 +34,9 @@ public class CreateBarActivity extends AppCompatActivity {
         barPasswordInput = (EditText) findViewById(R.id.barPWInput);
         customerPasswordInput=(EditText)findViewById(R.id.customerPWInput);
         errorLabel=(TextView)findViewById(R.id.errorLabel);
-        errorLabel.setVisibility(View.GONE);
+        errorLabel.setVisibility(View.INVISIBLE);
+        errorLabel2=(TextView)findViewById(R.id.errorLabel2);
+        errorLabel2.setVisibility(View.INVISIBLE);
 
 
     }
@@ -45,6 +48,7 @@ public class CreateBarActivity extends AppCompatActivity {
         }
         else{
             errorLabel.setVisibility(View.VISIBLE);
+            errorLabel2.setVisibility(View.VISIBLE);
         }
 
     }

@@ -3,17 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Activitiy.CreateBarActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create a new bar"
+        android:text="Skapa en ny bar"
         android:textSize="40dp"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
@@ -23,12 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Bar password:"
+        android:text="Bar lösenord"
         android:id="@+id/passwordLbl"
+        android:layout_marginTop="60dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="60dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -44,17 +40,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Bar"
-
         android:id="@+id/createBarBtn"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Customer password"
+        android:text="Kund lösenord"
         android:id="@+id/textView3"
         android:layout_below="@+id/passwordLbl"
         android:layout_alignParentLeft="true"
@@ -67,19 +64,26 @@
         android:inputType="numberPassword"
         android:ems="10"
         android:id="@+id/customerPWInput"
-        android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignLeft="@+id/barPWInput"
+        android:layout_alignStart="@+id/barPWInput" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lösenord får inte vara samma"
+        android:text="*Lösenord får inte vara likadan"
         android:textSize="18dp"
         android:id="@+id/errorLabel"
-        android:layout_marginBottom="49dp"
-        android:layout_above="@+id/createBarBtn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Lösenordet skall vara fyra siffror lång"
+        android:textSize="18dp"
+        android:id="@+id/errorLabel2"
+        android:layout_below="@+id/errorLabel"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
