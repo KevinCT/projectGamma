@@ -36,6 +36,7 @@ public class Authenticator {
 
 
     public String authenticate(String input, List<Authenticator> authenticatorList) {
+        clientType="empty";
         for (Authenticator authPassword : authenticatorList) {
             if (input.equals(authPassword.getBarPassword())) {
                 clientType = "bar";
@@ -43,7 +44,6 @@ public class Authenticator {
                 clientType = "customer";
             } else clientType = "empty";
         }
-        if (clientType != null)
             return clientType;
 
 
