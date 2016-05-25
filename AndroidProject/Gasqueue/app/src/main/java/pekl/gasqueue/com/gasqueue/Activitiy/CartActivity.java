@@ -13,24 +13,34 @@ import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class CartActivity extends AppCompatActivity {
-    private CustomerDBController customerDB = CustomerDBController.getInstance();
-    private Cart cart = new Cart();
+    private Cart cart;
     private HashMapAdapter adapter;
+    private ListView listView;
+    private TextView totalTV;
+    private CustomerDBController customerDB = CustomerDBController.getInstance();
     private Button orderButton;
+
+    public CartActivity() {
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        ListView listView = (ListView) findViewById(R.id.listView);
-        Button orderButton = (Button) findViewById(R.id.orderButton);
-        adapter = new HashMapAdapter();
+        initializeViews();
+
         listView.setAdapter(adapter);
-        TextView totalTV = (TextView) findViewById(R.id.totalTV);
         totalTV.setText(cart.getTotal() + " kr");
     }
 
+    private void initializeViews()
+    {
+        cart = new Cart();
+        listView = (ListView) findViewById(R.id.listView);
+        adapter = new HashMapAdapter();
+        totalTV = (TextView) findViewById(R.id.totalTV);
+    }
     protected void onStart() {
         super.onStart();
 
