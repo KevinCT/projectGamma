@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -19,6 +20,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button loginBtn;
     private AuthenticatorController authController;
     private Class activity;
+    private String clientType;
+    private TextView errorLbl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +44,31 @@ public class WelcomeActivity extends AppCompatActivity {
     private void initView(){
         passwordText=(EditText)findViewById(R.id.inputCodeField);
         loginBtn = (Button) findViewById(R.id.logInBtn);
+        errorLbl =(TextView) findViewById(R.id.codeErrorLbl);
+        errorLbl.setVisibility(View.INVISIBLE);
     }
     private void authenticate(){
-      //  activity=WelcomeActivity.class;
-        if(authController.authenticate(passwordText.getText().toString()).equals("customer")) {
+        clientType=authController.authenticate(passwordText.getText().toString());
+        if(clientType.equals("customer")) {
+
             activity=MainActivity.class;
 
         }
-        else if (authController.authenticate(passwordText.getText().toString()).equals("bar")){
+        else if (clientType.equals("bar")){
+
             activity=WelcomeBarActivity.class;
         }
-        if(activity!=null)
+        else {
+            activity=null;
+            errorLbl.setVisibility(View.VISIBLE);
+        }
         nextActivity(activity);
     }
     private void nextActivity(Class activity){
-        Intent intentActivity= new Intent(this,activity);
-        startActivity(intentActivity);
+        if(activity!=null) {
+            Intent intentActivity = new Intent(this, activity);
+            startActivity(intentActivity);
+        }
 
     }
     private void initListener(){

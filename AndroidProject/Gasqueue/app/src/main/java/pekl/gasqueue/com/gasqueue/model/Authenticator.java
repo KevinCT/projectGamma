@@ -36,14 +36,18 @@ public class Authenticator {
 
 
     public String authenticate(String input, List<Authenticator> authenticatorList) {
+        //prevent returning nulll
         clientType="empty";
         for (Authenticator authPassword : authenticatorList) {
             if (input.equals(authPassword.getBarPassword())) {
                 clientType = "bar";
+                break;
             } else if (input.equals(authPassword.getCustomerPassword())) {
                 clientType = "customer";
-            } else clientType = "empty";
+                break;
+            }
         }
+
             return clientType;
 
 
