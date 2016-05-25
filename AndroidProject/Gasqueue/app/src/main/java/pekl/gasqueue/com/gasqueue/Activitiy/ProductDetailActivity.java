@@ -33,28 +33,27 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
  */
 
 public class ProductDetailActivity extends AppCompatActivity {
+    private Product chosenProduct;
+    private TextView nameLabel;
+    private TextView priceLabel;
+    private TextView totalLabel;
+    private EditText quantity;
+    private TextView amount;
+    private Button addBtn;
     private CustomerDBController customerDB = CustomerDBController.getInstance();
-    private Product chosenProduct = new Product();
 
     private ShoppingController shoppingController = new ShoppingController();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        chosenProduct = shoppingController.getChosenProduct();
-        TextView nameLabel = (TextView) findViewById(R.id.nameLabel);
-        //TextView descriptionLabel = (TextView) findViewById(R.id.descriptionLabel);
-        TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
-        final TextView totalLabel = (TextView) findViewById(R.id.totalLabel);
-        final EditText quantity = (EditText) findViewById(R.id.quantity);
-        final TextView amount = (TextView) findViewById(R.id.amountLbl);
-        amount.setText(shoppingController.getProductQuantity() + " st in cart");
+        initializeViews();
 
+        amount.setText(shoppingController.getProductQuantity(chosenProduct) + " st in cart");
         totalLabel.setText(chosenProduct.getPrice() + " kr");
         nameLabel.setText(chosenProduct.getName());
         priceLabel.setText("* " + chosenProduct.getPrice() + " kr = ");
         quantity.setText("1", TextView.BufferType.EDITABLE);
-
         quantity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -80,23 +79,33 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
-        Button addBtn = (Button) findViewById(R.id.addBtn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(quantity.length() >0)
                 {
+                    shoppingController.addProductToCart( chosenProduct,Integer.parseInt(quantity.getText().toString()));
+                    amount.setText(shoppingController.getProductQuantity(chosenProduct) + " st in cart");
                     /**
                      * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));
                      * amount.setText(customerDB.itemAmountInCart(chosenProduct) + " st in cart");
                      */
-                    shoppingController.addProduct( chosenProduct,Integer.parseInt(quantity.getText().toString()));
-                    amount.setText(shoppingController.getProductQuantity() + " st in cart");
                 }
                 else {
 
                 }
             }
         });
+    }
+
+    private void initializeViews()
+    {
+        nameLabel = (TextView) findViewById(R.id.nameLabel);
+        priceLabel = (TextView) findViewById(R.id.priceLabel);
+        totalLabel = (TextView) findViewById(R.id.totalLabel);
+        quantity = (EditText) findViewById(R.id.quantity);
+        amount = (TextView) findViewById(R.id.amountLbl);
+        chosenProduct = shoppingController.getChosenProduct();
+        addBtn = (Button) findViewById(R.id.addBtn);
     }
 }
