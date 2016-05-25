@@ -1,6 +1,9 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +14,12 @@ import pekl.gasqueue.com.gasqueue.model.StopWatch;
 
 
 /**
- * Created by User on 5/11/2016.
+ * Created by Eric on 5/11/2016.
  */
 public class PickupActivity extends AppCompatActivity {
-
+    Context context = this;
     private StopWatch sw = new StopWatch();
-    private int pos = 10;
+    private int pos = 10; //customer.getQueuePosition
     public PickupActivity(){
     }
     @Override
@@ -48,8 +51,41 @@ public class PickupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //qc.queue.removeItem(customer);
+                final AlertDialog.Builder okaybruh = new AlertDialog.Builder(context);
+                okaybruh.setMessage("okay bruh");
+                okaybruh.setCancelable(true);
+                okaybruh.setPositiveButton(
+                        "thanks mate",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                dialog.cancel();
+                            }
+                        });
 
-            }
+                AlertDialog.Builder areYouSure = new AlertDialog.Builder(context);
+                areYouSure.setMessage("Are you sure you want to cancel your current order?");
+                areYouSure.setCancelable(true);
+
+                areYouSure.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                dialog.cancel();
+                                AlertDialog bruh = okaybruh.create();
+                                bruh.show();
+                                }
+                        });
+                areYouSure.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = areYouSure.create();
+                alert.show();
+                }
         });
 
         assert mviewOrderButton != null;
