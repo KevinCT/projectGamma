@@ -56,8 +56,12 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
 
             }
         });
+        try {
+            shoppingController.setTypeOfUser(getArguments().getBoolean("clientType"));
+        }
+        catch(NullPointerException exception){
 
-        shoppingController.setTypeOfUser(getArguments().getBoolean("clientType"));
+        }
         return view;
 
 
