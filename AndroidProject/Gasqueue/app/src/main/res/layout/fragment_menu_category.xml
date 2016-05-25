@@ -74,5 +74,13 @@
             android:onClick="buttonListener"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+            android:id="@+id/cartBtn"
+            android:layout_row="3"
+            android:layout_column="3" />
+
     </GridLayout>
 </RelativeLayout>
