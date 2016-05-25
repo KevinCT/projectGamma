@@ -50,6 +50,17 @@ public class AuthenticatorController {
             }
 
         };
+
+    }
+    public void setBarPassword(String barPassword){
+        authenticator.setBarPassword(barPassword);
+    }
+
+    public void setCustomerPassword(String customerPassword){
+        authenticator.setCustomerPassword(customerPassword);
+    }
+    public Authenticator getBarReference(){
+        return authenticator;
     }
 
 

@@ -12,22 +12,32 @@ import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.MenuCategoryFragment;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class EditCategoryActivity extends AppCompatActivity {
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private MenuCategoryFragment fragment;
+    private Bundle data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_edit_category);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MenuCategoryFragment fragment = new MenuCategoryFragment();
-        fragmentTransaction.add(R.id.frameLayout,fragment);
-        fragmentTransaction.commit();
-        Bundle data=getIntent().getExtras();
+        initFragment();
+        handleData();
 
-        Bundle bundle = new Bundle();
-        bundle.putAll(data);
-        fragment.setArguments(bundle);
+
+
+    }
+    private void initFragment(){
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = new MenuCategoryFragment();
+        fragmentTransaction.add(R.id.relativeLayout, fragment);
+        fragmentTransaction.commit();
+
+    }
+    private void handleData(){
+        data=getIntent().getExtras();
+        fragment.setArguments(data);
 
     }
 }

@@ -10,11 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.firebase.client.Firebase;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
 import pekl.gasqueue.com.gasqueue.Activitiy.ProductActivity;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
+import pekl.gasqueue.com.gasqueue.model.Authenticator;
+import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +72,28 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         catch(NullPointerException exception){
 
         }
+        //shit code ,just temporary to prevent merge conflicts and try stuff
+        Button createBarBtn = (Button) view.findViewById(R.id.createBarBtn);
+
+        createBarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Authenticator authenticator;
+                Gson gson = new Gson();
+                String object = getArguments().getString("authenticator");
+                authenticator=gson.fromJson(object,Authenticator.class);
+                Map map1 = new HashMap();
+                Map map2 = new HashMap();
+                map1.put(authenticator.getBarPassword(),shoppingController.getMenu());
+                map2.put(authenticator.getCustomerPassword(), shoppingController.getMenu());
+
+                IDatabaseManager<Firebase> db = new FirebaseDatabaseManager(new Firebase("https://dazzling-torch-9680.firebaseio.com/"));
+                db.createChildReference("Menus").push().setValue(map1);
+                db.createChildReference("Menus").push().setValue(map2);
+
+
+            }
+        });
         return view;
 
 
@@ -88,6 +120,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                 break;
         }
         shoppingController.setChosenCategory(category);
+        //check maybe move putextra.
         temp.putExtra("category",category);
         startActivity(temp);
     }

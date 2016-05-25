@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+import com.google.gson.Gson;
+
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
 public class CreateBarActivity extends AppCompatActivity {
@@ -19,12 +23,15 @@ public class CreateBarActivity extends AppCompatActivity {
     private String barPassword;
     private TextView errorLabel;
     private TextView errorLabel2;
+    private AuthenticatorController authenticatorController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bar_activity);
+        Firebase.setAndroidContext(this);
+        authenticatorController = new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
         initView();
         initListener();
 
@@ -45,6 +52,7 @@ public class CreateBarActivity extends AppCompatActivity {
         customerPassword=customerPasswordInput.getText().toString();
         barPassword=barPasswordInput.getText().toString();
         if(barPassword.length()==4 && customerPassword.length()==4 && !barPassword.equals(customerPassword)){
+            setPassword(barPassword,customerPassword);
             nextActivity();
         }
         else{
@@ -55,8 +63,8 @@ public class CreateBarActivity extends AppCompatActivity {
     }
     private void nextActivity(){
         Intent temp = new Intent(CreateBarActivity.this,EditCategoryActivity.class);
-        temp.putExtra("barPassword",barPasswordInput.getText().toString());
-        temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
+        Gson gson = new Gson();
+        temp.putExtra("authenticator",gson.toJson(authenticatorController.getBarReference()));
         temp.putExtra("clientType",true);
         startActivity(temp);
     }
@@ -64,10 +72,14 @@ public class CreateBarActivity extends AppCompatActivity {
         createBarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 checkInput();
             }
         });
 
     }
+    private void setPassword(String barPassword, String customerPassword){
+        authenticatorController.setBarPassword(barPassword);
+        authenticatorController.setCustomerPassword(customerPassword);
+    }
+
 }

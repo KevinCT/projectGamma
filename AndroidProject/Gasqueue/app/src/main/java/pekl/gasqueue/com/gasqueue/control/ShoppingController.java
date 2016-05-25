@@ -130,4 +130,8 @@ public class ShoppingController {
         Product temp = new Product(name,category,price);
         allProducts.add(temp);
     }
+    //code for testing might be removed
+    public Menu getMenu(){
+        return menu;
+    }
 }
