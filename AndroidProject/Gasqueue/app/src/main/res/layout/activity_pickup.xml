@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel Order"
-            android:id="@+id/pushButton"
+            android:id="@+id/cancelButton"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/positionView"
             android:layout_toStartOf="@+id/positionView"
@@ -43,9 +43,9 @@
             android:layout_height="wrap_content"
             android:text="View Order"
             android:id="@+id/viewOrderButton"
-            android:layout_alignTop="@+id/pushButton"
-            android:layout_toRightOf="@+id/positionView"
-            android:layout_toEndOf="@+id/positionView" />
+            android:layout_alignTop="@+id/cancelButton"
+            android:layout_toRightOf="@+id/cancelButton"
+            android:layout_toEndOf="@+id/cancelButton" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +60,8 @@
             android:layout_height="wrap_content"
             android:text="PUSH"
             android:id="@+id/pushButton"
-            android:layout_above="@+id/pushButton"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignTop="@+id/viewOrderButton"
+            android:layout_toRightOf="@+id/viewOrderButton"
+            android:layout_toEndOf="@+id/viewOrderButton" />
     </RelativeLayout>
 </LinearLayout>
