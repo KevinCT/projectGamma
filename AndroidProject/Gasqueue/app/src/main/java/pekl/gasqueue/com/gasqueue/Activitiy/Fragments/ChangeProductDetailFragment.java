@@ -46,7 +46,7 @@ public class ChangeProductDetailFragment extends Fragment{
         editorController = new ShoppingController();
         categories = new ArrayList<Product.Category>(EnumSet.allOf(Product.Category.class));
         spinnerAdapter = new ArrayAdapter<Product.Category>(view.getContext(), android.R.layout.simple_spinner_item, categories);
-        
+
         nameTextField = (EditText) view.findViewById(R.id.nameTF);
         priceTextField = (EditText) view.findViewById(R.id.priceTF);
         categorySpinner = (Spinner) view.findViewById(R.id.categorySpinner);
