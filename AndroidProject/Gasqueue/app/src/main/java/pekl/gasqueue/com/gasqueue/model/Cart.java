@@ -54,30 +54,14 @@ public class Cart {
         return total;
     }
 
-    public int getQuantity(Product product)
-    {
-        if (cart.containsKey(product))
-        {
-            return cart.get(product);
-        }
-        else{
-            System.out.println("Product finns inte i kundvagn!");
-            return 0;
-        }
-    }
-
-    public void incQuantity(Product product)
-    {
-        addProduct(product,1);
-    }
-
-    public void decQuantity(Product product)
-    {
-        addProduct(product,-1);
-    }
 
     public int getTotalOfProduct(Product p)
     {
         return p.getPrice()*cart.get(p);
+    }
+
+    public void clearCar()
+    {
+        cart.clear();
     }
 }

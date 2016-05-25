@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
@@ -20,9 +21,18 @@ import pekl.gasqueue.com.gasqueue.R;
  * Created by Kotex on 16/05/2016.
  */
 public class HashMapAdapter extends BaseAdapter {
-    private Cart tempCart = new Cart();
+    private ShoppingController tempCart;
     private Product[] mKeys;
+    private Product temp;
+    private View result;
+    private Button incButton;
+    private Button decButton;
+    private Button removeBtn;
+    private TextView quantity;
+    private TextView totalLbl;
+
     public HashMapAdapter(){
+        tempCart = new ShoppingController();
         mKeys = tempCart.getCart().keySet().toArray(new Product[tempCart.getCart().size()]);
     }
 
@@ -43,8 +53,8 @@ public class HashMapAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view,ViewGroup viewGroup) {
-        final Product temp = mKeys[position];
-        final View result;
+        temp = mKeys[position];
+
         if (view == null) {
             result = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_product, viewGroup, false);
         }
@@ -53,10 +63,13 @@ public class HashMapAdapter extends BaseAdapter {
         }
 
         ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
-        final TextView quantity = (TextView) result.findViewById(R.id.quantityLbl);
+        quantity = (TextView) result.findViewById(R.id.quantityLbl);
         quantity.setText(tempCart.getCart().get(temp).toString());
-        final TextView totalLbl = (TextView) result.findViewById(R.id.totalLbl);
+        totalLbl = (TextView) result.findViewById(R.id.totalLbl);
         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
+        incButton = (Button) result.findViewById(R.id.incBtn);
+        decButton = (Button) result.findViewById(R.id.decBtn);
+        removeBtn = (Button) result.findViewById(R.id.removeBtn);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -65,16 +78,16 @@ public class HashMapAdapter extends BaseAdapter {
                 {
                     case R.id.incBtn:
                         tempCart.incQuantity(temp);
-                        quantity.setText("" + tempCart.getQuantity(temp));
+                        quantity.setText("" + tempCart.getProductQuantity(temp));
                         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.decBtn:
                         tempCart.decQuantity(temp);
-                        quantity.setText("" + tempCart.getQuantity(temp));
+                        quantity.setText("" + tempCart.getProductQuantity(temp));
                         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.removeBtn:
-                        tempCart.removeProduct(temp);
+                        tempCart.removeProductFromCart(temp);
                         Log.v("temp",temp.getName().toString());
                         mKeys = tempCart.getCart().keySet().toArray(new Product[tempCart.getCart().size()]);
                         notifyDataSetChanged();
@@ -82,11 +95,8 @@ public class HashMapAdapter extends BaseAdapter {
             }
         };
 
-        Button incButton = (Button) result.findViewById(R.id.incBtn);
         incButton.setOnClickListener(onClickListener);
-        Button decButton = (Button) result.findViewById(R.id.decBtn);
         decButton.setOnClickListener(onClickListener);
-        Button removeBtn = (Button) result.findViewById(R.id.removeBtn);
         removeBtn.setOnClickListener(onClickListener);
         return result;
     }
