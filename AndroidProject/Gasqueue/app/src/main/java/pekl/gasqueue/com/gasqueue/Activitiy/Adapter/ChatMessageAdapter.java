@@ -22,24 +22,16 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 public class ChatMessageAdapter extends BaseAdapter {
     private List<Message> messageList= new ArrayList<>();
     private ValueChangeListener listener;
-
+    private View view;
+    private TextView messageView;
+    private TextView nameView;
+    private TextView timestampView;
     public ChatMessageAdapter(String databaseRef){
-            listener = new ValueChangeListener(databaseRef) {
-            @Override
-            public void dataChanged(DataSnapshot dataSnapshot) {
-                messageList.clear();
-                for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
-                    messageList.add(messageSnapshot.getValue(Message.class));
-                    notifyDataSetChanged();
-                }
-            }
-
-        };
+        initListener(databaseRef);
 
     }
 
     @Override
-
     public int getCount() {
         return messageList.size();
     }
@@ -56,20 +48,34 @@ public class ChatMessageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
         if(convertView==null){
             view= LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_layout,parent,false);
         }
         else{
             view=convertView;
         }
-        TextView messageView = (TextView)view.findViewById(R.id.messageView);
+        messageView = (TextView)view.findViewById(R.id.messageView);
+        nameView = (TextView)view.findViewById(R.id.nameView);
+        timestampView =(TextView)view.findViewById(R.id.timestampView);
         messageView.setText(messageList.get(position).getMessage());
-        TextView nameView = (TextView)view.findViewById(R.id.nameView);
         nameView.setText(messageList.get(position).getName());
-        TextView timestampView =(TextView)view.findViewById(R.id.timestampView);
         timestampView.setText(messageList.get(position).getTimeStamp());
 
         return view;
     }
+    private void initListener(String databaseRef){
+        listener = new ValueChangeListener(databaseRef) {
+            @Override
+            public void dataChanged(DataSnapshot dataSnapshot) {
+                messageList.clear();
+                for(DataSnapshot messageSnapshot:dataSnapshot.getChildren()){
+                    messageList.add(messageSnapshot.getValue(Message.class));
+                    notifyDataSetChanged();
+                }
+            }
+
+        };
+    }
+
+
 }

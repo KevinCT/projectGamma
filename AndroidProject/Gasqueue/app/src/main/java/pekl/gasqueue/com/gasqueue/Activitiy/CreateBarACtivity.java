@@ -17,6 +17,7 @@ public class CreateBarActivity extends AppCompatActivity {
     private String customerPassword;
     private String barPassword;
     private TextView errorLabel;
+    private TextView errorLabel2;
 
 
     @Override
@@ -24,13 +25,7 @@ public class CreateBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_bar_activity);
         initView();
-        createBarBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               checkInput();
-            }
-        });
+        initListener();
 
 
     }
@@ -39,7 +34,9 @@ public class CreateBarActivity extends AppCompatActivity {
         barPasswordInput = (EditText) findViewById(R.id.barPWInput);
         customerPasswordInput=(EditText)findViewById(R.id.customerPWInput);
         errorLabel=(TextView)findViewById(R.id.errorLabel);
-        errorLabel.setVisibility(View.GONE);
+        errorLabel.setVisibility(View.INVISIBLE);
+        errorLabel2=(TextView)findViewById(R.id.errorLabel2);
+        errorLabel2.setVisibility(View.INVISIBLE);
 
 
     }
@@ -51,6 +48,7 @@ public class CreateBarActivity extends AppCompatActivity {
         }
         else{
             errorLabel.setVisibility(View.VISIBLE);
+            errorLabel2.setVisibility(View.VISIBLE);
         }
 
     }
@@ -59,5 +57,15 @@ public class CreateBarActivity extends AppCompatActivity {
         temp.putExtra("barPassword",barPasswordInput.getText().toString());
         temp.putExtra("customerPassword",customerPasswordInput.getText().toString());
         startActivity(temp);
+    }
+    private void initListener(){
+        createBarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                checkInput();
+            }
+        });
+
     }
 }

@@ -10,16 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
 import pekl.gasqueue.com.gasqueue.Activitiy.ProductActivity;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MenuCategoryFragment extends Fragment implements View.OnClickListener {
+    private Button cartBtn ;
     private Product.Category category;
-
+    ShoppingController shoppingController = new ShoppingController();
 
     public MenuCategoryFragment() {
         // Required empty public constructor
@@ -41,6 +44,15 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         alkfriaBtn.setOnClickListener(this);
         Button matBtn = (Button) view.findViewById(R.id.matBtn);
         matBtn.setOnClickListener(this);
+        cartBtn = (Button) view.findViewById(R.id.cartBtn);
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextActiity = new Intent(getActivity(),  CartActivity.class);
+                startActivity(nextActiity);
+
+            }
+        });
         return view;
 
 
@@ -66,6 +78,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                category=Product.Category.FOOD;
                 break;
         }
+        shoppingController.setChosenCategory(category);
         temp.putExtra("category",category);
         startActivity(temp);
     }

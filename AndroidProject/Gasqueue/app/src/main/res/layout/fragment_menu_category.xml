@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pekl.gasqueue.com.gasqueue.Activitiy.CategoryActivity">
 
     <GridLayout
@@ -17,7 +13,7 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:layout_row="0"
             android:layout_column="0"
@@ -26,7 +22,7 @@
             android:id="@+id/beerBtn" />
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:layout_row="0"
             android:layout_column="3"
@@ -35,7 +31,7 @@
             android:id="@+id/drinksBtn" />
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:text="Cider"
             android:id="@+id/ciderBtn"
@@ -45,7 +41,7 @@
             />
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:text="Shot"
             android:id="@+id/shotBtn"
@@ -55,7 +51,7 @@
             />
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:text="AlkoholFRIA"
             android:id="@+id/alkfriaBtn"
@@ -65,7 +61,7 @@
             />
 
         <Button
-            android:layout_width="170dp"
+            android:layout_width="202dp"
             android:layout_height="120dp"
             android:text="Mat"
             android:id="@+id/matBtn"
@@ -73,6 +69,14 @@
             android:layout_column="3"
             android:onClick="buttonListener"
             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+            android:id="@+id/cartBtn"
+            android:layout_row="3"
+            android:layout_column="3" />
 
     </GridLayout>
 </RelativeLayout>
