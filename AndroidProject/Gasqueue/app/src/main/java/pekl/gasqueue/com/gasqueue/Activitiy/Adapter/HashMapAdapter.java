@@ -78,12 +78,12 @@ public class HashMapAdapter extends BaseAdapter {
                 {
                     case R.id.incBtn:
                         tempCart.incQuantity(temp);
-                        quantity.setText("" + tempCart.getProductQuantity(temp));
+                        quantity.setText("" + tempCart.getQuantityOfProduct(temp));
                         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.decBtn:
                         tempCart.decQuantity(temp);
-                        quantity.setText("" + tempCart.getProductQuantity(temp));
+                        quantity.setText("" + tempCart.getQuantityOfProduct(temp));
                         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
                         break;
                     case R.id.removeBtn:

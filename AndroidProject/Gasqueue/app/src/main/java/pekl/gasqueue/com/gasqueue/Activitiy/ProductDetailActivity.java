@@ -49,7 +49,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
         initializeViews();
 
-        amount.setText(shoppingController.getProductQuantity(chosenProduct) + " st in cart");
+        amount.setText(shoppingController.getQuantityOfProduct(chosenProduct) + " st in cart");
         totalLabel.setText(chosenProduct.getPrice() + " kr");
         nameLabel.setText(chosenProduct.getName());
         priceLabel.setText("* " + chosenProduct.getPrice() + " kr = ");
@@ -85,7 +85,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 if(quantity.length() >0)
                 {
                     shoppingController.addProductToCart( chosenProduct,Integer.parseInt(quantity.getText().toString()));
-                    amount.setText(shoppingController.getProductQuantity(chosenProduct) + " st in cart");
+                    amount.setText(shoppingController.getQuantityOfProduct(chosenProduct) + " st in cart");
                     /**
                      * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));
                      * amount.setText(customerDB.itemAmountInCart(chosenProduct) + " st in cart");

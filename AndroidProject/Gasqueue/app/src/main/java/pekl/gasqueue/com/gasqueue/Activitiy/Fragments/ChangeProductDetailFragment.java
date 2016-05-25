@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.EditorController;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
@@ -29,7 +28,7 @@ public class ChangeProductDetailFragment extends Fragment{
         // Required empty public constructor
     }
     private View view;
-    private ShoppingController editorController;
+    private ShoppingController shoppingController;
     private List<Product.Category> categories;
     private ArrayAdapter<Product.Category> spinnerAdapter;
 
@@ -42,25 +41,31 @@ public class ChangeProductDetailFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_change_product_detail, container, false);
-        editorController = new ShoppingController();
-        categories = new ArrayList<Product.Category>(EnumSet.allOf(Product.Category.class));
-        spinnerAdapter = new ArrayAdapter<Product.Category>(view.getContext(), android.R.layout.simple_spinner_item, categories);
+        initializeViews();
 
-        nameTextField = (EditText) view.findViewById(R.id.nameTF);
+
+        view = inflater.inflate(R.layout.fragment_change_product_detail, container, false);
+/*        nameTextField = (EditText) view.findViewById(R.id.nameTF);
         priceTextField = (EditText) view.findViewById(R.id.priceTF);
         categorySpinner = (Spinner) view.findViewById(R.id.categorySpinner);
         saveBtn = (Button) view.findViewById(R.id.saveBtn);
-        nameTextField.setText(editorController.getChosenProduct().getName() + "");
-        priceTextField.setText(editorController.getChosenProduct().getPrice() + "");
-
+//        nameTextField.setText(shoppingController.getChosenProduct().getName() + "");
+//        priceTextField.setText(shoppingController.getChosenProduct().getPrice() + "");
+        spinnerAdapter = new ArrayAdapter<Product.Category>(view.getContext(), android.R.layout.simple_spinner_item, categories);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        if (shoppingController.getIntention() == true)
+        {
+            nameTextField.setText("Name of product");
+            priceTextField.setText("Price of product in kr");
+        }
         categorySpinner.setAdapter(spinnerAdapter);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                editorController.getChosenProduct().setChanges(editorController.getChosenProduct().getName(), (Product.Category) adapterView.getItemAtPosition(i), editorController.getChosenProduct().getPrice());
-                System.out.println(editorController.getChosenProduct().getCategory().toString());
+                shoppingController.getChosenProduct().setChanges(shoppingController.getChosenProduct().getName(), (Product.Category) adapterView.getItemAtPosition(i), shoppingController.getChosenProduct().getPrice());
+                System.out.println(shoppingController.getChosenProduct().getCategory().toString());
             }
 
             @Override
@@ -72,10 +77,16 @@ public class ChangeProductDetailFragment extends Fragment{
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editorController.getChosenProduct().setChanges(nameTextField.getText().toString(), editorController.getChosenProduct().getCategory(), Integer.parseInt(priceTextField.getText().toString()));
+                shoppingController.getChosenProduct().setChanges(nameTextField.getText().toString(), shoppingController.getChosenProduct().getCategory(), Integer.parseInt(priceTextField.getText().toString()));
             }
         });
-
+*/
         return view;
+    }
+
+    private void initializeViews()
+    {
+        shoppingController = new ShoppingController();
+        categories = new ArrayList<Product.Category>(EnumSet.allOf(Product.Category.class));
     }
 }
