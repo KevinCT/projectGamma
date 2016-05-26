@@ -1,6 +1,7 @@
 package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by Kotex on 09/05/2016.
@@ -37,6 +38,16 @@ public class Cart {
     public HashMap<Product,Integer> getCart()
     {
         return this.cart;
+    }
+
+    public HashMap<String,Integer> productToString() {
+        Set<Product> products = cart.keySet();
+        HashMap<String,Integer> orderString = new HashMap<>();
+
+        for (Product e:products) {
+            orderString.put(e.getName(), cart.get(e));
+        }
+        return orderString;
     }
 
     public void removeProduct(Product product)
