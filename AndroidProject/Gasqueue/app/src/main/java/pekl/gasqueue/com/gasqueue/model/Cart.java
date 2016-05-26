@@ -73,6 +73,7 @@ public class Cart {
 
     public void clearCar()
     {
+        System.out.println("cleared boys");
         cart.clear();
     }
 }

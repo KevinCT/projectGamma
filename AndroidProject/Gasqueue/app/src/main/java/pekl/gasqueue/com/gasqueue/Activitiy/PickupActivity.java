@@ -9,59 +9,70 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.beans.PropertyChangeSupport;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Timer;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
+import pekl.gasqueue.com.gasqueue.model.Cart;
+import pekl.gasqueue.com.gasqueue.model.Customer;
 import pekl.gasqueue.com.gasqueue.model.StopWatch;
-import android.content.Intent;
 
 import com.firebase.client.Firebase;
 
 /**
  * Created by Eric on 5/11/2016.
  */
-public class PickupActivity extends AppCompatActivity {
+public class PickupActivity extends AppCompatActivity implements Observer{
+    private Button cancelButton;
+    private Button viewOrderButton;
+    private TextView statusView;
+    private TextView positionView;
+    public Cart cart = new Cart();
     Context context = this;
     private StopWatch sw = new StopWatch();
-    private int pos = 10; //customer.getQueuePosition
-//    private CustomerDBController cdbc = CustomerDBController.getInstance();
+    private CustomerDBController cdbc;
+    private Integer pos;
     public PickupActivity(){
 
+
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_pickup);
-
+        Firebase.setAndroidContext(this);
+        cdbc=CustomerDBController.getInstance();
+        cdbc.returnCustomer().attach(this);
     }
     protected void onStart() {
         super.onStart();
-        Button mcancelButton = (Button) findViewById(R.id.cancelButton);
-        Button mviewOrderButton = (Button) findViewById(R.id.viewOrderButton);
-        Button mpushButton = (Button) findViewById(R.id.pushButton);
-        final TextView mstatusView = (TextView) findViewById(R.id.statusView);
-        final TextView mpositionView = (TextView) findViewById(R.id.positionView);
-        final TextView mtimeView = (TextView) findViewById(R.id.timeView);
-        final Timer timer = new Timer();
-        final int delay = 1000;
-        final int period = 1000;
-        mstatusView.setText("Your current position");
-        mpositionView.setText(Integer.toString(pos));
+        cancelButton = (Button) findViewById(R.id.cancelButton);
+        viewOrderButton = (Button) findViewById(R.id.viewOrderButton);
+        statusView = (TextView) findViewById(R.id.statusView);
+        positionView = (TextView) findViewById(R.id.positionView);
+        statusView.setText("Your current position");
+        try{
+            pos = cdbc.getQueuePosition();
+            updateView(pos);
+        }catch(NullPointerException e){
+              System.out.println("Error");
+        }
+        positionView.setText(Integer.toString(pos));
 
-        assert mcancelButton != null;
-        mcancelButton.setOnClickListener(new View.OnClickListener() {
+        assert cancelButton != null;
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //qc.queue.removeItem(customer);
                 final AlertDialog.Builder okaybruh = new AlertDialog.Builder(context);
-                okaybruh.setMessage("okay bruh");
+                okaybruh.setMessage("Your order has been canceled.");
                 okaybruh.setCancelable(true);
                 okaybruh.setPositiveButton(
-                        "thanks mate",
+                        "Thanks!",
                         new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id){
                                 dialog.cancel();
@@ -77,11 +88,11 @@ public class PickupActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int id){
                                 dialog.cancel();
-                                //cart.Clear(); <-empties your cart and removes order form queue
-                               // cdbc.cancelOrder();
+                                cart.clearCar();// <-empties your cart and removes order form queue
+                                cdbc.cancelOrder();
+                                cdbc.returnCustomer().detach((PickupActivity)context); //HELP IDK how 2 do this one
                                 AlertDialog bruh = okaybruh.create();
                                 bruh.show();
-
                                 }
                         });
                 areYouSure.setNegativeButton(
@@ -97,64 +108,64 @@ public class PickupActivity extends AppCompatActivity {
                 }
         });
 
-        assert mviewOrderButton != null;
-        mviewOrderButton.setOnClickListener(new View.OnClickListener(){
+        assert viewOrderButton != null;
+        viewOrderButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //insert switch to cart view
-            }
-
-
-        });
-
-        assert mpushButton != null;
-        mpushButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                pos--;
-                mpositionView.setText(Integer.toString(pos));
-                if (pos == 0) {
-
-                    sw.runTimer();
-                    mstatusView.setText("Time left to pay and pick up drink");
-
-
-                    Runnable myRunnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            while (sw.getCurrentTime() != 0) {
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    System.out.println("got interrupted!");
-                                }
-
-
-                                mpositionView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (sw.getCurrentTime() == 0) {
-                                            mpositionView.setText("You're too slow!");
-                                        } else {
-                                            mpositionView.setText(Integer.toString(sw.getCurrentTime()));
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    };
-
-                    Thread myThread = new Thread(myRunnable);
-                    myThread.start();
-
-                }
+                pos--; //IM GONNA FIX THIS BRUHHHH -shao
+                updateView(pos);
+                checkPosition();
             }
         });
     }
+
     public void backToMain(){
         Intent temp = new Intent(this, MainActivity.class);
         startActivity(temp);
+    }
+
+    public void updateView(Integer position){
+        positionView.setText(Integer.toString(position));
+    }
+
+    public void checkPosition(){
+        if (pos == 0) {
+            sw.runTimer();
+            statusView.setText("Time left to pay and pick up drink");
+
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    while (sw.getCurrentTime() != 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.out.println("got interrupted!");
+                        }
+
+                        positionView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (sw.getCurrentTime() == 0) {
+                                    positionView.setText("You're too slow!");
+                                } else {
+                                    positionView.setText(Integer.toString(sw.getCurrentTime()));
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+            Thread myThread = new Thread(myRunnable);
+            myThread.start();
+        }
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        pos = (Integer)data;
+        updateView(pos);
+        checkPosition();
     }
 }
 
