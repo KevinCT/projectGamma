@@ -15,7 +15,7 @@ import pekl.gasqueue.com.gasqueue.Activitiy.PickupActivity;
 
 public class Customer extends Observable implements User {
     private boolean orderSent;
-    private Integer queuePosition = 12; //change this back to nothing after test
+    private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private Cart cart;
@@ -34,6 +34,7 @@ public class Customer extends Observable implements User {
     public void notifyObservers(){
         for (Observer observer : observers) {
             observer.update(this, getQueuePosition());
+            System.out.println(queuePosition);
         }
     }
 

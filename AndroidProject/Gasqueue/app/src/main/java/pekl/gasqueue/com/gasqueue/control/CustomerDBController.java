@@ -98,12 +98,12 @@ public class CustomerDBController {
             public void onDataChange(DataSnapshot snapshot) {
                 if(queueNumber != null) {
                     queueNumber = snapshot.getValue(Integer.class);
-                    dbManagerCustomer.setValue("queueNumber", queueNumber);
+                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                     updateQueuePosition(); //Activate listeners
                 }
                 else {
                     queueNumber = 0;
-                    dbManagerCustomer.setValue("queueNumber", queueNumber);
+                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                 }
             }
 
