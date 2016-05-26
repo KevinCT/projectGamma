@@ -32,7 +32,7 @@ public class CustomerDBController {
     }
 
     public static CustomerDBController getInstance() {
-        if(customerDBInstance == null) {
+        if (customerDBInstance == null) {
             customerDBInstance = new CustomerDBController(reference);
         }
         return customerDBInstance;
@@ -42,8 +42,8 @@ public class CustomerDBController {
         reference = databaseReference;
     }
 
-    public void sendOrder(){
-        if(!customer.isBanned() && !customer.isOrderSent()) {
+    public void sendOrder() {
+        if (!customer.isBanned() && !customer.isOrderSent()) {
             Map<String, Map<Product, Integer>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             updateQueueNumber();
@@ -99,6 +99,7 @@ public class CustomerDBController {
                 queueNumber = snapshot.getValue(Integer.class);
                 updateQueuePosition(); //Activate listeners
             }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
@@ -117,14 +118,15 @@ public class CustomerDBController {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                if(customer.isOrderSent()) {
-                    if( ! (customer.getQueuePosition() == 0) ||  customer.getQueuePosition() == null) { //Or 0?
+                if (customer.isOrderSent()) {
+                    if (!(customer.getQueuePosition() == 0) || customer.getQueuePosition() == null) { //Or 0?
                         customer.setQueuePosition(queueNumber - dataSnapshot.getValue(Integer.class));
+                        customer.notifyObservers(); //double-check this
                     } else {
                         //Your turn to be served, send notifications etc.
                         //orderSent = false,  etc
                         customer.setOrderStatus(false);
-                        customer.startTimer();
+                        //customer.startTimer();
                     }
                 }
             }
@@ -147,12 +149,13 @@ public class CustomerDBController {
     }
 
     public int getQueuePosition() {
+
         return customer.getQueuePosition();
     }
 
     public void cancelOrder() {
         customer.resetOrder();
-        if(customer.isOrderSent()) {
+        if (customer.isOrderSent()) {
             dbManagerCustomer.sendObject("cancelOrder", customer.getClientID());
             customer.setOrderStatus(false);
         }
@@ -166,4 +169,7 @@ public class CustomerDBController {
         return customer.getOrder().get(product);
     }
 
+    public Customer returnCustomer() {
+        return customer;
+    }
 }

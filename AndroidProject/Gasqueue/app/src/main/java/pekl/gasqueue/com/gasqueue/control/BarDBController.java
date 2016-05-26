@@ -54,12 +54,10 @@ public class BarDBController {
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
             }
         });
         Firebase ref0 = (Firebase) dbManagerBar.createChildReference("cancelOrder"); //Temporary solution to avoid errors
@@ -73,17 +71,14 @@ public class BarDBController {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
@@ -114,7 +109,7 @@ public class BarDBController {
         bar.push(); //ökar int för completed orders med 1
         queueController.pushQueue(); //pushar fysiska kön i order framåt
         bar.removeOrder((String) queueController.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
-
         dbManagerBar.setValue("customerNumberServed", bar.getCustomerNumberServed());
+                        //updates the customers phone position TextView with live position
     }
 }

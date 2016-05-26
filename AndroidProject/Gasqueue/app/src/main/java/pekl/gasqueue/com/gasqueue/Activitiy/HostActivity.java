@@ -12,6 +12,7 @@ import java.util.HashMap;
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
@@ -25,6 +26,7 @@ public class HostActivity extends AppCompatActivity {
     private HashMap<Product,Integer> order;
     private String firstInQueue;
     private HostListViewAdapter orderAdapter;
+    private CustomerDBController customerDBController;
 
     private TextView currentGuestView;
     private TextView detailsView;
@@ -60,11 +62,10 @@ public class HostActivity extends AppCompatActivity {
                     barController.orderDone();
                     firstInQueue = queueController.getFirstInQueue();
                     updateView();
-                }
 
+                }
             }
         });
-
     }
 
     private void initializeViews() {
@@ -77,6 +78,7 @@ public class HostActivity extends AppCompatActivity {
         orderListView = (ListView) findViewById(R.id.orderListView);
         viewQueueButton = (Button) findViewById(R.id.viewQueueButton);
         updateView();
+
     }
 
     private void updateView() {

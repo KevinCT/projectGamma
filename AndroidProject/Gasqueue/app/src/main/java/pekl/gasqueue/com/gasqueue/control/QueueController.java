@@ -10,9 +10,7 @@ public class QueueController {
     private Queue queue;
 
     public QueueController(){
-
         queue = new Queue();
-
     }
 
     public String getFirstInQueue() {
@@ -21,10 +19,6 @@ public class QueueController {
 
     public void addCustomer(String clientID) {
         queue.enqueue(clientID);
-    }
-
-    public void removeServedCustomer() {
-        queue.dequeue();
     }
 
     public boolean isCustomerServed(Customer customer) {

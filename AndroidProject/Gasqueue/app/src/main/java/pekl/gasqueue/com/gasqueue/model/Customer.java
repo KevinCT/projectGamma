@@ -2,22 +2,40 @@ package pekl.gasqueue.com.gasqueue.model;
 
 import android.provider.Settings.Secure;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
-public class Customer implements User{
+import pekl.gasqueue.com.gasqueue.Activitiy.PickupActivity;
+
+public class Customer extends Observable implements User {
     private boolean orderSent;
-    private Integer queuePosition;
+    private Integer queuePosition = 12; //change this back to nothing after test
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private Cart cart;
-    public StopWatch timer = new StopWatch(); //Varför public???
-
+    public StopWatch timer = new StopWatch();
+    private List<Observer> observers = new ArrayList<Observer>();
 
     public Customer() {
         cart = new Cart();
     }
-
+    public void attach(PickupActivity pickupActivity){
+        observers.add(pickupActivity);
+    }
+    public void detach(PickupActivity pickupActivity){
+        observers.remove(pickupActivity);
+    }
+    public void notifyObservers(){
+        for (Observer observer : observers) {
+            observer.update(this, getQueuePosition());
+        }
+    }
 
     //Adds an item to customer's order
     public void addItem(Product item, int quantity){
@@ -86,5 +104,5 @@ public class Customer implements User{
     public void resetOrder() {
 
     }
-
 }
+
