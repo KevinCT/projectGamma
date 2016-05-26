@@ -41,7 +41,6 @@ public class BarDBController {
 
                 HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
                 newCustomer(onlyKey, orderProduct);
-                bar.addOrder(onlyKey, orderProduct);
             }
 
             @Override
