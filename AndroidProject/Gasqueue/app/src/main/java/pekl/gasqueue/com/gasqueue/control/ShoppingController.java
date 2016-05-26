@@ -115,9 +115,9 @@ public class ShoppingController {
     {
         return isCreatingProduct;
     }
-    public void addProductToMenu(Product p)
+    public void addProductToMenu(String n, Product.Category c, int p)
     {
-        menu.addProduct(p);
+        menu.addProduct(new Product(n,c,p));
     }
 
     public void changeProduct(String name, Product.Category category, int price)

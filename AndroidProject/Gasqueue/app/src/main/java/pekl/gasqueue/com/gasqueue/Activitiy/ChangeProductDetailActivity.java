@@ -76,15 +76,13 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isCreating == true)
                 {
-                    Product newProduct = new Product(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
-                    shoppingController.addProductToMenu(newProduct);
+                    shoppingController.addProductToMenu(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
                 }
                 else {
                     shoppingController.getChosenProduct().setChanges(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
                 }
             }
         });
-
     }
 
     private void initializeViews()
