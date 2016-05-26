@@ -12,19 +12,26 @@ import java.util.Set;
 public class Menu {
     private String barCode;
     private String barName;
-    private static Map<String, Product> stringKey;
+    private static HashMap<String, Product> stringKey = new HashMap<>();;
     private List<Product> allProducts;
+
+    private static final Product vodka = new Product("vodka", Product.Category.DRINK,45);
+    private static final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
+    private static final Product chicken = new Product("kyckling", Product.Category.FOOD,30);
+    private static final Product sommarby = new Product("sommarby", Product.Category.CIDER, 25);
+    private static final Product vatten = new Product("vatten", Product.Category.NON_ALCOHOLIC,10);
+    private static final Product falcon = new Product("falcon", Product.Category.BEER,20);
+    private static final Product brookly = new Product("brookly", Product.Category.BEER,25);
+
 
     //The category user chooses in CategoryActivity
     public void downloadMenu() {
-        stringKey = new HashMap<>();
         allProducts = new ArrayList<>();
         //allProducts.add()
     }
 
     public Menu()
     {
-        stringKey = new HashMap<>();
         allProducts = new ArrayList<Product>();
         final Product vodka = new Product("vodka", Product.Category.DRINK,45);
         final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
@@ -33,14 +40,6 @@ public class Menu {
         final Product vatten = new Product("vatten", Product.Category.NON_ALCOHOLIC,10);
         final Product falcon = new Product("falcon", Product.Category.BEER,20);
         final Product brookly = new Product("brookly", Product.Category.BEER,25);
-
-        stringKey.put("vodka",vodka);
-        stringKey.put("whiskey",whiskey);
-        stringKey.put("kyckling",chicken);
-        stringKey.put("sommarby",sommarby);
-        stringKey.put("vatten",vatten);
-        stringKey.put("falcon",falcon);
-        stringKey.put("brookly",brookly);
 
         allProducts.add(vodka);
         allProducts.add(whiskey);
@@ -59,11 +58,21 @@ public class Menu {
     }
 
     public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
+        stringKey.put("vodka",vodka);
+        stringKey.put("whiskey",whiskey);
+        stringKey.put("kyckling",chicken);
+        stringKey.put("sommarby",sommarby);
+        stringKey.put("vatten",vatten);
+        stringKey.put("falcon",falcon);
+        stringKey.put("brookly",brookly);
+
         Set<String> products = orderString.keySet();
         HashMap<Product,Integer> orderProduct = new HashMap<>();
+        System.out.println(orderString.size());
+        System.out.println(products.size());
 
         for (String e:products) {
-            orderProduct.put(stringKey.get(e), orderString.get(e));
+            orderProduct.put( stringKey.get(e), (Integer) orderString.get(e));
         }
         return orderProduct;
     }
