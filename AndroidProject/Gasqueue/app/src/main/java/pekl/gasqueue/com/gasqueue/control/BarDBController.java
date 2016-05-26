@@ -8,6 +8,7 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 
 import pekl.gasqueue.com.gasqueue.model.Bar;
+import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
@@ -34,10 +35,11 @@ public class BarDBController {
         ref1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
+                HashMap<String, HashMap<String, Integer>> order = (HashMap<String, HashMap<String,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
                 String onlyKey = (String) order.keySet().toArray()[0];
-                newCustomer(onlyKey, order.get(onlyKey));
-                bar.addOrder(onlyKey, order.get(onlyKey));
+                HashMap<Product, Integer> orderProduct = Menu.stringToProduct(order.get(onlyKey));
+                newCustomer(onlyKey, orderProduct);
+                bar.addOrder(onlyKey, orderProduct);
             }
 
             @Override
