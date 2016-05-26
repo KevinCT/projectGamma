@@ -44,8 +44,8 @@
             android:text="View Order"
             android:id="@+id/viewOrderButton"
             android:layout_alignTop="@+id/cancelButton"
-            android:layout_toRightOf="@+id/cancelButton"
-            android:layout_toEndOf="@+id/cancelButton" />
+            android:layout_toRightOf="@+id/timeView"
+            android:layout_toEndOf="@+id/timeView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,13 +55,5 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PUSH"
-            android:id="@+id/pushButton"
-            android:layout_alignTop="@+id/viewOrderButton"
-            android:layout_toRightOf="@+id/viewOrderButton"
-            android:layout_toEndOf="@+id/viewOrderButton" />
     </RelativeLayout>
 </LinearLayout>

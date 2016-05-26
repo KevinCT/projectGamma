@@ -13,6 +13,7 @@ import java.util.Set;
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
@@ -27,7 +28,6 @@ public class HostActivity extends AppCompatActivity {
     private String firstInQueue;
     private HostListViewAdapter orderAdapter;
     private int total = 0;
-
     private TextView currentGuestView;
     private TextView detailsView;
     private TextView nameView;
@@ -60,11 +60,13 @@ public class HostActivity extends AppCompatActivity {
                     firstInQueue = queueController.getFirstInQueue();
                     barController.orderDone();
                     updateView();
+
                 }
-                else {
+                else{
                     System.out.println("queue is empty");
                 }
             }
+                
         });
 
     }
@@ -79,6 +81,7 @@ public class HostActivity extends AppCompatActivity {
         orderListView = (ListView) findViewById(R.id.orderListView);
         viewQueueButton = (Button) findViewById(R.id.viewQueueButton);
         updateView();
+
     }
 
     private void updateView() {
