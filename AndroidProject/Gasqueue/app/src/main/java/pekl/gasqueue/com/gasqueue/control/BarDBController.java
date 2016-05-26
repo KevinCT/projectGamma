@@ -35,9 +35,11 @@ public class BarDBController {
         ref1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                HashMap<String, HashMap<String, Integer>> order = (HashMap<String, HashMap<String,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
-                String onlyKey = (String) order.keySet().toArray()[0];
-                HashMap<Product, Integer> orderProduct = Menu.stringToProduct(order.get(onlyKey));
+                HashMap<String, Integer> order = (HashMap<String, Integer>) dataSnapshot.getValue(HashMap.class); //Ska bara finns ett element i hashmappen
+                String onlyKey = dataSnapshot.getKey();
+                System.out.println(onlyKey + " = onlyKey + size = " + order.keySet().toArray()[0]);
+
+                HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
                 newCustomer(onlyKey, orderProduct);
                 bar.addOrder(onlyKey, orderProduct);
             }
