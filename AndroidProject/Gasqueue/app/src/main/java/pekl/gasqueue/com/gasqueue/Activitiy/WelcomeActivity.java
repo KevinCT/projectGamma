@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -19,6 +20,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button loginBtn;
     private AuthenticatorController authController;
     private Class activity;
+    private String clientType;
+    private TextView errorLbl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,50 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Firebase.setAndroidContext(this);
         authController = new AuthenticatorController("https://dazzling-torch-9680.firebaseio.com/");
+
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
         initView();
+        initListener();
+
+
+    }
+    private void initView(){
+        passwordText=(EditText)findViewById(R.id.inputCodeField);
+        loginBtn = (Button) findViewById(R.id.logInBtn);
+        errorLbl =(TextView) findViewById(R.id.codeErrorLbl);
+        errorLbl.setVisibility(View.INVISIBLE);
+    }
+    private void authenticate(){
+        clientType=authController.authenticate(passwordText.getText().toString());
+        if(clientType.equals("customer")) {
+
+            activity=MainActivity.class;
+
+        }
+        else if (clientType.equals("bar")){
+
+            activity=WelcomeBarActivity.class;
+        }
+        else {
+            activity=null;
+            errorLbl.setVisibility(View.VISIBLE);
+        }
+        nextActivity(activity);
+    }
+    private void nextActivity(Class activity){
+        if(activity!=null) {
+            Intent intentActivity = new Intent(this, activity);
+            intentActivity.putExtra("password",passwordText.getText().toString());
+            startActivity(intentActivity);
+        }
+
+    }
+    private void initListener(){
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,25 +80,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
             }
         });
-    }
-    private void initView(){
-        passwordText=(EditText)findViewById(R.id.inputCodeField);
-        loginBtn = (Button) findViewById(R.id.logInBtn);
-    }
-    private void authenticate(){
-        if(authController.authenticate(passwordText.getText().toString()).equals("customer")) {
-            activity=MainActivity.class;
-
-        }
-        else if (authController.authenticate(passwordText.getText().toString()).equals("bar")){
-            activity=WelcomeBarActivity.class;
-        }
-        if(activity!=null)
-        nextActivity(activity);
-    }
-    private void nextActivity(Class activity){
-        Intent intentActivity= new Intent(this,activity);
-        startActivity(intentActivity);
 
     }
 }

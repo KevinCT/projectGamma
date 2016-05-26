@@ -21,16 +21,18 @@ import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private CustomerDBController customerDB = CustomerDBController.getInstance();
+    private CustomerDBController customerDB;
     private List<Product> productsSameCategory;
     private Map<Button, Product> productButtonMap;
     private ShoppingController shoppingController;
     private GridLayout listLayout;
+    private Button createProductBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         Firebase.setAndroidContext(this);
+        customerDB = CustomerDBController.getInstance();
 
         initializeViews();
 
@@ -45,19 +47,46 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             for (int i = 0; i < productsSameCategory.size(); i++) {
                 Button button = new Button(this);
                 button.setText(productsSameCategory.get(i).getName());
+                button.setWidth(500);
+                button.setHeight(400);
                 productButtonMap.put(button, productsSameCategory.get(i));
                 button.setOnClickListener(this);
                 listLayout.addView(button);
             }
         }
+
+        if (shoppingController.getTypeOfUser() == true)
+        {
+            createProductBtn.setText("CREATE NEW PRODUCT");
+            createProductBtn.setWidth(500);
+            createProductBtn.setHeight(400);
+            createProductBtn.setOnClickListener(this);
+            listLayout.addView(createProductBtn);
+        }
     }
 
     @Override
     public void onClick(View view) {
-        shoppingController.setChosenProduct(productButtonMap.get(view));
-        Intent temp = new Intent(this, ProductDetailActivity.class);
+        Intent temp;
+        if (view.equals(createProductBtn))
+        {
+            shoppingController.setIntention(true);
+            temp = new Intent(this,ChangeProductDetailActivity.class);
+        }
+        else {
+            if (shoppingController.getTypeOfUser() == true)
+            {
+                shoppingController.setIntention(false);
+                shoppingController.setChosenProduct(productButtonMap.get(view));
+                temp = new Intent(this,ChangeProductDetailActivity.class);
+            }
+            else {
+                shoppingController.setChosenProduct(productButtonMap.get(view));
+                shoppingController.setChosenProduct(productButtonMap.get(view));
+                temp = new Intent(this, ProductDetailActivity.class);
+            }
+        }
         startActivity(temp);
-
     }
 
     private void initializeViews()
@@ -66,5 +95,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         productButtonMap = new HashMap<>();
         listLayout = (GridLayout) findViewById(R.id.listLayout);
         productsSameCategory = shoppingController.getProductSameCategory();
+        createProductBtn = new Button(this);
     }
 }

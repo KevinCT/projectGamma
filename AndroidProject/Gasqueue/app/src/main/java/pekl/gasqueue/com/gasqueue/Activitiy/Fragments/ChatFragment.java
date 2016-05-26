@@ -34,12 +34,7 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_chat, container, false);
         initView();
-        confirmationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextActivity();
-            }
-        });
+        initListener();
         return view;
     }
     private void initView(){
@@ -51,6 +46,15 @@ public class ChatFragment extends Fragment {
         intentActivity = new Intent(getActivity(), ChatActivity.class);
         intentActivity.putExtra("username",nameInput.getText().toString());
         startActivity(intentActivity);
+
+    }
+    private void initListener(){
+        confirmationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity();
+            }
+        });
 
     }
 

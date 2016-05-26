@@ -25,6 +25,7 @@ public class AuthenticatorController {
         dbManagerAuthenticator= new FirebaseDatabaseManager(new Firebase(databaseRef));
         authenticator = new Authenticator();
         authenticatorList=new ArrayList<>();
+        initListener();
 
     }
 
@@ -33,7 +34,12 @@ public class AuthenticatorController {
 
     }
     public String authenticate(String input) {
-         valueListener = new ValueChangeListener(dbManagerAuthenticator.getReference().toString() + "/Authenticators") {
+
+
+        return authenticator.authenticate(input,authenticatorList);
+    }
+    private void initListener(){
+        valueListener = new ValueChangeListener(dbManagerAuthenticator.getReference().toString() + "/Authenticators") {
 
             @Override
             public void dataChanged(DataSnapshot data) {
@@ -45,7 +51,16 @@ public class AuthenticatorController {
 
         };
 
-        return authenticator.authenticate(input,authenticatorList);
+    }
+    public void setBarPassword(String barPassword){
+        authenticator.setBarPassword(barPassword);
+    }
+
+    public void setCustomerPassword(String customerPassword){
+        authenticator.setCustomerPassword(customerPassword);
+    }
+    public Authenticator getBarReference(){
+        return authenticator;
     }
 
 

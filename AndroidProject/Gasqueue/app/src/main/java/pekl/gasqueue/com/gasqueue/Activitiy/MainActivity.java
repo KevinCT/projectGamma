@@ -20,12 +20,14 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChangeProductDetailFragment;
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.ChatFragment;
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.MenuCategoryFragment;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class MainActivity extends AppCompatActivity {
+    private Toolbar toolbar;
+    private  TabLayout tabLayout;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -45,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        initView();
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
         tabLayout.setupWithViewPager(mViewPager);
 
     }
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
           switch(position){
               case 0: return new MenuCategoryFragment();
 
-              case 1: return new ChangeProductDetailFragment();
+              case 1: return new MenuCategoryFragment();
 
               case 2: return new ChatFragment();
 
@@ -137,5 +138,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private void initView(){
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
+         tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+
     }
 }

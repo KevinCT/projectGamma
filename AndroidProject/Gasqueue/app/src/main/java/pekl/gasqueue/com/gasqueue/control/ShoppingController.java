@@ -12,16 +12,21 @@ import pekl.gasqueue.com.gasqueue.model.Product;
  * Created by Kotex on 18/05/2016.
  */
 public class ShoppingController {
-    private List<Product> productsSameCategory = new ArrayList<>();
-    private Menu tempMenu = new Menu();
-    private static Product chosenProduct = new Product();
+    private List<Product> productsSameCategory;
+    private Menu menu;
+    private static Product chosenProduct;
     private static Product.Category chosenCategory;
-    private List<Product> allProducts = new ArrayList<>();
-    private Cart cart = new Cart();
+    private List<Product> allProducts;
+    private Cart cart;
+    private static boolean isBartender;
+    private static boolean isCreatingProduct;
 
     public ShoppingController()
     {
-        allProducts = tempMenu.getMenu();
+        menu = new Menu();
+        allProducts = menu.getMenu();
+        cart = new Cart();
+        productsSameCategory = new ArrayList<Product>();
     }
 
     public List<Product> getProductSameCategory()
@@ -54,11 +59,6 @@ public class ShoppingController {
         chosenCategory = c;
     }
 
-    public void addProductToCart(Product p , int g)
-    {
-        cart.addProduct(p,g);
-    }
-
     public void incQuantity(Product p)
     {
         cart.addProduct(p,1);
@@ -67,6 +67,11 @@ public class ShoppingController {
     public void decQuantity(Product p)
     {
         cart.addProduct(p,-1);
+    }
+
+    public void addProductToCart(Product p , int g)
+    {
+        cart.addProduct(p,g);
     }
 
     public void removeProductFromCart(Product p)
@@ -84,10 +89,49 @@ public class ShoppingController {
         return cart.getTotalOfProduct(p);
     }
 
-    public int getProductQuantity(Product p) {
+    public int getQuantityOfProduct(Product p) {
         if (cart.getCart().containsKey(p)) {
             return cart.getCart().get(p);
         }
         else return 0;
+    }
+
+    public void setTypeOfUser(boolean isBartender)
+    {
+        this.isBartender = isBartender;
+    }
+
+    public boolean getTypeOfUser()
+    {
+        return isBartender;
+    }
+
+    public void setIntention(boolean isCreatingProduct)
+    {
+        this.isCreatingProduct = isCreatingProduct;
+    }
+
+    public boolean getIntention()
+    {
+        return isCreatingProduct;
+    }
+    public void addProductToMenu(Product p)
+    {
+        menu.addProduct(p);
+    }
+
+    public void changeProduct(String name, Product.Category category, int price)
+    {
+        chosenProduct.setChanges(name,category,price);
+    }
+
+    public void createProduct(String name, Product.Category category, int price)
+    {
+        Product temp = new Product(name,category,price);
+        allProducts.add(temp);
+    }
+    //code for testing might be removed
+    public Menu getMenu(){
+        return menu;
     }
 }

@@ -28,7 +28,7 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
 
         switch (v.getId()) {
             case R.id.editBarBtn:
-                activity=CreateBarActivity.class;
+                activity=EditCategoryActivity.class;
                 break;
             case R.id.createBarBtn:
                 activity = CreateBarActivity.class;
@@ -51,6 +51,11 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
     }
     private void nextActivity(Class activity){
         Intent intentActivity= new Intent(this,activity);
+        //clean code later only send this if its edit bar not createbar
+        Bundle data;
+        data=getIntent().getExtras();
+        intentActivity.putExtras(data);
         startActivity(intentActivity);
     }
+
 }
