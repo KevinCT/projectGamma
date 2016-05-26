@@ -51,21 +51,24 @@ public class HostActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initializeViews();
-        orderAdapter = new HostListViewAdapter(order);
-        orderListView.setAdapter(orderAdapter);
 
         assert pushButton != null;
         pushButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(queueController.getQueueSize() > 0) {
-                    barController.orderDone();
                     firstInQueue = queueController.getFirstInQueue();
+                    barController.orderDone();
                     updateView();
 
                 }
+                else{
+                    System.out.println("queue is empty");
+                }
             }
+                
         });
+
     }
 
     private void initializeViews() {
@@ -85,9 +88,11 @@ public class HostActivity extends AppCompatActivity {
         this.nameView.setText(firstInQueue);
         //Ändra till notifyDataChanged senare
         order = barController.getOrder(firstInQueue);
-        orderAdapter = new HostListViewAdapter(order);
-        orderListView.setAdapter(orderAdapter);
-        orderListView.setAdapter(orderAdapter);
+        if(!(order == null)) {
+            orderAdapter = new HostListViewAdapter(order);
+            orderListView.setAdapter(orderAdapter);
+            orderListView.setAdapter(orderAdapter);
+        }
     }
 }
 

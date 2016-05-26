@@ -54,8 +54,8 @@ public class Customer extends Observable implements User {
         return banned;
     }
 
-    public HashMap<Product,Integer> getOrder() {
-        return cart.getCart();
+    public HashMap<String,Integer> getOrder() {
+        return cart.productToString();
     }
 
     //Removes an item from customer's order specified by order element index
