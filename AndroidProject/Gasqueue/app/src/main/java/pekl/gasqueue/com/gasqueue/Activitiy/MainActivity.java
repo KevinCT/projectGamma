@@ -86,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -104,19 +100,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            Fragment fragment = new MenuCategoryFragment();
             switch (position) {
                 case 0:
-                    dataHandler(fragment);
-                    return fragment;
+                    return new MenuCategoryFragment();
                 case 1:
                     return new ChatFragment();
                 case 2:
                     return new ChatFragment();
                 default:
-                    dataHandler(fragment);
-                    return fragment;
+                    return new MenuCategoryFragment();
 
             }
 
@@ -146,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
          toolbar = (Toolbar) findViewById(R.id.toolbar);
          tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-
-    }
-    private void dataHandler(Fragment fragment){
-        Bundle data=getIntent().getExtras();
-        fragment.setArguments(data);
 
     }
 

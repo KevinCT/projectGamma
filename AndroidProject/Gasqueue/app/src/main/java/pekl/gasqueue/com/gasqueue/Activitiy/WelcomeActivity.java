@@ -69,7 +69,7 @@ public class WelcomeActivity extends AppCompatActivity {
             Intent intentActivity = new Intent(this, activity);
             intentActivity.putExtra("barPassword",authController.getBarPassword());
             intentActivity.putExtra("customerPassword",authController.getCustomerPassword());
-            intentActivity.putExtra("clientType",false);
+            intentActivity.putExtra("clientType",true);
             startActivity(intentActivity);
         }
 

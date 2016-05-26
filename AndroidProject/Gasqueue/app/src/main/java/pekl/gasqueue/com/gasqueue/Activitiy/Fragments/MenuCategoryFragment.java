@@ -71,12 +71,13 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
             shoppingController.setTypeOfUser(getArguments().getBoolean("clientType"));
         }
         catch(NullPointerException exception){
+            shoppingController.setTypeOfUser(false);
 
         }
         //shit code ,just temporary to prevent merge conflicts and try stuff
         createBarBtn = (Button) view.findViewById(R.id.createBarBtn);
         createBarBtn.setVisibility(View.INVISIBLE);
-        if(getArguments().getBoolean("clientType")) {
+        if(getArguments()!=null) {
            getData();
            createBarBtn.setVisibility(View.VISIBLE);
            createBarBtn.setOnClickListener(new View.OnClickListener() {

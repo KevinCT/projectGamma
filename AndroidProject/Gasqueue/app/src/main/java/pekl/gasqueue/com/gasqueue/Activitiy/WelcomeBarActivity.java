@@ -56,7 +56,6 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
         if(activity == EditCategoryActivity.class) {
             Bundle data;
             data = getIntent().getExtras();
-            data.putBoolean("clientType",true);
             intentActivity.putExtras(data);
         }
         startActivity(intentActivity);
