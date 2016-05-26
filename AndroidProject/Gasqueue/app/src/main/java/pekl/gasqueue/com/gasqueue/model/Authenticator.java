@@ -40,6 +40,8 @@ public class Authenticator {
         clientType="empty";
         for (Authenticator authPassword : authenticatorList) {
             if (input.equals(authPassword.getBarPassword())) {
+                barPassword=authPassword.getBarPassword();
+                customerPassword=authPassword.getCustomerPassword();
                 clientType = "bar";
                 break;
             } else if (input.equals(authPassword.getCustomerPassword())) {

@@ -18,7 +18,7 @@ public class ShoppingController {
     private static Product.Category chosenCategory;
     private List<Product> allProducts;
     private Cart cart;
-    private static boolean isBartender;
+    private static boolean isBartender = false;
     private static boolean isCreatingProduct;
 
     public ShoppingController()

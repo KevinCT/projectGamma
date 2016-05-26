@@ -51,10 +51,14 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
     }
     private void nextActivity(Class activity){
         Intent intentActivity= new Intent(this,activity);
+
         //clean code later only send this if its edit bar not createbar
-        Bundle data;
-        data=getIntent().getExtras();
-        intentActivity.putExtras(data);
+        if(activity == EditCategoryActivity.class) {
+            Bundle data;
+            data = getIntent().getExtras();
+            data.putBoolean("clientType",true);
+            intentActivity.putExtras(data);
+        }
         startActivity(intentActivity);
     }
 
