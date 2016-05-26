@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
@@ -25,6 +26,7 @@ public class HostActivity extends AppCompatActivity {
     private HashMap<Product,Integer> order;
     private String firstInQueue;
     private HostListViewAdapter orderAdapter;
+    private int total = 0;
 
     private TextView currentGuestView;
     private TextView detailsView;
@@ -59,7 +61,9 @@ public class HostActivity extends AppCompatActivity {
                     barController.orderDone();
                     updateView();
                 }
-                System.out.println("queue is empty");
+                else {
+                    System.out.println("queue is empty");
+                }
             }
         });
 
@@ -81,11 +85,21 @@ public class HostActivity extends AppCompatActivity {
         this.nameView.setText(firstInQueue);
         //Ändra till notifyDataChanged senare
         order = barController.getOrder(firstInQueue);
+
         if(!(order == null)) {
+            totalPriceTextView.setText(totalPrice());
+            System.out.println(totalPrice());
             orderAdapter = new HostListViewAdapter(order);
             orderListView.setAdapter(orderAdapter);
-            orderListView.setAdapter(orderAdapter);
         }
+    }
+
+    private int totalPrice() {
+        Set<Product> products = order.keySet();
+        for(Product product: products) {
+            total = total + product.getPrice();
+        }
+        return total;
     }
 }
 
