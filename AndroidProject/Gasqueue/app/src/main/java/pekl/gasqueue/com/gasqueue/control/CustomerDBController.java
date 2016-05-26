@@ -22,7 +22,7 @@ public class CustomerDBController {
 
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
-    private int queueNumber;
+    private Integer queueNumber;
     private static String reference = "https://dazzling-torch-9680.firebaseio.com/";
 
     private CustomerDBController(String databaseReference) {
@@ -44,7 +44,7 @@ public class CustomerDBController {
 
     public void sendOrder(){
         if(!customer.isBanned() && !customer.isOrderSent()) {
-            Map<String, Map<Product, Integer>> map = new HashMap<>();
+            Map<String, Map<String, Integer>> map = new HashMap<>();
             map.put(customer.getClientID(), customer.getOrder());
             updateQueueNumber();
             dbManagerCustomer.saveMap("Orders", map);
@@ -96,8 +96,15 @@ public class CustomerDBController {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                queueNumber = snapshot.getValue(Integer.class);
-                updateQueuePosition(); //Activate listeners
+                if(queueNumber != null) {
+                    queueNumber = snapshot.getValue(Integer.class);
+                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
+                    updateQueuePosition(); //Activate listeners
+                }
+                else {
+                    queueNumber = 0;
+                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
+                }
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {

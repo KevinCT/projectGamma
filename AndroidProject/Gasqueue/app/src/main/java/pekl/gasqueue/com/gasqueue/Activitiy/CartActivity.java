@@ -40,6 +40,7 @@ public class CartActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         adapter = new HashMapAdapter();
         totalTV = (TextView) findViewById(R.id.totalTV);
+        orderButton = (Button) findViewById(R.id.orderButton);
     }
     protected void onStart() {
         super.onStart();

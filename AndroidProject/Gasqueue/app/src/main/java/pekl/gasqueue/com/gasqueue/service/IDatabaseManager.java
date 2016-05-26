@@ -10,7 +10,7 @@ import pekl.gasqueue.com.gasqueue.model.Product;
  */
 public interface IDatabaseManager<T> {
 
-    public void saveMap(String address, Map<String, Map<Product, Integer>> map);
+    public void saveMap(String address, Map<String, Map<String, Integer>> map);
 
     public void addToMap(String address, String clientID, List<Product> list);
 
