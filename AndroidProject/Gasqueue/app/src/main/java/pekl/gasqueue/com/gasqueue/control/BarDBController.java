@@ -3,6 +3,7 @@ package pekl.gasqueue.com.gasqueue.control;
 import com.firebase.client.DataSnapshot;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import pekl.gasqueue.com.gasqueue.model.Bar;
 import pekl.gasqueue.com.gasqueue.model.Menu;
@@ -38,6 +39,11 @@ public class BarDBController {
                 System.out.println(onlyKey + " = onlyKey + size = " + order.keySet().toArray()[0]);
 
                 HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
+                Set<Product> products = orderProduct.keySet();
+                for(Product p:products) {
+                    System.out.println(p.getName() + " " + orderProduct.get(p));
+                }
+
                 newCustomer(onlyKey, orderProduct);
 
             }

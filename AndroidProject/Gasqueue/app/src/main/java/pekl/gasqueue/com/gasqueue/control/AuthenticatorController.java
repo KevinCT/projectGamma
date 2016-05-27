@@ -22,7 +22,7 @@ public class AuthenticatorController {
 
 
     public AuthenticatorController(String databaseRef){
-        dbManagerAuthenticator= new FirebaseDatabaseManager(new Firebase(databaseRef));
+        dbManagerAuthenticator= new FirebaseDatabaseManager(databaseRef);
         authenticator = new Authenticator();
         authenticatorList=new ArrayList<>();
         initListener();
