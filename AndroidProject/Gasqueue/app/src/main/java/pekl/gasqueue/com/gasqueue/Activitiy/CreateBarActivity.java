@@ -53,6 +53,7 @@ public class CreateBarActivity extends AppCompatActivity {
         barPassword=barPasswordInput.getText().toString();
         if(barPassword.length()==4 && customerPassword.length()==4 && !barPassword.equals(customerPassword)){
             setPassword(barPassword,customerPassword);
+            authenticatorController.sendBarReference();
             nextActivity();
         }
         else{
@@ -63,8 +64,8 @@ public class CreateBarActivity extends AppCompatActivity {
     }
     private void nextActivity(){
         Intent temp = new Intent(CreateBarActivity.this,EditCategoryActivity.class);
-        Gson gson = new Gson();
-        temp.putExtra("authenticator",gson.toJson(authenticatorController.getBarReference()));
+        temp.putExtra("barPassword",barPassword);
+        temp.putExtra("customerPassword",customerPassword);
         temp.putExtra("clientType",true);
         startActivity(temp);
     }

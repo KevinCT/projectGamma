@@ -19,6 +19,7 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 /**
  * Created by kevin on 19/05/2016.
  */
+// need to use controller, currently manipulating model directly . // or it acts as the controller class?! check android principle
 public class ChatMessageAdapter extends BaseAdapter {
     private List<Message> messageList= new ArrayList<>();
     private ValueChangeListener listener;
