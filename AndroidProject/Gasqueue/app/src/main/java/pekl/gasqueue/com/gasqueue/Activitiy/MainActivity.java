@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -103,22 +100,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-          switch(position){
-              case 0: return new MenuCategoryFragment();
+            switch (position) {
+                case 0:
+                    return new MenuCategoryFragment();
+                case 1:
+                    return new ChatFragment();
+                case 2:
+                    return new ChatFragment();
+                default:
+                    return new MenuCategoryFragment();
 
-              case 1: return new MenuCategoryFragment();
-
-              case 2: return new ChatFragment();
-
-
-
-
-          }
-                return new ChatFragment();  //.newInstance(position + 1);
-
+            }
 
         }
+
 
         @Override
         public int getCount() {
@@ -130,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Beställ";
+                    return "Menu";
                 case 1:
-                    return "SECTION 2";
+                    return "Cart";
                 case 2:
                     return "Chat";
             }
@@ -145,4 +140,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
