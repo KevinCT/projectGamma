@@ -6,7 +6,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
+            android:text="4"
             android:id="@+id/positionView"
             android:layout_marginTop="101dp"
             android:layout_below="@+id/statusView"
@@ -34,18 +39,21 @@
             android:text="Cancel Order"
             android:id="@+id/cancelButton"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/positionView"
-            android:layout_toStartOf="@+id/positionView"
-            android:layout_marginBottom="40dp" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="View Order"
             android:id="@+id/viewOrderButton"
-            android:layout_alignTop="@+id/cancelButton"
-            android:layout_toRightOf="@+id/timeView"
-            android:layout_toEndOf="@+id/timeView" />
+            android:layout_above="@+id/cancelButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"

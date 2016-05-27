@@ -59,8 +59,12 @@ public class AuthenticatorController {
     public void setCustomerPassword(String customerPassword){
         authenticator.setCustomerPassword(customerPassword);
     }
-    public Authenticator getBarReference(){
-        return authenticator;
+
+    public String getBarPassword(){
+        return authenticator.getBarPassword();
+    }
+    public String getCustomerPassword(){
+        return authenticator.getCustomerPassword();
     }
 
 

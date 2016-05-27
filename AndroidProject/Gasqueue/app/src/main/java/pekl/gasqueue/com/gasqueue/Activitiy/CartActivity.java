@@ -1,7 +1,11 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,6 +23,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView totalTV;
     private CustomerDBController customerDB = CustomerDBController.getInstance();
     private Button orderButton;
+
 
     public CartActivity() {
     }
@@ -48,7 +53,11 @@ public class CartActivity extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("here","here");
                 customerDB.sendOrder();
+                // move later
+                Intent activity = new Intent(getApplicationContext(),PickupActivity.class);
+                startActivity(activity);
             }
         });
     }

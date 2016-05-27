@@ -1,5 +1,10 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import android.util.Log;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +12,10 @@ import java.util.List;
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by Kotex on 18/05/2016.
@@ -18,12 +27,14 @@ public class ShoppingController {
     private static Product.Category chosenCategory;
     private List<Product> allProducts;
     private Cart cart;
-    private static boolean isBartender;
+    private static boolean isBartender = false;
     private static boolean isCreatingProduct;
+    private IValueChangeListener listener;
 
     public ShoppingController()
     {
         menu = new Menu();
+        //  menu=getMenu();
         allProducts = menu.getMenu();
         cart = new Cart();
         productsSameCategory = new ArrayList<Product>();
@@ -132,6 +143,19 @@ public class ShoppingController {
     }
     //code for testing might be removed
     public Menu getMenu(){
+        listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
+            @Override
+            public void dataChanged(DataSnapshot data) {
+                for(DataSnapshot menuSnapshot:data.getChildren()){
+                     menu =(Menu)menuSnapshot.getValue(HashMap.class).get(1234);
+
+
+                }
+
+
+            }
+        };
         return menu;
+
     }
 }

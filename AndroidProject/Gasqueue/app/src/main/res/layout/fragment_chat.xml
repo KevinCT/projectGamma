@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="232dp"
         android:layout_height="171dp"
-        android:text="Skriv in ditt namn"
+        android:text="Enter your name"
         android:textSize="30dp"
         android:textAlignment="center"
         android:id="@+id/textView2"
