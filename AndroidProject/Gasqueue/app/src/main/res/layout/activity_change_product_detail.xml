@@ -48,10 +48,11 @@
             android:id="@+id/textView3" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="63dp"
             android:layout_height="wrap_content"
-            android:id="@+id/priceTF"
-            android:text="11" />
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/priceTF" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

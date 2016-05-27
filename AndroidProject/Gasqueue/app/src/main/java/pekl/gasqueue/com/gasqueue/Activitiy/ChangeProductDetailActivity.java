@@ -21,8 +21,8 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
     private ShoppingController shoppingController;
     private List<Product.Category> categories;
     private ArrayAdapter<Product.Category> spinnerAdapter;
-    private Product.Category category;
 
+    private Product.Category category;
     private EditText nameTextField;
     private EditText priceTextField;
     private Spinner categorySpinner;
@@ -33,12 +33,13 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_product_detail);
+
         initializeViews();
 
         if (isCreating == true)
         {
             nameTextField.setText("Name of product");
-            priceTextField.setText("Price of product in kr");
+            priceTextField.setText("99");
             saveBtn.setText("CREATE PRODUCT");
         }
         else{
@@ -55,21 +56,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             priceTextField.setText(shoppingController.getChosenProduct().getPrice() + "");
         }
 
-        spinnerAdapter = new ArrayAdapter<Product.Category>(this, android.R.layout.simple_spinner_item, categories);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(spinnerAdapter);
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                category =(Product.Category) adapterView.getItemAtPosition(i);
-                System.out.println(shoppingController.getChosenProduct().getCategory().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        initializeSpinner();
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +81,26 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
         categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         isCreating = shoppingController.getIntention();
+    }
+
+    private void initializeSpinner()
+    {
+
+        spinnerAdapter = new ArrayAdapter<Product.Category>(this, android.R.layout.simple_spinner_item, categories);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(spinnerAdapter);
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                category =(Product.Category) adapterView.getItemAtPosition(i);
+                System.out.println(shoppingController.getChosenProduct().getCategory().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }
 
