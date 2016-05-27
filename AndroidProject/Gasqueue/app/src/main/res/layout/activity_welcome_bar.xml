@@ -17,10 +17,10 @@
         android:textAlignment="center"
         android:id="@+id/barManagerHeader"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,12 +28,11 @@
         android:text="Edit Bar"
         android:textSize="25dp"
         android:id="@+id/editBarBtn"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/barManagerHeader"
+        android:layout_above="@+id/createBarBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/createBarBtn"
-        android:layout_alignEnd="@+id/createBarBtn"
-        android:layout_alignLeft="@+id/createBarBtn"
-        android:layout_alignStart="@+id/createBarBtn" />
+        android:layout_alignEnd="@+id/createBarBtn" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,8 +40,11 @@
         android:text="Create Bar"
         android:textSize="25dp"
         android:id="@+id/createBarBtn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/mangeBarBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/mangeBarBtn"
+        android:layout_alignEnd="@+id/mangeBarBtn" />
 
     <Button
         android:layout_width="wrap_content"
@@ -50,9 +52,10 @@
         android:text="Manage Bar"
         android:textSize="25dp"
         android:id="@+id/mangeBarBtn"
-        android:layout_below="@+id/createBarBtn"
-        android:layout_alignLeft="@+id/createBarBtn"
-        android:layout_alignStart="@+id/createBarBtn"
-        android:layout_marginTop="37dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
