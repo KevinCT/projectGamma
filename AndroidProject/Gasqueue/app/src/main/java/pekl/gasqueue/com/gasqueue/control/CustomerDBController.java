@@ -11,8 +11,12 @@ import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.model.Customer;
 import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.service.ChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.SingleValueChangeListener;
 
 /**
  * Created by Petros on 2016-04-28.
@@ -26,9 +30,9 @@ public class CustomerDBController {
     private static String reference = "https://dazzling-torch-9680.firebaseio.com/";
 
     private CustomerDBController(String databaseReference) {
-        dbManagerCustomer = new FirebaseDatabaseManager(new Firebase(databaseReference)); //Firebase ska ej vara här...
+        dbManagerCustomer = new FirebaseDatabaseManager(databaseReference); //Firebase ska ej vara här...
         customer = new Customer();
-        updateBanState();
+        updateBanState(databaseReference);
     }
 
     public static CustomerDBController getInstance() {
@@ -53,51 +57,46 @@ public class CustomerDBController {
         }
     }
 
-    public void updateBanState() {
-        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("banList"); //Temporary solution to avoid errors
-
-        ref.addChildEventListener(new ChildEventListener() {
+    public void updateBanState(String ref) {
+        IChildChangeListener childBanListListener = new ChildChangeListener(ref + "/banList") { //Funkar det verkligen med /???
 
             @Override
-            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
-                String id = snapshot.getValue(String.class);
+            public void childAdded(DataSnapshot data, String s) {
+                String id = data.getValue(String.class);
                 if (id.equals(customer.getClientID())) {
                     customer.setBan(true);
                 }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void childChanged(DataSnapshot data, String s) {
+
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String id = dataSnapshot.getValue(String.class);
+            public void childRemoved(DataSnapshot data) {
+                String id = data.getValue(String.class);
                 if (id.equals(customer.getClientID())) {
                     customer.setBan(false);
                 }
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void childMoved(DataSnapshot data, String s) {
 
             }
+        };
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
     }
 
     public void updateQueueNumber() {
-        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("queueNumber"); //Temporary solution to avoid errors
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        IValueChangeListener<DataSnapshot> valueChangeListener = new SingleValueChangeListener(reference + "/queueNumber"){
+
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void dataChanged(DataSnapshot data) {
                 if(queueNumber != null) {
-                    queueNumber = snapshot.getValue(Integer.class);
+                    queueNumber = data.getValue(Integer.class);
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                     updateQueuePosition(); //Activate listeners
                 }
@@ -106,28 +105,23 @@ public class CustomerDBController {
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                 }
             }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
+        };
 
     }
 
     public void updateQueuePosition() {
-        Firebase ref = (Firebase) dbManagerCustomer.createChildReference("customerNumberServed"); //Temporary solution to avoid errors
+        IChildChangeListener childBanListListener = new ChildChangeListener(reference + "/customerNumberServed") { //Funkar det verkligen med /???
 
-        ref.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void childAdded(DataSnapshot data, String s) {
 
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void childChanged(DataSnapshot data, String s) {
                 if (customer.isOrderSent()) {
                     if (!(customer.getQueuePosition() == 0) || customer.getQueuePosition() == null) { //Or 0?
-                        customer.setQueuePosition(queueNumber - dataSnapshot.getValue(Integer.class));
+                        customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
                         customer.notifyObservers(); //double-check this
                     } else {
                         //Your turn to be served, send notifications etc.
@@ -139,20 +133,16 @@ public class CustomerDBController {
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void childRemoved(DataSnapshot data) {
 
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void childMoved(DataSnapshot data, String s) {
 
             }
+        };
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
     }
 
     public int getQueuePosition() {
