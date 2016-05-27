@@ -6,16 +6,17 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 /**
- * Created by Petros on 2016-05-19.
+ * Created by Petros on 2016-05-27.
  */
-public abstract class ValueChangeListener implements IValueChangeListener<DataSnapshot> {
+public abstract class SingleValueChangeListener implements IValueChangeListener<DataSnapshot> {
 
     IDatabaseManager<Firebase> databaseManager;
 
-    public ValueChangeListener(String reference) {
+
+    public SingleValueChangeListener(String reference) {
         databaseManager = new FirebaseDatabaseManager(reference);
         Firebase ref = databaseManager.getReference();
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataChanged(dataSnapshot);
@@ -29,5 +30,4 @@ public abstract class ValueChangeListener implements IValueChangeListener<DataSn
     }
 
     public abstract void dataChanged(DataSnapshot data);
-
 }

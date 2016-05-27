@@ -1,16 +1,15 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 
 import pekl.gasqueue.com.gasqueue.model.Bar;
 import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.service.ChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
+import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 
 /**
@@ -20,75 +19,71 @@ public class BarDBController {
 
     private Bar bar;
     private IDatabaseManager dbManagerBar;
-    private String databaseReference;
     private QueueController queueController;
 
     public BarDBController(String databaseReference) {
-        dbManagerBar = new FirebaseDatabaseManager(new Firebase(databaseReference)); //Skapa ny managerklass för Baren?
+        dbManagerBar = new FirebaseDatabaseManager(databaseReference); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
         queueController = new QueueController();
-        updateOrders();
+        updateOrders(databaseReference);
     }
 
-    public void updateOrders() {
-        Firebase ref1 = (Firebase) dbManagerBar.createChildReference("Orders"); //Temporary solution to avoid errors
-        ref1.addChildEventListener(new ChildEventListener() {
+    public void updateOrders(String ref) {
+        IChildChangeListener childOrderListener = new ChildChangeListener(ref + "/" + "Orders") { //Funkar det verkligen med /???
+
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                HashMap<String, Integer> order = (HashMap<String, Integer>) dataSnapshot.getValue(HashMap.class); //Ska bara finns ett element i hashmappen
-                String onlyKey = dataSnapshot.getKey();
+            public void childAdded(DataSnapshot data, String s) {
+                HashMap<String, Integer> order = (HashMap<String, Integer>) data.getValue(HashMap.class); //Ska bara finns ett element i hashmappen
+                String onlyKey = data.getKey();
                 System.out.println(onlyKey + " = onlyKey + size = " + order.keySet().toArray()[0]);
 
                 HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
                 newCustomer(onlyKey, orderProduct);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) dataSnapshot.getValue(); //Ska bara finns ett element i hashmappen
+            public void childChanged(DataSnapshot data, String s) {
+
+            }
+
+            @Override
+            public void childRemoved(DataSnapshot data) {
+                HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) data.getValue(); //Ska bara finns ett element i hashmappen
                 bar.removeOrder((String) order.keySet().toArray()[0]);
                 //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
+            public void childMoved(DataSnapshot data, String s) {
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
             }
-        });
-        Firebase ref0 = (Firebase) dbManagerBar.createChildReference("cancelOrder"); //Temporary solution to avoid errors
-        ref0.addChildEventListener(new ChildEventListener() {
+        };
+
+        IChildChangeListener childCancelListener = new ChildChangeListener(ref + "/" + "cancelOrder") { //Funkar det verkligen med /???
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String clientID = dataSnapshot.getValue(String.class);
+            public void childAdded(DataSnapshot data, String s) {
+                String clientID = data.getValue(String.class);
                 bar.removeOrder(clientID);
                 //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void childChanged(DataSnapshot data, String s) {
+
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void childRemoved(DataSnapshot data) {
+
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void childMoved(DataSnapshot data, String s) {
 
             }
-        });
+        };
+
     }
 
     public void newCustomer(String clientID, HashMap<Product, Integer> order) {

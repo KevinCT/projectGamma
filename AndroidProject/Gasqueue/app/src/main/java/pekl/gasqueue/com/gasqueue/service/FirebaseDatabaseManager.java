@@ -14,8 +14,8 @@ public class FirebaseDatabaseManager implements IDatabaseManager<Firebase> {
 
     private Firebase reference;
 
-    public FirebaseDatabaseManager(Firebase reference) {
-        this.reference = reference;
+    public FirebaseDatabaseManager(String ref) {
+        reference = new Firebase(ref);
     }
 
     @Override
