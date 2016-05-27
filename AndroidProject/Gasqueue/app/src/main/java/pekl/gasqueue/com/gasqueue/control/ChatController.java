@@ -15,7 +15,7 @@ public class ChatController {
     private IDatabaseManager dbManagerChat;
     public ChatController(String databaseRef){
         chatMessage = new Message();
-        dbManagerChat = new FirebaseDatabaseManager(new Firebase(databaseRef));
+        dbManagerChat = new FirebaseDatabaseManager(databaseRef);
 
     }
     public void sendMessage(){
