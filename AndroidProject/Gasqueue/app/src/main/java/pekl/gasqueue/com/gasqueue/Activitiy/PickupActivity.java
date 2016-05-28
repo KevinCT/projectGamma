@@ -169,6 +169,7 @@ public class PickupActivity extends AppCompatActivity {
             @Override
             public void childChanged(DataSnapshot data, String s) {
                 updateView(CustomerDBController.getInstance().getQueuePosition());
+                System.out.println(CustomerDBController.getInstance().getQueuePosition());
                 checkPosition();
             }
 
