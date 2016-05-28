@@ -47,12 +47,26 @@
             android:text="Price of product"
             android:id="@+id/textView3" />
 
-        <EditText
-            android:layout_width="63dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:ems="10"
-            android:id="@+id/priceTF" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:ems="10"
+                android:maxLength="3"
+                android:id="@+id/priceTF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=" kr"
+                android:id="@+id/textView6" />
+        </LinearLayout>
 
         <Button
             style="?android:attr/buttonStyleSmall"

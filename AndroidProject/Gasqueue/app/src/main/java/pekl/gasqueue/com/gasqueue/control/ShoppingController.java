@@ -24,7 +24,7 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  */
 public class ShoppingController {
     private List<Product> productsSameCategory;
-    private Menu menu;
+    private static Menu menu = new Menu();
     private static Product chosenProduct;
     private static Product.Category chosenCategory;
     private List<Product> allProducts;
@@ -51,16 +51,22 @@ public class ShoppingController {
         return productsSameCategory;
     }
 
+    public String getProductName(Product p) { return p.getName();}
+
     public Product getChosenProduct()
     {
         return chosenProduct;
     }
 
-    public void setChosenProduct(Product p)
-    {
-        chosenProduct = p;
-        System.out.println(chosenProduct.getName() + "");
-    }
+    public void setChosenProduct(Product p) { chosenProduct = p; }
+
+    public String getChosenProductName(){return chosenProduct.getName();}
+
+    public int getChosenProductPrice(){return chosenProduct.getPrice();}
+
+    public Product.Category getChosenProductCategory(){return chosenProduct.getCategory();}
+
+    public void setChosenProductChanges(String newName,Product.Category newCategory, int newPrice){ chosenProduct.setChanges(newName,newCategory,newPrice);}
 
     public int getTotalOfCart(){return cart.getTotal();}
 
@@ -127,12 +133,10 @@ public class ShoppingController {
     {
         return isCreatingProduct;
     }
+
     public void addProductToMenu(String n, Product.Category c, int p) { menu.addProduct(new Product(n,c,p)); }
 
-    public void changeProduct(String name, Product.Category category, int price)
-    {
-        chosenProduct.setChanges(name,category,price);
-    }
+    public void changeProduct(String name, Product.Category category, int price) { chosenProduct.setChanges(name,category,price); }
 
     public void createProduct(String name, Product.Category category, int price)
     {
@@ -141,7 +145,6 @@ public class ShoppingController {
     }
     //code for testing might be removed
     public Menu getMenu(){
-
         return menu;
         }
 
@@ -149,6 +152,15 @@ public class ShoppingController {
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
             @Override
             public void dataChanged(DataSnapshot data) {
+=======
+    public Menu getMenu(){ return menu; }
+    private void downloadMenu(){
+        listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
+            @Override
+            public void dataChanged(DataSnapshot data) {
+                HashMap<String,Menu> hash= data.getValue(HashMap.class);
+//                menu=hash.get("0000");
+>>>>>>> Stashed changes
 
 
                 for(DataSnapshot menuSnapshot:data.getChildren()){

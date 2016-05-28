@@ -31,7 +31,6 @@ import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
  */
 public class MenuCategoryFragment extends Fragment implements View.OnClickListener {
     private Button cartBtn ;
-    private Product.Category category;
     private String barPassword;
     private String customerPassword;
     private boolean clientType;
@@ -106,24 +105,23 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         switch (v.getId())
         {
             case R.id.beerBtn:
-                category= Product.Category.BEER;
+                shoppingController.setChosenCategory(Product.Category.BEER);
                 break;
             case R.id.drinksBtn:
-                category=Product.Category.DRINK;
+                shoppingController.setChosenCategory(Product.Category.DRINK);
                 break;
             case R.id.ciderBtn:
-                category=Product.Category.CIDER;
+                shoppingController.setChosenCategory(Product.Category.CIDER);
                 break;
             case R.id.alkfriaBtn:
-                category=Product.Category.NON_ALCOHOLIC;
+                shoppingController.setChosenCategory(Product.Category.NON_ALCOHOLIC);
                 break;
             case R.id.matBtn:
-               category=Product.Category.FOOD;
+                shoppingController.setChosenCategory(Product.Category.FOOD);
                 break;
         }
-        shoppingController.setChosenCategory(category);
         //check maybe move putextra.
-        temp.putExtra("category",category);
+        temp.putExtra("category",shoppingController.getChosenCategory());
         startActivity(temp);
     }
     private void getData(){

@@ -39,8 +39,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Product.Category category = (Product.Category)extras.getSerializable("category");
-            shoppingController.setChosenCategory(category);
+            shoppingController.setChosenCategory((Product.Category)extras.getSerializable("category"));
         }
 
         createProductButton();
@@ -91,7 +90,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         if (productsSameCategory.size() > 0) {
             for (int i = 0; i < productsSameCategory.size(); i++) {
                 Button button = new Button(this);
-                button.setText(productsSameCategory.get(i).getName());
+                button.setText(shoppingController.getProductName(productsSameCategory.get(i)));
                 button.setWidth(500);
                 button.setHeight(400);
                 productButtonMap.put(button, productsSameCategory.get(i));
