@@ -2,16 +2,11 @@ package pekl.gasqueue.com.gasqueue.model;
 
 import android.provider.Settings.Secure;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
-
-import pekl.gasqueue.com.gasqueue.Activitiy.PickupActivity;
 
 public class Customer implements User {
     private boolean orderSent;
