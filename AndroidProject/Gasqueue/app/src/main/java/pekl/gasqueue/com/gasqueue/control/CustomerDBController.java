@@ -127,7 +127,7 @@ public class CustomerDBController {
 
     }
 
-    public int getQueuePosition() {
+    public Integer getQueuePosition() {
 
         return customer.getQueuePosition();
     }
