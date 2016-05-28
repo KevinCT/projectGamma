@@ -13,11 +13,12 @@ import android.widget.TextView;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HashMapAdapter;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
+import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class CartActivity extends AppCompatActivity {
-    private Cart cart;
+    private ShoppingController shoppingController;
     private HashMapAdapter adapter;
     private ListView listView;
     private TextView totalTV;
@@ -36,12 +37,12 @@ public class CartActivity extends AppCompatActivity {
         initializeViews();
 
         listView.setAdapter(adapter);
-        totalTV.setText(cart.getTotal() + " kr");
+        totalTV.setText(shoppingController.getTotalOfCart() + " kr");
     }
 
     private void initializeViews()
     {
-        cart = new Cart();
+        shoppingController = new ShoppingController();
         listView = (ListView) findViewById(R.id.listView);
         adapter = new HashMapAdapter();
         totalTV = (TextView) findViewById(R.id.totalTV);

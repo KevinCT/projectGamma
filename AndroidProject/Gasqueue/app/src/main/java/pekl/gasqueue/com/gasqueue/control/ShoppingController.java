@@ -61,6 +61,8 @@ public class ShoppingController {
         System.out.println(chosenProduct.getName() + "");
     }
 
+    public int getTotalOfCart(){return cart.getTotal();}
+
     public Product.Category getChosenCategory()
     {
         return chosenCategory;
@@ -118,19 +120,13 @@ public class ShoppingController {
         return isBartender;
     }
 
-    public void setIntention(boolean isCreatingProduct)
-    {
-        this.isCreatingProduct = isCreatingProduct;
-    }
+    public void setIntention(boolean isCreatingProduct) { this.isCreatingProduct = isCreatingProduct; }
 
     public boolean getIntention()
     {
         return isCreatingProduct;
     }
-    public void addProductToMenu(String n, Product.Category c, int p)
-    {
-        menu.addProduct(new Product(n,c,p));
-    }
+    public void addProductToMenu(String n, Product.Category c, int p) { menu.addProduct(new Product(n,c,p)); }
 
     public void changeProduct(String name, Product.Category category, int price)
     {
