@@ -8,21 +8,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create new bar"
-        android:textSize="40dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Bartender password"
         android:id="@+id/passwordLbl"
         android:layout_marginTop="60dp"
-        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -37,15 +26,18 @@
         android:layout_alignParentEnd="true" />
 
     <Button
+        android:textColor="#ffffff"
+        android:background="#F44336"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Bar"
         android:id="@+id/createBarBtn"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="70dp"
+        android:layout_alignRight="@+id/errorLabel2"
+        android:layout_alignEnd="@+id/errorLabel2"
+        android:layout_alignLeft="@+id/errorLabel2"
+        android:layout_alignStart="@+id/errorLabel2" />
 
     <TextView
         android:layout_width="wrap_content"

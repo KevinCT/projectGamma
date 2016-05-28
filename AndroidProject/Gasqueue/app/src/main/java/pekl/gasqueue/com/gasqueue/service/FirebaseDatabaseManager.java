@@ -5,6 +5,7 @@ import com.firebase.client.Firebase;
 import java.util.List;
 import java.util.Map;
 
+import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
 
 /**
@@ -23,16 +24,13 @@ public class FirebaseDatabaseManager implements IDatabaseManager<Firebase> {
         Firebase targetReference = createChildReference(childReference);
         targetReference.setValue(map);
     }
-
     @Override
-    public void addToMap(String childReference, String key, List<Product> list) { //Behövs ej tror jag
-        /**
-        Firebase targetReference = reference.child("childReference");
-        Map<String, List<Product>> addedObject = new HashMap<>();
-        addedObject.put(key, list);
-        targetReference.updateChildren(addedObject);
-         */
+    public void pushMap(String childReference, Map<String,Menu> map){
+        Firebase targetReference = createChildReference(childReference);
+        targetReference.setValue(map);
+
     }
+
 
     @Override
     public void saveStringList(String address, List<String> list) {

@@ -92,6 +92,8 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                    IDatabaseManager<Firebase> db = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
                    db.createChildReference("Menus").push().setValue(map1);
                    db.createChildReference("Menus").push().setValue(map2);
+                   db.pushMap("Menus",map1);
+                   db.pushMap("Menus",map2);
 
 
                }
