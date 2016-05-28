@@ -45,15 +45,15 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
         else{
             for (int i =1; i<categories.size();i++)
             {
-                if (shoppingController.getChosenProduct().getCategory().equals(categories.get(i)))
+                if (shoppingController.getChosenProductCategory().equals(categories.get(i)))
                 {
                     Product.Category temp = categories.get(0);
-                    categories.set(0,shoppingController.getChosenProduct().getCategory());
+                    categories.set(0,shoppingController.getChosenProductCategory());
                     categories.set(i,temp);
                 }
             }
-            nameTextField.setText(shoppingController.getChosenProduct().getName() + "");
-            priceTextField.setText(shoppingController.getChosenProduct().getPrice() + "");
+            nameTextField.setText(shoppingController.getChosenProductName() + "");
+            priceTextField.setText(shoppingController.getChosenProductPrice() + "");
         }
 
         initializeSpinner();
@@ -66,7 +66,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
                     shoppingController.addProductToMenu(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
                 }
                 else {
-                    shoppingController.getChosenProduct().setChanges(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
+                    shoppingController.setChosenProductChanges(nameTextField.getText().toString(), category, Integer.parseInt(priceTextField.getText().toString()));
                 }
             }
         });

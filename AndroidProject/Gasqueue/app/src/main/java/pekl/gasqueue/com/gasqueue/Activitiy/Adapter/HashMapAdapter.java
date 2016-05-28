@@ -62,14 +62,11 @@ public class HashMapAdapter extends BaseAdapter {
             result = view;
         }
 
-        ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
-        quantity = (TextView) result.findViewById(R.id.quantityLbl);
-        quantity.setText(tempCart.getCart().get(temp).toString());
-        totalLbl = (TextView) result.findViewById(R.id.totalLbl);
+        initializeView();
+
+        quantity.setText(tempCart.getQuantityOfProduct(temp) + "");
         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
-        incButton = (Button) result.findViewById(R.id.incBtn);
-        decButton = (Button) result.findViewById(R.id.decBtn);
-        removeBtn = (Button) result.findViewById(R.id.removeBtn);
+        ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -99,5 +96,13 @@ public class HashMapAdapter extends BaseAdapter {
         decButton.setOnClickListener(onClickListener);
         removeBtn.setOnClickListener(onClickListener);
         return result;
+    }
+
+    private void initializeView(){
+        quantity = (TextView) result.findViewById(R.id.quantityLbl);
+        totalLbl = (TextView) result.findViewById(R.id.totalLbl);
+        incButton = (Button) result.findViewById(R.id.incBtn);
+        decButton = (Button) result.findViewById(R.id.decBtn);
+        removeBtn = (Button) result.findViewById(R.id.removeBtn);
     }
 }

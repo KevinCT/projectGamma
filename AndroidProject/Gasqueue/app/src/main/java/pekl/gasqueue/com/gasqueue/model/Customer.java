@@ -12,7 +12,7 @@ public class Customer implements User {
     private boolean orderSent;
     private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
-    private String clientID = Secure.ANDROID_ID;
+    private String clientID = "long";
     private Cart cart;
     public StopWatch timer = new StopWatch();
     private List<Observer> observers = new ArrayList<Observer>();

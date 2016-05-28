@@ -12,7 +12,8 @@ import java.util.Set;
  * Created by Kotex on 03/05/2016.
  */
 public class Menu {
-    private String barCode;
+    private String bartenderCode;
+    private String customerCode;
     private String barName;
     private static HashMap<String, Product> stringKey = new HashMap<>();;
     private List<Product> allProducts;
@@ -32,31 +33,20 @@ public class Menu {
         //allProducts.add()
     }
 
+    public Menu(String barName,String barCode, String guestCode)
+    {
+        this.barName = barName;
+        bartenderCode = barCode;
+        customerCode = guestCode;
+        allProducts = new ArrayList<>();
+    }
+
     public Menu()
     {
         allProducts = new ArrayList<Product>();
-        final Product vodka = new Product("vodka", Product.Category.DRINK,45);
-        final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
-        final Product chicken = new Product("kyckling", Product.Category.FOOD,30);
-        final Product sommarby = new Product("sommarby", Product.Category.CIDER, 25);
-        final Product vatten = new Product("vatten", Product.Category.NON_ALCOHOLIC,10);
-        final Product falcon = new Product("falcon", Product.Category.BEER,20);
-        final Product brookly = new Product("brookly", Product.Category.BEER,25);
-
+        bartenderCode = "0000";
+        customerCode = "1234";
         allProducts.add(vodka);
-        allProducts.add(whiskey);
-        allProducts.add(chicken);
-        allProducts.add(sommarby);
-        allProducts.add(vatten);
-        allProducts.add(falcon);
-        allProducts.add(brookly);
-    }
-
-    public Menu(String barCode, String barName)
-    {
-        allProducts = new ArrayList<>();
-        this.barCode = barCode;
-        this.barName = barName;
     }
 
     public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
@@ -96,7 +86,14 @@ public class Menu {
         return allProducts;
     }
 
-
-
-
+    public List<Product> getProductsSameCategory(Product.Category c){
+        List<Product> productsSameCategory = new ArrayList<Product>();
+        if (allProducts.size() >0) {
+            for (int i = 0; i < allProducts.size(); i++) {
+                if (allProducts.get(i).getCategory().equals(c))
+                    productsSameCategory.add(allProducts.get(i));
+            }
+        }
+        return productsSameCategory;
+    }
 }
