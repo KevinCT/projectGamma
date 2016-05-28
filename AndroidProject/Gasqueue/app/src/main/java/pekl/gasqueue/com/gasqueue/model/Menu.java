@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -89,8 +91,12 @@ public class Menu {
         }
     }
 
-    public List<Product> getMenu()
+    public List<Product> getProducts()
     {
         return allProducts;
     }
+
+
+
+
 }

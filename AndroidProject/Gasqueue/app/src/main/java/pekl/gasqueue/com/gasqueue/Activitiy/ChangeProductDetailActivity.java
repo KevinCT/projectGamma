@@ -93,7 +93,6 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 category =(Product.Category) adapterView.getItemAtPosition(i);
-                System.out.println(shoppingController.getChosenProduct().getCategory().toString());
             }
 
             @Override
