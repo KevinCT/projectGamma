@@ -168,10 +168,12 @@ public class PickupActivity extends AppCompatActivity {
 
             @Override
             public void dataChanged(DataSnapshot data) {
-                System.out.println(CustomerDBController.getInstance().getQueuePosition() + " lalililailaiafmkdsgsjngbljsngljsr");
-                updateView(CustomerDBController.getInstance().getQueuePosition());
+                if(!CustomerDBController.getInstance().getQueuePosition().equals(null)) {
+                    System.out.println(CustomerDBController.getInstance().getQueuePosition() + " lalililailaiafmkdsgsjngbljsngljsr");
+                    updateView(CustomerDBController.getInstance().getQueuePosition());
 
-                checkPosition();
+                    checkPosition();
+                }
 
             }
         };
