@@ -54,11 +54,12 @@ public class PickupActivity extends AppCompatActivity {
         statusView.setText("Your current position");
         try{
             pos = cdbc.getQueuePosition();
+            System.out.println(pos.toString() + " wolowolowolowolo");
             updateView(pos);
         }catch(NullPointerException e){
               System.out.println("Error");
         }
-        positionView.setText(Integer.toString(pos));
+        //positionView.setText(pos.toString() + "");
 
         assert cancelButton != null;
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +169,7 @@ public class PickupActivity extends AppCompatActivity {
             @Override
             public void childChanged(DataSnapshot data, String s) {
                 updateView(CustomerDBController.getInstance().getQueuePosition());
+                System.out.println(CustomerDBController.getInstance().getQueuePosition());
                 checkPosition();
             }
 
