@@ -82,6 +82,8 @@
             android:layout_alignParentEnd="true" />
 
         <Button
+            android:background="#F44336"
+            android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="create Menu/bar"
@@ -95,6 +97,9 @@
             android:layout_alignEnd="@+id/matBtn" />
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:background="#F44336"
+            android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cart"

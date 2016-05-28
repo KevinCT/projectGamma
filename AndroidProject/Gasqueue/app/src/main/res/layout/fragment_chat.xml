@@ -29,6 +29,7 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
+        android:backgroundTint="#000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -40,14 +41,16 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:background="#F44336"
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ok"
         android:id="@+id/okBtn"
+        android:layout_marginBottom="73dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/nameInput"
+        android:layout_alignEnd="@+id/nameInput"
+        android:layout_alignLeft="@+id/nameInput"
+        android:layout_alignStart="@+id/nameInput" />
 </RelativeLayout>

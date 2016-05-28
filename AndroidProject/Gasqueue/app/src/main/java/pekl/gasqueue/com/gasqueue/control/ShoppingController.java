@@ -1,5 +1,6 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -33,8 +34,8 @@ public class ShoppingController {
 
     public ShoppingController()
     {
+        downloadMenu();
         menu = new Menu();
-        //  menu=getMenu();
         allProducts = menu.getMenu();
         cart = new Cart();
         productsSameCategory = new ArrayList<Product>();
@@ -143,19 +144,23 @@ public class ShoppingController {
     }
     //code for testing might be removed
     public Menu getMenu(){
+
+        return menu;
+        }
+    private void downloadMenu(){
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
             @Override
             public void dataChanged(DataSnapshot data) {
-                for(DataSnapshot menuSnapshot:data.getChildren()){
-                     menu =(Menu)menuSnapshot.getValue(HashMap.class).get(1234);
-
-
-                }
+                HashMap<String,Menu> hash= data.getValue(HashMap.class);
+                menu=hash.get("0000");
 
 
             }
+
+
         };
-        return menu;
 
     }
+
+
 }
