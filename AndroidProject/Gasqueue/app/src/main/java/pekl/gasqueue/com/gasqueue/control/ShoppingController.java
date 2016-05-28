@@ -150,6 +150,7 @@ public class ShoppingController {
             @Override
             public void dataChanged(DataSnapshot data) {
 
+
                 for(DataSnapshot menuSnapshot:data.getChildren()){
                     hashMapList.add(menuSnapshot.getValue(HashMap.class));
 
