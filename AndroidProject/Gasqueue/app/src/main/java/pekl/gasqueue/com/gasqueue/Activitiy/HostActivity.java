@@ -13,7 +13,6 @@ import java.util.Set;
 import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
-import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.model.StopWatch;

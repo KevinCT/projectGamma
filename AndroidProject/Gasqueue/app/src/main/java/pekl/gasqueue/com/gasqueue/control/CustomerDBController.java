@@ -1,10 +1,6 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
