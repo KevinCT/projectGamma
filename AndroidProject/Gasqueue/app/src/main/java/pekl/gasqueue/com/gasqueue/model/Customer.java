@@ -13,9 +13,9 @@ import java.util.Set;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.PickupActivity;
 
-public class Customer extends Observable implements User {
+public class Customer implements User {
     private boolean orderSent;
-    private Integer queuePosition=12; //change this back to nothing after test
+    private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
     private String clientID = Secure.ANDROID_ID;
     private Cart cart;
@@ -24,18 +24,6 @@ public class Customer extends Observable implements User {
 
     public Customer() {
         cart = new Cart();
-    }
-    public void attach(PickupActivity pickupActivity){
-        observers.add(pickupActivity);
-    }
-    public void detach(PickupActivity pickupActivity){
-        observers.remove(pickupActivity);
-    }
-    public void notifyObservers(){
-        for (Observer observer : observers) {
-            observer.update(this, getQueuePosition());
-            System.out.println(queuePosition);
-        }
     }
 
     //Adds an item to customer's order
@@ -100,6 +88,7 @@ public class Customer extends Observable implements User {
 
     public void setQueuePosition(int queuePosition) {
         this.queuePosition = queuePosition;
+        System.out.println("Min köposition: " + queuePosition);
     }
 
     public void resetOrder() {
