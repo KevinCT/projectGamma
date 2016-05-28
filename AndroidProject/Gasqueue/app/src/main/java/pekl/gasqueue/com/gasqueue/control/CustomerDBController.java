@@ -100,6 +100,7 @@ public class CustomerDBController {
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                     updateQueuePosition(); //Activate listeners
                 }
+
                 else {
                     queueNumber = 0;
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
@@ -122,7 +123,6 @@ public class CustomerDBController {
                 if (customer.isOrderSent()) {
                     if (!(customer.getQueuePosition() == 0) || customer.getQueuePosition() == null) { //Or 0?
                         customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
-                        customer.notifyObservers(); //double-check this
                     } else {
                         //Your turn to be served, send notifications etc.
                         //orderSent = false,  etc

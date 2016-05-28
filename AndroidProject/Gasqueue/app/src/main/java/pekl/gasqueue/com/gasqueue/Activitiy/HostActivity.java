@@ -16,6 +16,7 @@ import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
 import pekl.gasqueue.com.gasqueue.model.Product;
+import pekl.gasqueue.com.gasqueue.model.StopWatch;
 
 
 /**
@@ -26,8 +27,9 @@ public class HostActivity extends AppCompatActivity {
     private QueueController queueController;
     private HashMap<Product,Integer> order;
     private String firstInQueue;
+    private StopWatch stopWatch;
+
     private HostListViewAdapter orderAdapter;
-    private int total = 0;
     private TextView currentGuestView;
     private TextView detailsView;
     private TextView nameView;
@@ -37,12 +39,16 @@ public class HostActivity extends AppCompatActivity {
     private Button pushButton;
     private Button viewQueueButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
         barController = new BarDBController("https://dazzling-torch-9680.firebaseio.com/"); //kan sättas dynamiskt om det behövs
         queueController = barController.getQueueController();
+
+        stopWatch = new StopWatch();
+
         if(queueController.getQueueSize() > 0) {
             firstInQueue = queueController.getFirstInQueue();
         }
@@ -90,17 +96,51 @@ public class HostActivity extends AppCompatActivity {
         order = barController.getOrder(firstInQueue);
 
         if(!(order == null)) {
-            totalPriceTextView.setText(totalPrice());
-            System.out.println(totalPrice());
+            totalPriceTextView.setText(totalPrice() + "");
+
+
             orderAdapter = new HostListViewAdapter(order);
+
             orderListView.setAdapter(orderAdapter);
         }
+
+
+        //Måste stoppas när baren trycker på push
+        //Det som behöver fixas
+        stopWatch.runTimer();
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                while (stopWatch.getCurrentTime() != 0) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.out.println("got interrupted!");
+                    }
+
+                    timerTextView.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (stopWatch.getCurrentTime() == 0) {
+                            } else {
+                                timerTextView.setText(Integer.toString(stopWatch.getCurrentTime()));
+                            }
+                        }
+                    });
+                }
+            }
+        };
+        Thread myThread = new Thread(myRunnable);
+        myThread.start();
     }
 
     private int totalPrice() {
+        int total = 0;
         Set<Product> products = order.keySet();
         for(Product product: products) {
-            total = total + product.getPrice();
+            total = total + product.getPrice()*order.get(product);
         }
         return total;
     }

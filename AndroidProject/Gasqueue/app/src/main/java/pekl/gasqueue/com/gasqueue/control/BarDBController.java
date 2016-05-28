@@ -36,7 +36,7 @@ public class BarDBController {
             public void childAdded(DataSnapshot data, String s) {
                 HashMap<String, Integer> order = (HashMap<String, Integer>) data.getValue(HashMap.class); //Ska bara finns ett element i hashmappen
                 String onlyKey = data.getKey();
-                System.out.println(onlyKey + " = onlyKey + size = " + order.keySet().toArray()[0]);
+                System.out.println(onlyKey + " = onlyKey ");
 
                 HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
                 Set<Product> products = orderProduct.keySet();
@@ -56,7 +56,7 @@ public class BarDBController {
             @Override
             public void childRemoved(DataSnapshot data) {
                 HashMap<String, HashMap<Product, Integer>> order = (HashMap<String, HashMap<Product,Integer>>) data.getValue(); //Ska bara finns ett element i hashmappen
-                bar.removeOrder((String) order.keySet().toArray()[0]);
+                //bar.removeOrder((String) order.keySet().toArray()[0]);
                 //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
@@ -70,7 +70,7 @@ public class BarDBController {
             @Override
             public void childAdded(DataSnapshot data, String s) {
                 String clientID = data.getValue(String.class);
-                bar.removeOrder(clientID);
+                //bar.removeOrder(clientID);
                 //queueController.RemoveGuestOrder (not CURRENT guest counting down, any guest in the queue)
             }
 
@@ -96,6 +96,8 @@ public class BarDBController {
         bar.addOrder(clientID, order);
         queueController.addCustomer(clientID);
 
+
+
         dbManagerBar.setValue("totalOrders",bar.getTotalOrders());
 
     }
@@ -112,7 +114,7 @@ public class BarDBController {
     public void orderDone() {
         bar.push(); //ökar int för completed orders med 1
         queueController.pushQueue(); //pushar fysiska kön i order framåt
-        bar.removeOrder((String) queueController.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
+        //bar.removeOrder((String) queueController.returnGuestID()); //tar bort ordern som var just gjort från orders hashmappen
         dbManagerBar.setValue("customerNumberServed", bar.getCustomerNumberServed());
                         //updates the customers phone position TextView with live position
     }

@@ -10,27 +10,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.beans.PropertyChangeSupport;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Timer;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.model.Cart;
-import pekl.gasqueue.com.gasqueue.model.Customer;
 import pekl.gasqueue.com.gasqueue.model.StopWatch;
+import pekl.gasqueue.com.gasqueue.service.ChildChangeListener;
+import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 
 /**
  * Created by Eric on 5/11/2016.
  */
-public class PickupActivity extends AppCompatActivity implements Observer{
+public class PickupActivity extends AppCompatActivity {
     private Button cancelButton;
     private Button viewOrderButton;
     private TextView statusView;
     private TextView positionView;
-    public Cart cart = new Cart();
+    public Cart cart = new Cart(); //wtf
     Context context = this;
     private StopWatch sw = new StopWatch();
     private CustomerDBController cdbc;
@@ -46,7 +44,6 @@ public class PickupActivity extends AppCompatActivity implements Observer{
         setContentView(R.layout.activity_pickup);
         Firebase.setAndroidContext(this);
         cdbc=CustomerDBController.getInstance();
-        cdbc.returnCustomer().attach(this);
     }
     protected void onStart() {
         super.onStart();
@@ -90,7 +87,6 @@ public class PickupActivity extends AppCompatActivity implements Observer{
                                 dialog.cancel();
                                 cart.clearCar();// <-empties your cart and removes order form queue
                                 cdbc.cancelOrder();
-                                cdbc.returnCustomer().detach((PickupActivity)context); //HELP IDK how 2 do this one
                                 AlertDialog bruh = okaybruh.create();
                                 bruh.show();
                                 }
@@ -161,11 +157,31 @@ public class PickupActivity extends AppCompatActivity implements Observer{
         }
     }
 
-    @Override
-    public void update(Observable observable, Object data) {
-        pos = (Integer)data;
-        updateView(pos);
-        checkPosition();
+    private void updateQueuePosition() {
+        IChildChangeListener childBanListListener = new ChildChangeListener("https://dazzling-torch-9680.firebaseio.com/customerNumberServed") {
+
+            @Override
+            public void childAdded(DataSnapshot data, String s) {
+
+            }
+
+            @Override
+            public void childChanged(DataSnapshot data, String s) {
+                updateView(CustomerDBController.getInstance().getQueuePosition());
+                checkPosition();
+            }
+
+            @Override
+            public void childRemoved(DataSnapshot data) {
+
+            }
+
+            @Override
+            public void childMoved(DataSnapshot data, String s) {
+
+            }
+        };
+
     }
 }
 

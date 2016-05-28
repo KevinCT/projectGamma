@@ -2,6 +2,7 @@ package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Petros on 2016-05-09.
@@ -54,7 +55,6 @@ public class Bar implements User {
     public void addOrder(String clientID, HashMap<Product, Integer> order) { //Får läggas till en kö senare istället, eller så räcker det med att lägga in clientID i kön
         this.orders.put(clientID, order);
         totalOrders++;
-        //QueueController.addToQueue();
     }
 
     public int getTotalOrders() {
@@ -62,6 +62,17 @@ public class Bar implements User {
     }
 
     public HashMap<Product, Integer> getOrder(String clientID) {
+
+        System.out.println("getOrder clientID: " + clientID);
+        if(orders.get(clientID) != null) {
+            Set<Product> products = orders.get(clientID).keySet();
+            for (Product p : products) {
+                System.out.println(p.getName() + " " + orders.get(clientID).get(p));
+            }
+        } else {
+            System.out.println("orders is null");
+        }
+
         return orders.get(clientID);
     }
 
