@@ -13,6 +13,7 @@ import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
 import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
 import pekl.gasqueue.com.gasqueue.service.SingleValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by Petros on 2016-04-28.
@@ -107,15 +108,10 @@ public class CustomerDBController {
     }
 
     public void updateQueuePosition() {
-        IChildChangeListener childBanListListener = new ChildChangeListener(reference + "/customerNumberServed") { //Funkar det verkligen med /???
+        IValueChangeListener<DataSnapshot> childPositionListener = new ValueChangeListener(reference + "/customerNumberServed") {
 
             @Override
-            public void childAdded(DataSnapshot data, String s) {
-
-            }
-
-            @Override
-            public void childChanged(DataSnapshot data, String s) {
+            public void dataChanged(DataSnapshot data) {
                 if (customer.isOrderSent()) {
                     if (!(customer.getQueuePosition() == 0) || customer.getQueuePosition() == null) { //Or 0?
                         customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
@@ -126,16 +122,6 @@ public class CustomerDBController {
                         //customer.startTimer();
                     }
                 }
-            }
-
-            @Override
-            public void childRemoved(DataSnapshot data) {
-
-            }
-
-            @Override
-            public void childMoved(DataSnapshot data, String s) {
-
             }
         };
 

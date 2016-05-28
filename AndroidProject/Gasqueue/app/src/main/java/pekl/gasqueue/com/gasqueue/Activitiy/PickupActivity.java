@@ -16,6 +16,8 @@ import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.StopWatch;
 import pekl.gasqueue.com.gasqueue.service.ChildChangeListener;
 import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
+import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -162,28 +164,14 @@ public class PickupActivity extends AppCompatActivity {
     }
 
     private void updateQueuePosition() {
-        IChildChangeListener childBanListListener = new ChildChangeListener("https://dazzling-torch-9680.firebaseio.com/customerNumberServed") {
+        IValueChangeListener<DataSnapshot> childPositionListener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/customerNumberServed") {
 
             @Override
-            public void childAdded(DataSnapshot data, String s) {
-
-            }
-
-            @Override
-            public void childChanged(DataSnapshot data, String s) {
-                System.out.println(CustomerDBController.getInstance().getQueuePosition() +  " lalililailaiafmkdsgsjngbljsngljsr");
+            public void dataChanged(DataSnapshot data) {
+                System.out.println(CustomerDBController.getInstance().getQueuePosition() + " lalililailaiafmkdsgsjngbljsngljsr");
                 updateView(CustomerDBController.getInstance().getQueuePosition());
 
                 checkPosition();
-            }
-
-            @Override
-            public void childRemoved(DataSnapshot data) {
-
-            }
-
-            @Override
-            public void childMoved(DataSnapshot data, String s) {
 
             }
         };

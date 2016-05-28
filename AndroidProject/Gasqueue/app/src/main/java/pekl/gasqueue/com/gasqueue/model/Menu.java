@@ -46,6 +46,7 @@ public class Menu {
         allProducts = new ArrayList<Product>();
         bartenderCode = "0000";
         customerCode = "1234";
+        allProducts.add(vodka);
     }
 
     public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
