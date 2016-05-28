@@ -51,6 +51,7 @@ public class PickupActivity extends AppCompatActivity {
         viewOrderButton = (Button) findViewById(R.id.viewOrderButton);
         statusView = (TextView) findViewById(R.id.statusView);
         positionView = (TextView) findViewById(R.id.positionView);
+        updateQueuePosition();
         statusView.setText("Your current position");
         try{
             pos = cdbc.getQueuePosition();
