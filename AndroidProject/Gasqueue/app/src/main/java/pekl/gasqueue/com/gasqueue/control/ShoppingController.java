@@ -148,7 +148,7 @@ public class ShoppingController {
             @Override
             public void dataChanged(DataSnapshot data) {
                 HashMap<String,Menu> hash= data.getValue(HashMap.class);
-                menu=hash.get("0000");
+                //menu=hash.get("0000");
 
 
             }
