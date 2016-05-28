@@ -34,6 +34,7 @@ public class ShoppingController {
     IValueChangeListener listener;
     private List<HashMap<String,Menu>> hashMapList;
     public ShoppingController()
+
     {
        // initListener();
         menu=new Menu();
@@ -42,14 +43,7 @@ public class ShoppingController {
         productsSameCategory = new ArrayList<Product>();
     }
 
-    public List<Product> getProductSameCategory()
-    {
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getCategory().equals(chosenCategory))
-                productsSameCategory.add(allProducts.get(i));
-        }
-        return productsSameCategory;
-    }
+    public List<Product> getProductSameCategory() { return menu.getProductsSameCategory(chosenCategory); }
 
     public String getProductName(Product p) { return p.getName();}
 
