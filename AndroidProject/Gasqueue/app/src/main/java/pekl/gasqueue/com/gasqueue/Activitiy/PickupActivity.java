@@ -53,6 +53,7 @@ public class PickupActivity extends AppCompatActivity {
         positionView = (TextView) findViewById(R.id.positionView);
         updateQueuePosition();
         statusView.setText("Your current position");
+        /**
         try{
             pos = cdbc.getQueuePosition();
             System.out.println(pos.toString() + " wolowolowolowolo");
@@ -115,6 +116,7 @@ public class PickupActivity extends AppCompatActivity {
                 checkPosition();
             }
         });
+        */
     }
 
     public void backToMain(){
@@ -169,7 +171,7 @@ public class PickupActivity extends AppCompatActivity {
 
             @Override
             public void childChanged(DataSnapshot data, String s) {
-                System.out.println(CustomerDBController.getInstance().getQueuePosition());
+                System.out.println(CustomerDBController.getInstance().getQueuePosition() +  " lalililailaiafmkdsgsjngbljsngljsr");
                 updateView(CustomerDBController.getInstance().getQueuePosition());
 
                 checkPosition();
