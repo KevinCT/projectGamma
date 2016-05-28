@@ -85,15 +85,12 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                public void onClick(View v) {
 
                    Map map1 = new HashMap();
-                   Map map2 = new HashMap();
                    map1.put(barPassword, shoppingController.getMenu());
-                   map2.put(customerPassword, shoppingController.getMenu());
+                   map1.put(customerPassword, shoppingController.getMenu());
 
                    IDatabaseManager<Firebase> db = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
-                   db.createChildReference("Menus").push().setValue(map1);
-                   db.createChildReference("Menus").push().setValue(map2);
-                   db.pushMap("Menus",map1);
-                   db.pushMap("Menus",map2);
+                   db.saveMap("Menus",map1);
+
 
 
                }
