@@ -99,7 +99,7 @@ public class CustomerDBController {
                 }
 
                 else {
-                    queueNumber = 0;
+                    queueNumber = 1;
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
                 }
             }
