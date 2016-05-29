@@ -27,13 +27,13 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 public class ShoppingController {
     private static ShoppingController shoppingController;
 
-    private static Menu menu;
-    private static Product chosenProduct;
-    private static Product.Category chosenCategory;
-    private static List<Product> allProducts;
+    private Menu menu;
+    private Product chosenProduct;
+    private Product.Category chosenCategory;
+    private List<Product> allProducts;
     private Cart cart;
-    private static boolean isBartender = false;
-    private static boolean isCreatingProduct;
+    private boolean isBartender = false;
+    private boolean isCreatingProduct;
     private IValueChangeListener listener;
     private IDatabaseManager<Firebase> dbMenuManager;
 
@@ -105,13 +105,6 @@ public class ShoppingController {
 
     public void addProductToMenu(String n, Product.Category c, int p) { menu.addProduct(new Product(n,c,p)); }
 
-    public void changeProduct(String name, Product.Category category, int price) { chosenProduct.setChanges(name,category,price); }
-
-    public void createProduct(String name, Product.Category category, int price)
-    {
-        Product temp = new Product(name,category,price);
-        allProducts.add(temp);
-    }
     //code for testing might be removed
 
     private void initListener(){
