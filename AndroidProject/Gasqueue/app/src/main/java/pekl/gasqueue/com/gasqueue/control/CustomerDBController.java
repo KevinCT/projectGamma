@@ -151,4 +151,8 @@ public class CustomerDBController {
     public Customer returnCustomer() {
         return customer;
     }
+
+    public Integer getQueueNumber() {
+        return queueNumber;
+    }
 }
