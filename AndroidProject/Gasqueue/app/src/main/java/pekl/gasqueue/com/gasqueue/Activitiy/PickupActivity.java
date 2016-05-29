@@ -34,7 +34,6 @@ public class PickupActivity extends AppCompatActivity {
     Context context = this;
     private StopWatch sw = new StopWatch();
     private CustomerDBController cdbc;
-    private Integer pos;
     public PickupActivity(){
 
 
@@ -130,7 +129,7 @@ public class PickupActivity extends AppCompatActivity {
         positionView.setText(Integer.toString(position));
     }
 
-    public void checkPosition(){
+    public void checkPosition(Integer pos){
         if (pos == 0) {
             sw.runTimer();
             statusView.setText("Time left to pay and pick up drink");
@@ -170,9 +169,10 @@ public class PickupActivity extends AppCompatActivity {
             public void dataChanged(DataSnapshot data) {
                 if((cdbc.getQueueNumber() != null) && (data.getValue(Integer.class) != null)) {
                     System.out.println(cdbc.getQueueNumber() + " lalililailaiafmkdsgsjngbljsngljsr");
+                    Integer pos = cdbc.getQueueNumber() - data.getValue(Integer.class);
                     updateView(cdbc.getQueueNumber() - data.getValue(Integer.class));
 
-                    checkPosition();
+                    checkPosition(pos);
                 }
 
                 System.out.println("yabadbabbadbsjdfofgnlrgn");
