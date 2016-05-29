@@ -84,7 +84,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(quantity.length() >0)
                 {
-                    shoppingController.addProductToCart( shoppingController.getChosenProduct(),Integer.parseInt(quantity.getText().toString()));
+                    shoppingController.addProductToCart( shoppingController.getChosenProduct(),
+                            Integer.parseInt(quantity.getText().toString()));
                     amount.setText(shoppingController.getQuantityOfProduct(shoppingController.getChosenProduct()) + " st in cart");
                     /**
                      * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));

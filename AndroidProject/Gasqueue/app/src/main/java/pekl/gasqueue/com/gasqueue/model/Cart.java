@@ -7,22 +7,24 @@ import java.util.Set;
  * Created by Kotex on 09/05/2016.
  */
 public class Cart {
-    private static HashMap<Product,Integer> cart = new HashMap<Product,Integer>();
-    private static int total = 0;
+    private HashMap<Product,Integer> cart;
+    private int total;
+
+    public Cart()
+    {
+        total = 0;
+        cart = new HashMap<Product,Integer>();
+    }
 
     public void addProduct (Product product,int quantity) {
         if (cart.containsKey(product)) {
             int temp = cart.get(product);
             total = total - product.getPrice()*cart.get(product);
             temp = temp + quantity;
-            if(temp > 99 )
-            {
-                temp = 99;
-            }
-            else if (temp <0)
-            {
-                temp = 0;
-            }
+
+            if(temp > 99 ) { temp = 99; }
+            else if (temp <0) { temp = 0; }
+
             cart.put(product,temp);
             total = total + product.getPrice()*temp;
         }
@@ -31,8 +33,6 @@ public class Cart {
             cart.put(product,quantity);
             total = total + product.getPrice()*quantity;
         }
-
-        System.out.println(product.getName() + " : " + cart.get(product).toString());
     }
 
     public HashMap<Product,Integer> getCart()
@@ -65,10 +65,15 @@ public class Cart {
         return total;
     }
 
-
     public int getTotalOfProduct(Product p)
     {
-        return p.getPrice()*cart.get(p);
+        if (!cart.containsKey(p))
+        {
+            return 0;
+        }
+        else {
+            return p.getPrice()*cart.get(p);
+        }
     }
 
     public void clearCar()

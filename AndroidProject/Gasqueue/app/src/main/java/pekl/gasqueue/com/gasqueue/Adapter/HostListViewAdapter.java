@@ -1,4 +1,4 @@
-package pekl.gasqueue.com.gasqueue.Activitiy.Adapter;
+package pekl.gasqueue.com.gasqueue.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 
-import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.ChatMessageAdapter;
+import pekl.gasqueue.com.gasqueue.Adapter.ChatMessageAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ChatController;
 
