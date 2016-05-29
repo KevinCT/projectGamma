@@ -9,15 +9,16 @@ import java.util.Set;
  */
 
 /**
- * Vad behövs?
- * Bör kunna ta ner orders med lyssnare
- * ha en kö
- * skicka bekräftade orders
- * ge strikes
- * banna användare
- * skicka notifikationer
+ * Bar
+ *
+ * Class that represents a bar and has the main purpose of handling all orders and providing
+ * some service to the queue by keeping track of the number of orders received and
+ * served.
+ * It is also the class that keeps track of users strikes.
+ *
  */
-public class Bar implements User {
+
+public class Bar {
     private HashMap<String, HashMap<Product, Integer>> orders;
     private Map<String, Integer> strikeMap = new HashMap<>();
 

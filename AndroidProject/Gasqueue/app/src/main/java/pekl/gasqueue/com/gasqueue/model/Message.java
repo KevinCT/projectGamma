@@ -4,13 +4,14 @@ package pekl.gasqueue.com.gasqueue.model;
 
 /**
  * Created by kevin on 09/05/2016.
+ * Class representing a message used in the chat.
  */
 public class Message {
     private String message;
     private String name;
     private String timeStamp;
 
-    //need for firebase:?
+    //empty constructor needed by firebase
     public Message() {
 
     }

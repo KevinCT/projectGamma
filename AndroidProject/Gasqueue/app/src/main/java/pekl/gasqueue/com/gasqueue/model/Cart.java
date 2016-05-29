@@ -5,9 +5,13 @@ import java.util.Set;
 
 /**
  * Created by Kotex on 09/05/2016.
+ *
+ * Cart represents a list of products with quantity.
+ * It has a hashmap with product as key and quantity as value.
+ *
  */
 public class Cart {
-    private HashMap<Product,Integer> cart;
+    private static HashMap<Product,Integer> cart;
     private int total;
 
     public Cart()

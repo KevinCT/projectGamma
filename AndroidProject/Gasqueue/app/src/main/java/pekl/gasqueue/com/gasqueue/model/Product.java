@@ -2,6 +2,10 @@ package pekl.gasqueue.com.gasqueue.model;
 
 /**
  * Created by kevin on 19/04/2016.
+ *
+ * Product represents a product found in a menu and sold by a bar.
+ * A product includes a name, a price and belongs to a category.
+ *
  */
 public class Product {
     private String name;
@@ -13,11 +17,6 @@ public class Product {
         BEER, DRINK, NON_ALCOHOLIC, FOOD, CIDER
     }
 
-    public void createProduct(String name, Category category, int price)
-    {
-        Product vara = new Product(name,category,price);
-        //TODO: add this product to server
-    }
     public Product()
     {
         this.name = null;

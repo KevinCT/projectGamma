@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 /**
  * Created by kevin on 10/05/2016.
+ * Class used to format timestamp used in a message
  */
 public class FormatDate {
     public FormatDate() {

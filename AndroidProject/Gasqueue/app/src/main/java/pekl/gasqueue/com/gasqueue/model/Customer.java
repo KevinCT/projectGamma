@@ -8,7 +8,15 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Set;
 
-public class Customer implements User {
+/**
+ * Customer
+ *
+ * Class that represents a customer. Keeps track of the users order via the instance
+ * of cart, its ID and its queue position once the order has been placed.
+ *
+ */
+
+public class Customer {
     private boolean orderSent;
     private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
@@ -16,7 +24,6 @@ public class Customer implements User {
 
     private Cart cart;
     public StopWatch timer = new StopWatch();
-    private List<Observer> observers = new ArrayList<Observer>();
 
     public Customer() {
         cart = new Cart();

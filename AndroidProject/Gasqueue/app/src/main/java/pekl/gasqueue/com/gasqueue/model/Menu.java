@@ -15,21 +15,18 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by Kotex on 03/05/2016.
+ *
+ * Menu represents a list of products found in a bar.
+ * It will be downloaded from Firebase when the user enters the right password.
+ * Menu can be changed by host or bartender.
+ *
+ *
  */
-public class  Menu {
-    private String bartenderCode;
-    private String customerCode;
-    private String barName;
-    private HashMap<String, Product> stringKey = new HashMap<>();;
+
+public class Menu {
+    private HashMap<String, Product> stringKey = new HashMap<>();
     private List<Product> allProducts;
 
-    public Menu(String barName,String barCode, String guestCode)
-    {
-        this.barName = barName;
-        bartenderCode = barCode;
-        customerCode = guestCode;
-        allProducts = new ArrayList<>();
-    }
     public Menu(List<Product> list){
         allProducts=new ArrayList<>();
         allProducts=list;
@@ -38,10 +35,7 @@ public class  Menu {
     public Menu()
     {
         allProducts = new ArrayList<Product>();
-        bartenderCode = "0000";
-        customerCode = "1234";
-       // allProducts.add(vodka);
-    }
+       }
 
 
     public HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
