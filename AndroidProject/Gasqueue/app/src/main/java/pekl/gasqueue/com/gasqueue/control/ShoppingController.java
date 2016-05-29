@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.google.gson.internal.bind.DateTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ public class ShoppingController {
     private boolean isCreatingProduct;
     private IValueChangeListener listener;
     private IDatabaseManager<Firebase> dbMenuManager;
+    private List<HashMap> productHashmap;
 
     private ShoppingController() {
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
@@ -105,7 +107,15 @@ public class ShoppingController {
 
     public void addProductToMenu(String n, Product.Category c, int p) { menu.addProduct(new Product(n,c,p)); }
 
-    //code for testing might be removed
+
+    public void changeProduct(String name, Product.Category category, int price) { chosenProduct.setChanges(name,category,price); }
+
+    public void createProduct(String name, Product.Category category, int price)
+    {
+        Product temp = new Product(name,category,price);
+        allProducts.add(temp);
+    }
+
 
     private void initListener(){
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
@@ -113,6 +123,7 @@ public class ShoppingController {
             public void dataChanged(DataSnapshot data) {
 
                 for(DataSnapshot menuSnapshot:data.getChildren()){
+                    productHashmap.add(menuSnapshot.getValue(HashMap.class));
                     if("1234".equals(menuSnapshot.getKey())){
                         setProduct(menuSnapshot.getValue(Menu.class).getProducts());
                         break;
@@ -138,6 +149,9 @@ public class ShoppingController {
     }
     private void setProduct(List<Product> list){
         menu= new Menu(list);
+    }
+    public void setAuthCode(String authCode){
+        //this.authCode=authCode;
     }
 
 }

@@ -45,7 +45,9 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getData();
         shoppingController = ShoppingController.getInstance();
+        shoppingController.setAuthCode(customerPassword);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
         Button beerBtn = (Button) view.findViewById(R.id.beerBtn);
@@ -74,19 +76,19 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
             shoppingController.setTypeOfUser(false);
 
         }
-        //shit code ,just temporary to prevent merge conflicts and try stuff
         createBarBtn = (Button) view.findViewById(R.id.createBarBtn);
         createBarBtn.setVisibility(View.INVISIBLE);
-        if(getArguments()!=null) {
-           getData();
-           createBarBtn.setVisibility(View.VISIBLE);
-           createBarBtn.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                  shoppingController.sendMenu(barPassword,customerPassword);
-               }
-           });
-       }
+
+        if(clientType) {
+            createBarBtn.setVisibility(View.VISIBLE);
+            createBarBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shoppingController.sendMenu(barPassword, customerPassword);
+                }
+            });
+        }
+
         return view;
 
 
@@ -117,9 +119,12 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         startActivity(temp);
     }
     private void getData(){
-       barPassword = getArguments().getString("barPassword");
-        customerPassword=getArguments().getString("customerPassword");
-        clientType =getArguments().getBoolean("clientType");
+        if(getArguments()!=null) {
+            barPassword = getArguments().getString("barPassword");
+            customerPassword=getArguments().getString("customerPassword");
+            clientType =getArguments().getBoolean("clientType");
+        }
+
     }
 
 }
