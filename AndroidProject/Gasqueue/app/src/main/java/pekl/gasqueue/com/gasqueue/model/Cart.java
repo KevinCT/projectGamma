@@ -61,7 +61,6 @@ public class Cart {
             total = total - product.getPrice()*cart.get(product);
             cart.remove(product);
         }
-        else System.out.println("Product finns inte i kundvagn!");
     }
 
     public int getTotal()
@@ -82,7 +81,6 @@ public class Cart {
 
     public void clearCar()
     {
-        System.out.println("cleared boys");
         cart.clear();
     }
 }

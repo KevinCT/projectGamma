@@ -67,9 +67,6 @@ public class HostActivity extends AppCompatActivity {
                     updateView();
 
                 }
-                else{
-                    System.out.println("queue is empty");
-                }
             }
                 
         });
@@ -115,7 +112,6 @@ public class HostActivity extends AppCompatActivity {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        System.out.println("got interrupted!");
                     }
 
                     timerTextView.post(new Runnable() {

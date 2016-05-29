@@ -64,15 +64,11 @@ public class Bar {
 
     public HashMap<Product, Integer> getOrder(String clientID) {
 
-        System.out.println("getOrder clientID: " + clientID);
         if(orders.get(clientID) != null) {
             Set<Product> products = orders.get(clientID).keySet();
             for (Product p : products) {
-                System.out.println(p.getName() + " " + orders.get(clientID).get(p));
             }
-        } else {
-            System.out.println("orders is null");
-        }
+        } 
 
         return orders.get(clientID);
     }
