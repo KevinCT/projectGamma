@@ -90,7 +90,7 @@ public class Customer {
             this.queuePosition--;
     }
 
-    public void setQueuePosition(int queuePosition) {
+    public void setQueuePosition(Integer queuePosition) {
         this.queuePosition = queuePosition;
         System.out.println("Min köposition: " + queuePosition);
     }
