@@ -11,8 +11,9 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Kevin on 2016-04-27.
  */
+
 public class ProductTest {
-   //Creating product to be tested
+    //Creating product to be tested
     private Product product1;
     private Product product2;
     public ProductTest()

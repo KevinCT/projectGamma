@@ -16,7 +16,7 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 /**
  * Created by Kotex on 03/05/2016.
  */
-public class Menu {
+public class  Menu {
     private String bartenderCode;
     private String customerCode;
     private String barName;
