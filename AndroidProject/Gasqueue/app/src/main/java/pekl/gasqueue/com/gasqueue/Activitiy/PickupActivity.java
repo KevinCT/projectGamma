@@ -168,9 +168,9 @@ public class PickupActivity extends AppCompatActivity {
 
             @Override
             public void dataChanged(DataSnapshot data) {
-                if(cdbc.getQueuePosition() != null) {
-                    System.out.println(CustomerDBController.getInstance().getQueuePosition() + " lalililailaiafmkdsgsjngbljsngljsr");
-                    updateView(cdbc.getQueuePosition() - data.getValue(Integer.class));
+                if(cdbc.getQueueNumber() != null) {
+                    System.out.println(cdbc.getQueueNumber() + " lalililailaiafmkdsgsjngbljsngljsr");
+                    updateView(cdbc.getQueueNumber() - data.getValue(Integer.class));
 
                     checkPosition();
                 }
