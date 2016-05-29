@@ -1,19 +1,14 @@
-package pekl.gasqueue.com.gasqueue.Activitiy.Adapter;
+package pekl.gasqueue.com.gasqueue.Adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
-import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 

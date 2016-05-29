@@ -1,7 +1,5 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HashMapAdapter;
+import pekl.gasqueue.com.gasqueue.Adapter.HashMapAdapter;
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
-import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.R;
 
 public class CartActivity extends AppCompatActivity {

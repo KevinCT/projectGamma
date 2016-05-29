@@ -4,27 +4,17 @@ package pekl.gasqueue.com.gasqueue.Activitiy.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.firebase.client.Firebase;
-import com.google.gson.Gson;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
 import pekl.gasqueue.com.gasqueue.Activitiy.ProductActivity;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
-import pekl.gasqueue.com.gasqueue.model.Authenticator;
-import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
-import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
-import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +35,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getData();
         shoppingController = ShoppingController.getInstance();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
@@ -74,19 +65,19 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
             shoppingController.setTypeOfUser(false);
 
         }
-        //shit code ,just temporary to prevent merge conflicts and try stuff
         createBarBtn = (Button) view.findViewById(R.id.createBarBtn);
         createBarBtn.setVisibility(View.INVISIBLE);
-        if(getArguments()!=null) {
-           getData();
-           createBarBtn.setVisibility(View.VISIBLE);
-           createBarBtn.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                  shoppingController.sendMenu(barPassword,customerPassword);
-               }
-           });
-       }
+
+        if(clientType) {
+            createBarBtn.setVisibility(View.VISIBLE);
+            createBarBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shoppingController.sendMenu(barPassword, customerPassword);
+                }
+            });
+        }
+
         return view;
 
 
@@ -112,14 +103,17 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                 shoppingController.setChosenCategory(Product.Category.FOOD);
                 break;
         }
-        //check maybe move putextra.
+
         temp.putExtra("category",shoppingController.getChosenCategory());
         startActivity(temp);
     }
     private void getData(){
-       barPassword = getArguments().getString("barPassword");
-        customerPassword=getArguments().getString("customerPassword");
-        clientType =getArguments().getBoolean("clientType");
+        if(getArguments()!=null) {
+            barPassword = getArguments().getString("barPassword");
+            customerPassword=getArguments().getString("customerPassword");
+            clientType =getArguments().getBoolean("clientType");
+        }
+
     }
 
 }
