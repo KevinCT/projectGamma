@@ -10,6 +10,7 @@ import com.firebase.client.Firebase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pekl.gasqueue.com.gasqueue.model.Cart;
 import pekl.gasqueue.com.gasqueue.model.Menu;
@@ -31,16 +32,20 @@ public class ShoppingController {
     private Cart cart;
     private static boolean isBartender = false;
     private static boolean isCreatingProduct;
-    IValueChangeListener listener;
-    private List<HashMap<String,Menu>> hashMapList;
+    private IValueChangeListener listener;
+    private IDatabaseManager<Firebase> dbMenuManager;
+
     public ShoppingController()
 
     {
-       // initListener();
+        dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
         menu=new Menu();
-        allProducts =menu.getProducts();
+        allProducts= new ArrayList<>();
         cart = new Cart();
-        productsSameCategory = new ArrayList<Product>();
+        productsSameCategory=new ArrayList<>();
+        initListener();
+
+
     }
 
     public List<Product> getProductSameCategory() { return menu.getProductsSameCategory(chosenCategory); }
@@ -142,36 +147,35 @@ public class ShoppingController {
         return menu;
         }
 
-  /*  private void initListener(){
+    private void initListener(){
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
             @Override
             public void dataChanged(DataSnapshot data) {
-=======
-    public Menu getMenu(){ return menu; }
-    private void downloadMenu(){
-        listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
-            @Override
-            public void dataChanged(DataSnapshot data) {
-                HashMap<String,Menu> hash= data.getValue(HashMap.class);
-//                menu=hash.get("0000");
->>>>>>> Stashed changes
-
 
                 for(DataSnapshot menuSnapshot:data.getChildren()){
-                    hashMapList.add(menuSnapshot.getValue(HashMap.class));
+                    if("1234".equals(menuSnapshot.getKey())){
+                        //allProducts=menuSnapshot.getValue(Menu.class).getProducts();
+                        //Log.v("PRODUCTPLEASE",allProducts.get(0).getName());
+                        setProduct(menuSnapshot.getValue(Menu.class).getProducts());
+                        break;
+                    }
 
                 }
             }
-
-
-
         };
-
     }
-    private List<Product> getProductList(){
-        return menu.correctMenu(hashMapList);
 
-    }*/
+
+    public void sendMenu(String barKey, String customerKey){
+        Map menuMap = new HashMap<>();
+        menuMap.put(barKey,menu);
+        menuMap.put(customerKey,menu);
+       dbMenuManager.saveMap("Menus",menuMap);
+    }
+    private void setProduct(List<Product> list){
+        this.allProducts=list;
+        Log.v("WHATTAFUCK",allProducts.get(0).getName());
+    }
 
 
 

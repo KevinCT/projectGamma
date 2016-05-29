@@ -35,7 +35,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
     private String customerPassword;
     private boolean clientType;
     private Button createBarBtn;
-    ShoppingController shoppingController = new ShoppingController();
+    ShoppingController shoppingController;
 
     public MenuCategoryFragment() {
         // Required empty public constructor
@@ -45,6 +45,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        shoppingController=new  ShoppingController();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
         Button beerBtn = (Button) view.findViewById(R.id.beerBtn);
@@ -82,16 +83,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
            createBarBtn.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-
-                   Map map1 = new HashMap();
-                   map1.put(barPassword, shoppingController.getMenu());
-                   map1.put(customerPassword, shoppingController.getMenu());
-
-                   IDatabaseManager<Firebase> db = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
-                   db.saveMap("Menus",map1);
-
-
-
+                  shoppingController.sendMenu(barPassword,customerPassword);
                }
            });
        }
