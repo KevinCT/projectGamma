@@ -26,6 +26,7 @@ public class Customer {
     public StopWatch timer = new StopWatch();
 
     public Customer() {
+        queuePosition = 1000;
         cart = new Cart();
     }
 
