@@ -50,7 +50,7 @@ public class Bar {
     }
 
     private void banUser(String clientID) {
-
+        System.out.println("User "+clientID.toString()+" has been banned!"); //for TestClass purposes
     }
 
     public void addOrder(String clientID, HashMap<Product, Integer> order) { //Får läggas till en kö senare istället, eller så räcker det med att lägga in clientID i kön
