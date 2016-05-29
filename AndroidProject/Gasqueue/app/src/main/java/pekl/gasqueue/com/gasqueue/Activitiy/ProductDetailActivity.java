@@ -42,11 +42,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Button addBtn;
     private CustomerDBController customerDB = CustomerDBController.getInstance();
 
-    private ShoppingController shoppingController = new ShoppingController();
+    private ShoppingController shoppingController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        shoppingController = ShoppingController.getInstance();
         initializeViews();
 
         amount.setText(shoppingController.getQuantityOfProduct(chosenProduct) + " st in cart");

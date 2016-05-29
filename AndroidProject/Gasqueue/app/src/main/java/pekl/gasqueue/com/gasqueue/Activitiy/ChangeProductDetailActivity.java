@@ -74,7 +74,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
 
     private void initializeViews()
     {
-        shoppingController = new ShoppingController();
+        shoppingController = ShoppingController.getInstance();
         categories = new ArrayList<Product.Category>(EnumSet.allOf(Product.Category.class));
         nameTextField = (EditText) findViewById(R.id.nameTF);
         priceTextField = (EditText) findViewById(R.id.priceTF);

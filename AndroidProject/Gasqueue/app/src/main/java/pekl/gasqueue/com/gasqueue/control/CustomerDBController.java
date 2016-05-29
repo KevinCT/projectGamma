@@ -19,7 +19,7 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  * Created by Petros on 2016-04-28.
  */
 public class CustomerDBController {
-    private static CustomerDBController customerDBInstance = null;
+    private static CustomerDBController customerDBInstance;
 
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
