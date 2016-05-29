@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by Kevin on 2016-05-08.
+ * Authenticator class used to authenticate user allowing access to either customer or bar functionality
  */
 public class Authenticator {
     private String barPassword;

@@ -12,25 +12,10 @@ import android.widget.TextView;
 import java.util.IllegalFormatException;
 
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
-import pekl.gasqueue.com.gasqueue.model.Cart;
-import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 
-/**
- * RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
- */
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-//RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
-/**
- * RÖR EJ DEN KOMMENTERADE KODEN I DENNA FIL!!!!!!!!!!!!!!
- */
 
 public class ProductDetailActivity extends AppCompatActivity {
     private TextView nameLabel;
@@ -87,10 +72,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     shoppingController.addProductToCart( shoppingController.getChosenProduct(),
                             Integer.parseInt(quantity.getText().toString()));
                     amount.setText(shoppingController.getQuantityOfProduct(shoppingController.getChosenProduct()) + " st in cart");
-                    /**
-                     * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));
-                     * amount.setText(customerDB.itemAmountInCart(chosenProduct) + " st in cart");
-                     */
+
                 }
                 else {
 

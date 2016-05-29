@@ -11,7 +11,7 @@ import java.util.Set;
  *
  */
 public class Cart {
-    private HashMap<Product,Integer> cart;
+    private static HashMap<Product,Integer> cart;
     private int total;
 
     public Cart()

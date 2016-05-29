@@ -4,7 +4,6 @@ package pekl.gasqueue.com.gasqueue.Activitiy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,9 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private void nextActivity(Class activity){
         if(activity!=null) {
             Intent intentActivity = new Intent(this, activity);
-            intentActivity.putExtra("barPassword",authController.getBarPassword());
-            intentActivity.putExtra("customerPassword",authController.getCustomerPassword());
-            intentActivity.putExtra("clientType",true);
+            handleData(intentActivity);
             startActivity(intentActivity);
         }
 
@@ -83,5 +80,10 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void handleData(Intent intentActivity){
+        intentActivity.putExtra("barPassword",authController.getBarPassword());
+        intentActivity.putExtra("customerPassword",authController.getCustomerPassword());
+        intentActivity.putExtra("clientType",true);
     }
 }

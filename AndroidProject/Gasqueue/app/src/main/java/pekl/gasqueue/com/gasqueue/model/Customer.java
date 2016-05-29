@@ -24,7 +24,6 @@ public class Customer {
 
     private Cart cart;
     public StopWatch timer = new StopWatch();
-    private List<Observer> observers = new ArrayList<Observer>();
 
     public Customer() {
         cart = new Cart();
