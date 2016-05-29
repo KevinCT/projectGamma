@@ -53,6 +53,8 @@
             </LinearLayout>
 
             <Button
+                android:textColor="#ffffff"
+                android:background="#F44336"
                 android:layout_width="147dp"
                 android:layout_height="wrap_content"
                 android:text="Order"
