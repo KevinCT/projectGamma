@@ -168,7 +168,8 @@ public class PickupActivity extends AppCompatActivity {
             @Override
             public void dataChanged(DataSnapshot data) {
                 if((cdbc.getQueueNumber() != null) && (data.getValue(Integer.class) != null)) {
-                    System.out.println(cdbc.getQueueNumber() + " lalililailaiafmkdsgsjngbljsngljsr");
+                    System.out.println(cdbc.getQueueNumber() + " Könummer");
+                    System.out.println(data.getValue(Integer.class) + " customer numbers served");
                     Integer pos = cdbc.getQueueNumber() - data.getValue(Integer.class);
                     updateView(cdbc.getQueueNumber() - data.getValue(Integer.class));
 
