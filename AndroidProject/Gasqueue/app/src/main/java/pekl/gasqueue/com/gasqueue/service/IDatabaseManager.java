@@ -25,6 +25,4 @@ public interface IDatabaseManager<T> {
 
     public boolean checkCode(String barCode);
 
-    public void pushMap(String address, Map<String,Menu> map);
-
 }

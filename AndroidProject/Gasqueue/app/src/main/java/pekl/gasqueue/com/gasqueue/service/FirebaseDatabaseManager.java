@@ -24,13 +24,6 @@ public class FirebaseDatabaseManager implements IDatabaseManager<Firebase> {
         Firebase targetReference = createChildReference(childReference);
         targetReference.setValue(map);
     }
-    @Override
-    public void pushMap(String childReference, Map<String,Menu> map){
-        Firebase targetReference = createChildReference(childReference);
-        targetReference.push().setValue(map);
-
-    }
-
 
     @Override
     public void saveStringList(String address, List<String> list) {

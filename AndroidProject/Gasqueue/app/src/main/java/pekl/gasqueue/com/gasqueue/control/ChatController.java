@@ -1,7 +1,5 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import com.firebase.client.Firebase;
-
 import pekl.gasqueue.com.gasqueue.model.FormatDate;
 import pekl.gasqueue.com.gasqueue.model.Message;
 import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
@@ -30,7 +28,6 @@ public class ChatController {
     public void setUserName(String username){
         chatMessage.setName(username);
     }
-
 
 
     private void setTimeStamp(){
