@@ -1,5 +1,6 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -77,6 +78,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 shoppingController.removeChosenProductFromMenu();
+                finish();
             }
         });
     }

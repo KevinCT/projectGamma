@@ -2,10 +2,7 @@ package pekl.gasqueue.com.gasqueue.model;
 
 import android.provider.Settings.Secure;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Observer;
 import java.util.Set;
 
 /**
