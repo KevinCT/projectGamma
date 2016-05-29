@@ -16,6 +16,9 @@
         android:layout_alignParentStart="true">
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_row="0"
@@ -27,6 +30,9 @@
             android:layout_alignParentStart="true" />
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_row="0"
@@ -38,6 +44,9 @@
             android:layout_alignParentEnd="true" />
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:text="Cider"
@@ -49,6 +58,9 @@
             android:layout_alignParentStart="true" />
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:text="Shot"
@@ -60,6 +72,8 @@
             android:layout_alignStart="@+id/drinksBtn" />
 
         <Button
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:text="NON ALCOHOLIC"
@@ -71,6 +85,8 @@
             android:layout_alignParentStart="true" />
 
         <Button
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:text="FOOD"
@@ -97,6 +113,7 @@
             android:layout_alignEnd="@+id/matBtn" />
 
         <Button
+
             android:layout_marginBottom="10dp"
             android:background="#F44336"
             android:textColor="#ffffff"

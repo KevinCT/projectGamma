@@ -81,6 +81,8 @@
         </LinearLayout>
 
         <Button
+            android:textColor="#ffffff"
+            android:background="#F44336"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add to cart"
