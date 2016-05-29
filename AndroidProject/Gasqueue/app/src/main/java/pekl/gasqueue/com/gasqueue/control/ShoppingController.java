@@ -1,10 +1,5 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import android.provider.ContactsContract;
-import android.renderscript.ScriptIntrinsicYuvToRGB;
-import android.support.v4.media.MediaBrowserCompatUtils;
-import android.util.Log;
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 
