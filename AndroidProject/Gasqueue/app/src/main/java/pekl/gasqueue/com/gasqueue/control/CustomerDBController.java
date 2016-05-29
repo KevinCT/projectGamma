@@ -114,11 +114,7 @@ public class CustomerDBController {
             public void dataChanged(DataSnapshot data) {
                 if (customer.isOrderSent()) {
 
-                    if(customer.getQueuePosition().equals(null)) {
-                        customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
-                    }
-
-                    if ((customer.getQueuePosition() != 0) || (data.equals(null))) {
+                    if ((customer.getQueuePosition() != 0) && !(data.equals(null))) {
                             customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
                         } else {
                             //Your turn to be served, send notifications etc.
