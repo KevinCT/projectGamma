@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Set;
 
-import pekl.gasqueue.com.gasqueue.Activitiy.Adapter.HostListViewAdapter;
+import pekl.gasqueue.com.gasqueue.Adapter.HostListViewAdapter;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.BarDBController;
 import pekl.gasqueue.com.gasqueue.control.QueueController;
