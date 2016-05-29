@@ -2,7 +2,6 @@ package pekl.gasqueue.com.gasqueue.control;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.google.gson.internal.bind.DateTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +37,7 @@ public class ShoppingController {
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
         allProducts= new ArrayList<>();
         cart = new Cart();
+        productHashmap=new ArrayList<>();
         initListener();
     }
 
@@ -118,14 +118,9 @@ public class ShoppingController {
             public void dataChanged(DataSnapshot data) {
 
                 for(DataSnapshot menuSnapshot:data.getChildren()){
-                    productHashmap.add(menuSnapshot.getValue(HashMap.class));
-                    if("1234".equals(menuSnapshot.getKey())){
                         setProduct(menuSnapshot.getValue(Menu.class).getProducts());
-                        break;
                     }
-
                 }
-            }
         };
 
     }
@@ -145,8 +140,4 @@ public class ShoppingController {
     private void setProduct(List<Product> list){
         menu= new Menu(list);
     }
-    public void setAuthCode(String authCode){
-        //this.authCode=authCode;
-    }
-
 }

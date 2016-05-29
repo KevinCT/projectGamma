@@ -4,27 +4,17 @@ package pekl.gasqueue.com.gasqueue.Activitiy.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.firebase.client.Firebase;
-import com.google.gson.Gson;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
 import pekl.gasqueue.com.gasqueue.Activitiy.ProductActivity;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
-import pekl.gasqueue.com.gasqueue.model.Authenticator;
-import pekl.gasqueue.com.gasqueue.model.Menu;
 import pekl.gasqueue.com.gasqueue.model.Product;
-import pekl.gasqueue.com.gasqueue.service.FirebaseDatabaseManager;
-import pekl.gasqueue.com.gasqueue.service.IDatabaseManager;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +37,6 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         getData();
         shoppingController = ShoppingController.getInstance();
-        shoppingController.setAuthCode(customerPassword);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
         Button beerBtn = (Button) view.findViewById(R.id.beerBtn);
@@ -114,7 +103,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
                 shoppingController.setChosenCategory(Product.Category.FOOD);
                 break;
         }
-        //check maybe move putextra.
+
         temp.putExtra("category",shoppingController.getChosenCategory());
         startActivity(temp);
     }
