@@ -6,21 +6,17 @@ package pekl.gasqueue.com.gasqueue.model;
 public class Product {
     private String name;
     private int price;
-
-    //chosenProduct is product user chooses in CategoryActivity
-    private static Product chosenProduct;
+    private Category category;
 
     //There are only 5 different categories
     public enum Category{
         BEER, DRINK, NON_ALCOHOLIC, FOOD, CIDER
     }
-    private Category category;
 
     public void createProduct(String name, Category category, int price)
     {
         Product vara = new Product(name,category,price);
         //TODO: add this product to server
-
     }
     public Product()
     {
