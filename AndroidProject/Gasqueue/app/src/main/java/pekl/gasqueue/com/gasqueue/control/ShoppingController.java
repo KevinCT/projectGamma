@@ -48,6 +48,8 @@ public class ShoppingController {
         return shoppingController;
     }
 
+    public void removeChosenProductFromMenu(){ menu.removeProduct(chosenProduct); }
+
     public List<Product> getProductSameCategory() { return menu.getProductsSameCategory(chosenCategory); }
 
     public String getProductName(Product p) { return p.getName();}

@@ -27,6 +27,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
     private EditText priceTextField;
     private Spinner categorySpinner;
     private Button saveBtn;
+    private Button removeBtn;
     private boolean isCreating;
 
     @Override
@@ -41,8 +42,10 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
             nameTextField.setText("Name of product");
             priceTextField.setText("99");
             saveBtn.setText("CREATE PRODUCT");
+            removeBtn.setVisibility(View.INVISIBLE);
         }
         else{
+            removeBtn.setVisibility(View.VISIBLE);
             for (int i =1; i<categories.size();i++)
             {
                 if (shoppingController.getChosenProductCategory().equals(categories.get(i)))
@@ -70,6 +73,12 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
                 }
             }
         });
+        removeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shoppingController.removeChosenProductFromMenu();
+            }
+        });
     }
 
     private void initializeViews()
@@ -81,6 +90,7 @@ public class ChangeProductDetailActivity extends AppCompatActivity {
         categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         isCreating = shoppingController.getIntention();
+        removeBtn = (Button) findViewById(R.id.removeBTN);
     }
 
     private void initializeSpinner()

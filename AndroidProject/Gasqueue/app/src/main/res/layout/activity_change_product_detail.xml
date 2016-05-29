@@ -63,6 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="30dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text=" kr"
                 android:id="@+id/textView6" />
@@ -70,10 +71,17 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="save CHanges"
-            android:id="@+id/saveBtn"
-            android:layout_gravity="right" />
+            android:id="@+id/saveBtn" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REMOVE PRODUCT"
+            android:id="@+id/removeBTN" />
+
     </LinearLayout>
 </RelativeLayout>
