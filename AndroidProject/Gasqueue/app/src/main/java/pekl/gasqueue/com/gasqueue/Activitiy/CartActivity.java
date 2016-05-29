@@ -42,7 +42,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void initializeViews()
     {
-        shoppingController = new ShoppingController();
+        shoppingController = ShoppingController.getInstance();
         listView = (ListView) findViewById(R.id.listView);
         adapter = new HashMapAdapter();
         totalTV = (TextView) findViewById(R.id.totalTV);

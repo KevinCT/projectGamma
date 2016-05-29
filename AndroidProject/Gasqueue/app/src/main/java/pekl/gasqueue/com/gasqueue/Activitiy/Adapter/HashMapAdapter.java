@@ -32,7 +32,7 @@ public class HashMapAdapter extends BaseAdapter {
     private TextView totalLbl;
 
     public HashMapAdapter(){
-        tempCart = new ShoppingController();
+        tempCart = ShoppingController.getInstance();
         mKeys = tempCart.getCart().keySet().toArray(new Product[tempCart.getCart().size()]);
     }
 

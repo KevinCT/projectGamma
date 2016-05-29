@@ -20,23 +20,8 @@ public class Menu {
     private String bartenderCode;
     private String customerCode;
     private String barName;
-    private static HashMap<String, Product> stringKey = new HashMap<>();;
+    private HashMap<String, Product> stringKey = new HashMap<>();;
     private List<Product> allProducts;
-
-   /* private static final Product vodka = new Product("vodka", Product.Category.DRINK,45);
-=======
-    private IValueChangeListener listener;
-
-    private static final Product vodka = new Product("vodka", Product.Category.DRINK,45);
->>>>>>> Stashed changes
-    private static final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
-    private static final Product chicken = new Product("kyckling", Product.Category.FOOD,30);
-    private static final Product sommarby = new Product("sommarby", Product.Category.CIDER, 25);
-    private static final Product vatten = new Product("vatten", Product.Category.NON_ALCOHOLIC,10);
-    private static final Product falcon = new Product("falcon", Product.Category.BEER,20);
-    private static final Product brookly = new Product("brookly", Product.Category.BEER,25);*/
-
-
 
     public Menu(String barName,String barCode, String guestCode)
     {
@@ -58,40 +43,12 @@ public class Menu {
        // allProducts.add(vodka);
     }
 
-    public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
-     /*   stringKey.put("vodka",vodka);
-=======
-        allProducts.add(vodka);
-        initListener();
-    }
 
-    private void initListener() {
-        listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
-            @Override
-            public void dataChanged(DataSnapshot data) {
+    public HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
+        for(Product product: allProducts) {
+            stringKey.put(product.getName(), product);
+        }
 
-                for (DataSnapshot menuSnapshot : data.getChildren()) {
-                    if ("1234".equals(menuSnapshot.getKey())) {
-                        //allProducts=menuSnapshot.getValue(Menu.class).getProducts();
-                        //Log.v("PRODUCTPLEASE",allProducts.get(0).getName());
-                        setProduct(menuSnapshot.getValue(Menu.class).getProducts());
-                        break;
-                    }
-
-                }
-            }
-        };
-    }
-        public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
-        stringKey.put("vodka",vodka);
->>>>>>> Stashed changes
-        stringKey.put("whiskey",whiskey);
-        stringKey.put("kyckling",chicken);
-        stringKey.put("sommarby",sommarby);
-        stringKey.put("vatten",vatten);
-        stringKey.put("falcon",falcon);
-        stringKey.put("brookly",brookly);
-*/
         Set<String> products = orderString.keySet();
         HashMap<Product,Integer> orderProduct = new HashMap<>();
         System.out.println(orderString.size());

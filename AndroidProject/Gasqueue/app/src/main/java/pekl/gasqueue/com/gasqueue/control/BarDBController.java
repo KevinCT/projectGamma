@@ -21,11 +21,14 @@ public class BarDBController {
     private Bar bar;
     private IDatabaseManager dbManagerBar;
     private QueueController queueController;
+    private ShoppingController shoppingController;
 
     public BarDBController(String databaseReference) {
         dbManagerBar = new FirebaseDatabaseManager(databaseReference); //Skapa ny managerklass för Baren?
         this.bar = new Bar();
         queueController = new QueueController();
+        shoppingController = ShoppingController.getInstance();
+
         updateOrders(databaseReference);
     }
 
@@ -38,7 +41,7 @@ public class BarDBController {
                 String onlyKey = data.getKey();
                 System.out.println(onlyKey + " = onlyKey ");
 
-                HashMap<Product, Integer> orderProduct =  Menu.stringToProduct(order);
+                HashMap<Product, Integer> orderProduct =  shoppingController.convertStringToProduct(order);
                 Set<Product> products = orderProduct.keySet();
                 for(Product p:products) {
                     System.out.println(p.getName() + " " + orderProduct.get(p));

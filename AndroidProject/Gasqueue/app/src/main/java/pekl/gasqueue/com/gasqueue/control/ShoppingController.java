@@ -25,6 +25,8 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  * Created by Kotex on 18/05/2016.
  */
 public class ShoppingController {
+    private static ShoppingController shoppingController;
+
     private static Menu menu;
     private static Product chosenProduct;
     private static Product.Category chosenCategory;
@@ -35,12 +37,18 @@ public class ShoppingController {
     private IValueChangeListener listener;
     private IDatabaseManager<Firebase> dbMenuManager;
 
-    public ShoppingController()
-    {
+    private ShoppingController() {
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
         allProducts= new ArrayList<>();
         cart = new Cart();
         initListener();
+    }
+
+    public static ShoppingController getInstance() {
+        if (shoppingController == null) {
+            shoppingController = new ShoppingController();
+        }
+        return shoppingController;
     }
 
     public List<Product> getProductSameCategory() { return menu.getProductsSameCategory(chosenCategory); }
@@ -121,6 +129,11 @@ public class ShoppingController {
             }
         };
 
+    }
+
+
+    public HashMap<Product, Integer> convertStringToProduct(HashMap<String, Integer> orderString) {
+        return menu.stringToProduct(orderString);
     }
 
 

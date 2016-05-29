@@ -21,7 +21,7 @@ import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    private CustomerDBController customerDB;
+
     private Map<Button, Product> productButtonMap;
     private ShoppingController shoppingController;
     private GridLayout listLayout;
@@ -29,11 +29,10 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        shoppingController=new ShoppingController();
+        shoppingController = ShoppingController.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         Firebase.setAndroidContext(this);
-        customerDB = CustomerDBController.getInstance();
 
         initializeViews();
 
