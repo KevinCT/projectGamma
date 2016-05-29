@@ -45,7 +45,7 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        shoppingController=new  ShoppingController();
+        shoppingController = ShoppingController.getInstance();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
         Button beerBtn = (Button) view.findViewById(R.id.beerBtn);
