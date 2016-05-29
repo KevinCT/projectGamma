@@ -1,6 +1,5 @@
 package pekl.gasqueue.com.gasqueue.Adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +79,6 @@ public class HashMapAdapter extends BaseAdapter {
                         break;
                     case R.id.removeBtn:
                         tempCart.removeProductFromCart(temp);
-                        Log.v("temp",temp.getName().toString());
                         mKeys = tempCart.getCart().keySet().toArray(new Product[tempCart.getCart().size()]);
                         notifyDataSetChanged();
                 }

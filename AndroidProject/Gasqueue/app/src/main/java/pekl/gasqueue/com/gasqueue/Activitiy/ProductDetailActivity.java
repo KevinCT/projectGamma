@@ -12,8 +12,6 @@ import android.widget.TextView;
 import java.util.IllegalFormatException;
 
 import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
-import pekl.gasqueue.com.gasqueue.model.Cart;
-import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 

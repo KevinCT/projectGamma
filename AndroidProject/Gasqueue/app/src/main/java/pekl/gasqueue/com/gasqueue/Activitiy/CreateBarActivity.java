@@ -9,11 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
-import com.google.gson.Gson;
 
 import pekl.gasqueue.com.gasqueue.R;
 import pekl.gasqueue.com.gasqueue.control.AuthenticatorController;
-import pekl.gasqueue.com.gasqueue.model.Product;
 
 public class CreateBarActivity extends AppCompatActivity {
     private Button createBarBtn;
