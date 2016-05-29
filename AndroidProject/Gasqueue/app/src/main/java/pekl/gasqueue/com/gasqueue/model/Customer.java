@@ -12,7 +12,11 @@ public class Customer implements User {
     private boolean orderSent;
     private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
+<<<<<<< HEAD
     private String clientID = "kevin";
+=======
+    private String clientID = "Petros";
+>>>>>>> 02db8cead182d3089bfa32b16d42e2ebf5cc71ed
     private Cart cart;
     public StopWatch timer = new StopWatch();
     private List<Observer> observers = new ArrayList<Observer>();
