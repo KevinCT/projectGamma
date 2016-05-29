@@ -69,7 +69,6 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
             }
             else {
                 shoppingController.setChosenProduct(productButtonMap.get(view));
-                shoppingController.setChosenProduct(productButtonMap.get(view));
                 temp = new Intent(this, ProductDetailActivity.class);
             }
         }

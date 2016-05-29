@@ -2,11 +2,16 @@ package pekl.gasqueue.com.gasqueue.model;
 
 import android.util.Log;
 
+import com.firebase.client.DataSnapshot;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by Kotex on 03/05/2016.
@@ -19,6 +24,11 @@ public class Menu {
     private List<Product> allProducts;
 
    /* private static final Product vodka = new Product("vodka", Product.Category.DRINK,45);
+=======
+    private IValueChangeListener listener;
+
+    private static final Product vodka = new Product("vodka", Product.Category.DRINK,45);
+>>>>>>> Stashed changes
     private static final Product whiskey = new Product("whiskey", Product.Category.DRINK,45);
     private static final Product chicken = new Product("kyckling", Product.Category.FOOD,30);
     private static final Product sommarby = new Product("sommarby", Product.Category.CIDER, 25);
@@ -50,6 +60,31 @@ public class Menu {
 
     public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
      /*   stringKey.put("vodka",vodka);
+=======
+        allProducts.add(vodka);
+        initListener();
+    }
+
+    private void initListener() {
+        listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
+            @Override
+            public void dataChanged(DataSnapshot data) {
+
+                for (DataSnapshot menuSnapshot : data.getChildren()) {
+                    if ("1234".equals(menuSnapshot.getKey())) {
+                        //allProducts=menuSnapshot.getValue(Menu.class).getProducts();
+                        //Log.v("PRODUCTPLEASE",allProducts.get(0).getName());
+                        setProduct(menuSnapshot.getValue(Menu.class).getProducts());
+                        break;
+                    }
+
+                }
+            }
+        };
+    }
+        public static HashMap<Product, Integer> stringToProduct(HashMap<String, Integer> orderString) {
+        stringKey.put("vodka",vodka);
+>>>>>>> Stashed changes
         stringKey.put("whiskey",whiskey);
         stringKey.put("kyckling",chicken);
         stringKey.put("sommarby",sommarby);
@@ -66,6 +101,11 @@ public class Menu {
             orderProduct.put( stringKey.get(e), (Integer) orderString.get(e));
         }
         return orderProduct;
+    }
+
+    public void setProduct(List<Product> list)
+    {
+        allProducts = list;
     }
 
     public void addProduct(Product p)

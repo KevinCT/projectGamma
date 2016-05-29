@@ -1,5 +1,8 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import android.provider.ContactsContract;
+import android.renderscript.ScriptIntrinsicYuvToRGB;
+import android.support.v4.media.MediaBrowserCompatUtils;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -25,7 +28,7 @@ public class ShoppingController {
     private static Menu menu;
     private static Product chosenProduct;
     private static Product.Category chosenCategory;
-    private List<Product> allProducts;
+    private static List<Product> allProducts;
     private Cart cart;
     private static boolean isBartender = false;
     private static boolean isCreatingProduct;
@@ -33,15 +36,11 @@ public class ShoppingController {
     private IDatabaseManager<Firebase> dbMenuManager;
 
     public ShoppingController()
-
     {
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
         allProducts= new ArrayList<>();
         cart = new Cart();
         initListener();
-
-
-
     }
 
     public List<Product> getProductSameCategory() { return menu.getProductsSameCategory(chosenCategory); }
@@ -65,45 +64,21 @@ public class ShoppingController {
 
     public int getTotalOfCart(){return cart.getTotal();}
 
-    public Product.Category getChosenCategory()
-    {
-        return chosenCategory;
-    }
+    public Product.Category getChosenCategory() { return chosenCategory; }
 
-    public void setChosenCategory(Product.Category c)
-    {
-        chosenCategory = c;
-    }
+    public void setChosenCategory(Product.Category c) {  chosenCategory = c;  }
 
-    public void incQuantity(Product p)
-    {
-        cart.addProduct(p,1);
-    }
+    public void incQuantity(Product p){ cart.addProduct(p,1); }
 
-    public void decQuantity(Product p)
-    {
-        cart.addProduct(p,-1);
-    }
+    public void decQuantity(Product p) { cart.addProduct(p,-1); }
 
-    public void addProductToCart(Product p , int g)
-    {
-        cart.addProduct(p,g);
-    }
+    public void addProductToCart(Product p , int g) { cart.addProduct(p,g);  }
 
-    public void removeProductFromCart(Product p)
-    {
-        cart.removeProduct(p);
-    }
+    public void removeProductFromCart(Product p) { cart.removeProduct(p); }
 
-    public HashMap<Product,Integer> getCart()
-    {
-        return cart.getCart();
-    }
+    public HashMap<Product,Integer> getCart() { return cart.getCart(); }
 
-    public int getTotalOfProduct(Product p)
-    {
-        return cart.getTotalOfProduct(p);
-    }
+    public int getTotalOfProduct(Product p) { return cart.getTotalOfProduct(p);  }
 
     public int getQuantityOfProduct(Product p) {
         if (cart.getCart().containsKey(p)) {
@@ -112,22 +87,13 @@ public class ShoppingController {
         else return 0;
     }
 
-    public void setTypeOfUser(boolean isBartender)
-    {
-        this.isBartender = isBartender;
-    }
+    public void setTypeOfUser(boolean isBartender) { this.isBartender = isBartender; }
 
-    public boolean getTypeOfUser()
-    {
-        return isBartender;
-    }
+    public boolean getTypeOfUser() { return isBartender; }
 
     public void setIntention(boolean isCreatingProduct) { this.isCreatingProduct = isCreatingProduct; }
 
-    public boolean getIntention()
-    {
-        return isCreatingProduct;
-    }
+    public boolean getIntention() { return isCreatingProduct; }
 
     public void addProductToMenu(String n, Product.Category c, int p) { menu.addProduct(new Product(n,c,p)); }
 
@@ -138,7 +104,7 @@ public class ShoppingController {
         Product temp = new Product(name,category,price);
         allProducts.add(temp);
     }
-
+    //code for testing might be removed
 
     private void initListener(){
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
@@ -153,8 +119,6 @@ public class ShoppingController {
 
                 }
             }
-
-
         };
 
     }
@@ -164,13 +128,10 @@ public class ShoppingController {
         Map menuMap = new HashMap<>();
         menuMap.put(barKey,menu);
         menuMap.put(customerKey,menu);
-       dbMenuManager.saveMap("Menus",menuMap);
+        dbMenuManager.saveMap("Menus",menuMap);
     }
     private void setProduct(List<Product> list){
         menu= new Menu(list);
-
     }
-
-
 
 }
