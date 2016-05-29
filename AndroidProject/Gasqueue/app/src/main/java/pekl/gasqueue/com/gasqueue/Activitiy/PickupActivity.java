@@ -60,7 +60,7 @@ public class PickupActivity extends AppCompatActivity {
 
         updateQueuePosition();
         statusView.setText("Your current position");
-        
+
         /**
         try{
             pos = cdbc.getQueuePosition();

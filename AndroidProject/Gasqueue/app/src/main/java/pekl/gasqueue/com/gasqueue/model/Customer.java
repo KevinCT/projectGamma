@@ -23,7 +23,7 @@ public class Customer {
     private String clientID = "fdhdh";
 
     private Cart cart;
-    public StopWatch timer = new StopWatch();
+    private StopWatch timer = new StopWatch();
 
     public Customer() {
         queuePosition = 1000;
