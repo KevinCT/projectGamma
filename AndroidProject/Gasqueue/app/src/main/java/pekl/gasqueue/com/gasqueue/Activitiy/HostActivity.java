@@ -98,37 +98,33 @@ public class HostActivity extends AppCompatActivity {
             orderAdapter = new HostListViewAdapter(order);
 
             orderListView.setAdapter(orderAdapter);
+            stopWatch.runTimer();
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    while (stopWatch.getCurrentTime() != 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                        }
+
+                        timerTextView.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                if (stopWatch.getCurrentTime() == 0) {
+                                } else {
+                                    timerTextView.setText(Integer.toString(stopWatch.getCurrentTime()));
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+            Thread myThread = new Thread(myRunnable);
+            myThread.start();
         }
 
-
-        //Måste stoppas när baren trycker på push
-        //Det som behöver fixas
-        stopWatch.runTimer();
-
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                while (stopWatch.getCurrentTime() != 0) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                    }
-
-                    timerTextView.post(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            if (stopWatch.getCurrentTime() == 0) {
-                            } else {
-                                timerTextView.setText(Integer.toString(stopWatch.getCurrentTime()));
-                            }
-                        }
-                    });
-                }
-            }
-        };
-        Thread myThread = new Thread(myRunnable);
-        myThread.start();
     }
 
     private int totalPrice() {
