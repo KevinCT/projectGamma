@@ -1,3 +1,5 @@
+
+
 package pekl.gasqueue.com.gasqueue.model;
 
 import java.util.Scanner;
