@@ -88,7 +88,7 @@ public class HostActivity extends AppCompatActivity {
 
     private void updateView() {
         this.nameView.setText(firstInQueue);
-        //Ändra till notifyDataChanged senare
+
         order = barController.getOrder(firstInQueue);
 
         if(!(order == null)) {
@@ -119,6 +119,8 @@ public class HostActivity extends AppCompatActivity {
                             }
                         });
                     }
+                    stopWatch = new StopWatch();
+
                 }
             };
             Thread myThread = new Thread(myRunnable);

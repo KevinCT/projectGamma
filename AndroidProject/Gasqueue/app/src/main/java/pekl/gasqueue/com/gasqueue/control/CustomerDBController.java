@@ -92,14 +92,6 @@ public class CustomerDBController {
 
             @Override
             public void dataChanged(DataSnapshot data) {
-
-                /**
-                if(data.getValue(Integer.class) != null) {
-                    queueNumber = data.getValue(Integer.class);
-                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
-                    updateQueuePosition(); //Activate listeners
-                }
-*/
                     queueNumber = 1;
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
             }
