@@ -141,7 +141,6 @@ public class PickupActivity extends AppCompatActivity {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
-                            System.out.println("got interrupted!");
                         }
 
                         positionView.post(new Runnable() {

@@ -68,7 +68,7 @@ public class Bar {
             Set<Product> products = orders.get(clientID).keySet();
             for (Product p : products) {
             }
-        } 
+        }
 
         return orders.get(clientID);
     }

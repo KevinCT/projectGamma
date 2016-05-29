@@ -26,6 +26,7 @@ public class ChatMessageAdapter extends BaseAdapter {
     private TextView messageView;
     private TextView nameView;
     private TextView timestampView;
+
     public ChatMessageAdapter(String databaseRef){
         messageList=new ArrayList<>();
         initListener(databaseRef);

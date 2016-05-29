@@ -16,12 +16,10 @@ public class StopWatch {
     private static int currentTime = 60;
 
     public StopWatch(){
-
+        interval = 60;
     }
 
     public void runTimer() {
-        interval = 60;
-        Scanner sc = new Scanner(System.in);
         int delay = 1000;
         int period = 1000;
         timer = new Timer();
@@ -54,6 +52,10 @@ public class StopWatch {
 
     public int getCurrentTime(){
         return currentTime;
+    }
+
+    public int getInterval(){
+        return interval;
     }
 
 }

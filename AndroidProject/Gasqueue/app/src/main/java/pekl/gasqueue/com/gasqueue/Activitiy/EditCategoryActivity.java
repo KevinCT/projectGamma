@@ -10,7 +10,6 @@ import android.os.Bundle;
 
 import pekl.gasqueue.com.gasqueue.Activitiy.Fragments.MenuCategoryFragment;
 import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.model.Authenticator;
 
 public class EditCategoryActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;

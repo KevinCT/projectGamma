@@ -39,12 +39,10 @@ public class BarDBController {
             public void childAdded(DataSnapshot data, String s) {
                 HashMap<String, Integer> order = (HashMap<String, Integer>) data.getValue(HashMap.class); //Ska bara finns ett element i hashmappen
                 String onlyKey = data.getKey();
-                System.out.println(onlyKey + " = onlyKey ");
 
                 HashMap<Product, Integer> orderProduct =  shoppingController.convertStringToProduct(order);
                 Set<Product> products = orderProduct.keySet();
                 for(Product p:products) {
-                    System.out.println(p.getName() + " " + orderProduct.get(p));
                 }
 
                 newCustomer(onlyKey, orderProduct);

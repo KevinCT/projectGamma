@@ -19,7 +19,7 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_bar);
         initView();
-
+        initListener();
     }
 
 
@@ -35,24 +35,25 @@ public class WelcomeBarActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.mangeBarBtn:
                 activity=HostActivity.class;
-
-
         }
         nextActivity(activity);
     }
     private void initView(){
         editBarBtn = (Button) findViewById(R.id.editBarBtn);
-        editBarBtn.setOnClickListener(this);
         manageBarBtn = (Button) findViewById(R.id.mangeBarBtn);
-        manageBarBtn.setOnClickListener(this);
         createBarBtn = (Button) findViewById(R.id.createBarBtn);
+
+    }
+    private void initListener(){
+        editBarBtn.setOnClickListener(this);
+        manageBarBtn.setOnClickListener(this);
         createBarBtn.setOnClickListener(this);
+
+
 
     }
     private void nextActivity(Class activity){
         Intent intentActivity= new Intent(this,activity);
-
-        //clean code later only send this if its edit bar not createbar
         if(activity == EditCategoryActivity.class) {
             Bundle data;
             data = getIntent().getExtras();
