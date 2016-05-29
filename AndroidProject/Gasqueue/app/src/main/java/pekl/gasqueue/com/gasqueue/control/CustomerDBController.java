@@ -92,16 +92,8 @@ public class CustomerDBController {
 
             @Override
             public void dataChanged(DataSnapshot data) {
-                if(data.getValue(Integer.class) != null) {
-                    queueNumber = data.getValue(Integer.class);
-                    dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
-                    updateQueuePosition(); //Activate listeners
-                }
-
-                else {
                     queueNumber = 1;
                     dbManagerCustomer.setValue("queueNumber", queueNumber + 1);
-                }
             }
         };
 
@@ -113,12 +105,7 @@ public class CustomerDBController {
             @Override
             public void dataChanged(DataSnapshot data) {
                 if (customer.isOrderSent()) {
-
-                    if(customer.getQueuePosition().equals(null)) {
-                        customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
-                    }
-
-                    if ((customer.getQueuePosition() != 0) || (data.equals(null))) {
+                    if ((customer.getQueuePosition() != 0) && !(data.equals(null))) {
                             customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
                         } else {
                             //Your turn to be served, send notifications etc.

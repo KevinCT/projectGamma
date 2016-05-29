@@ -20,12 +20,19 @@ import pekl.gasqueue.com.gasqueue.model.Product;
  * A simple {@link Fragment} subclass.
  */
 public class MenuCategoryFragment extends Fragment implements View.OnClickListener {
-    private Button cartBtn ;
     private String barPassword;
     private String customerPassword;
     private boolean clientType;
     private Button createBarBtn;
-    ShoppingController shoppingController;
+    private ShoppingController shoppingController;
+    private View view;
+
+    private Button cartBtn;
+    private Button beerBtn;
+    private Button drinkBtn;
+    private Button ciderBtn;
+    private Button alkfriaBtn;
+    private Button matBtn;
 
     public MenuCategoryFragment() {
         // Required empty public constructor
@@ -38,26 +45,10 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         getData();
         shoppingController = ShoppingController.getInstance();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_menu_category, container, false);
-        Button beerBtn = (Button) view.findViewById(R.id.beerBtn);
-        beerBtn.setOnClickListener(this);
-        Button drinkBtn= (Button) view.findViewById(R.id.drinksBtn);
-        drinkBtn.setOnClickListener(this);
-        Button ciderBtn= (Button) view.findViewById(R.id.ciderBtn);
-        ciderBtn.setOnClickListener(this);
-        Button alkfriaBtn= (Button) view.findViewById(R.id.alkfriaBtn);
-        alkfriaBtn.setOnClickListener(this);
-        Button matBtn = (Button) view.findViewById(R.id.matBtn);
-        matBtn.setOnClickListener(this);
-        cartBtn = (Button) view.findViewById(R.id.cartBtn);
-        cartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent nextActivity = new Intent(getActivity(),  CartActivity.class);
-                startActivity(nextActivity);
+        view = inflater.inflate(R.layout.fragment_menu_category, container, false);
 
-            }
-        });
+        initializeButtons();
+
         try {
             shoppingController.setTypeOfUser(getArguments().getBoolean("clientType"));
         }
@@ -81,6 +72,27 @@ public class MenuCategoryFragment extends Fragment implements View.OnClickListen
         return view;
 
 
+    }
+
+    private void initializeButtons(){
+        beerBtn = (Button) view.findViewById(R.id.beerBtn);
+        beerBtn.setOnClickListener(this);
+        drinkBtn= (Button) view.findViewById(R.id.drinksBtn);
+        drinkBtn.setOnClickListener(this);
+        ciderBtn= (Button) view.findViewById(R.id.ciderBtn);
+        ciderBtn.setOnClickListener(this);
+        alkfriaBtn= (Button) view.findViewById(R.id.alkfriaBtn);
+        alkfriaBtn.setOnClickListener(this);
+        matBtn = (Button) view.findViewById(R.id.matBtn);
+        matBtn.setOnClickListener(this);
+        cartBtn = (Button) view.findViewById(R.id.cartBtn);
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextActivity = new Intent(getActivity(),  CartActivity.class);
+                startActivity(nextActivity);
+            }
+        });
     }
     public void onClick(View v) {
 

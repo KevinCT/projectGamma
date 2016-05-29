@@ -67,9 +67,6 @@ public class HostActivity extends AppCompatActivity {
                     updateView();
 
                 }
-                else{
-                    System.out.println("queue is empty");
-                }
             }
                 
         });
@@ -91,7 +88,7 @@ public class HostActivity extends AppCompatActivity {
 
     private void updateView() {
         this.nameView.setText(firstInQueue);
-        //Ändra till notifyDataChanged senare
+
         order = barController.getOrder(firstInQueue);
 
         if(!(order == null)) {
@@ -101,38 +98,35 @@ public class HostActivity extends AppCompatActivity {
             orderAdapter = new HostListViewAdapter(order);
 
             orderListView.setAdapter(orderAdapter);
+            stopWatch.runTimer();
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    while (stopWatch.getCurrentTime() != 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                        }
+
+                        timerTextView.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                if (stopWatch.getCurrentTime() == 0) {
+                                } else {
+                                    timerTextView.setText(Integer.toString(stopWatch.getCurrentTime()));
+                                }
+                            }
+                        });
+                    }
+                    stopWatch = new StopWatch();
+
+                }
+            };
+            Thread myThread = new Thread(myRunnable);
+            myThread.start();
         }
 
-
-        //Måste stoppas när baren trycker på push
-        //Det som behöver fixas
-        stopWatch.runTimer();
-
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                while (stopWatch.getCurrentTime() != 0) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        System.out.println("got interrupted!");
-                    }
-
-                    timerTextView.post(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            if (stopWatch.getCurrentTime() == 0) {
-                            } else {
-                                timerTextView.setText(Integer.toString(stopWatch.getCurrentTime()));
-                            }
-                        }
-                    });
-                }
-            }
-        };
-        Thread myThread = new Thread(myRunnable);
-        myThread.start();
     }
 
     private int totalPrice() {

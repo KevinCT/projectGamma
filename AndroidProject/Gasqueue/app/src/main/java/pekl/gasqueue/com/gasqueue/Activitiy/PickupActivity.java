@@ -30,8 +30,6 @@ public class PickupActivity extends AppCompatActivity {
     private Button viewOrderButton;
     private TextView statusView;
     private TextView positionView;
-    public Cart cart = new Cart(); //wtf
-    Context context = this;
     private StopWatch sw = new StopWatch();
     private CustomerDBController cdbc;
     public PickupActivity(){
@@ -50,10 +48,19 @@ public class PickupActivity extends AppCompatActivity {
         super.onStart();
         cancelButton = (Button) findViewById(R.id.cancelButton);
         viewOrderButton = (Button) findViewById(R.id.viewOrderButton);
+        viewOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity(CartActivity.class);
+
+            }
+        });
         statusView = (TextView) findViewById(R.id.statusView);
         positionView = (TextView) findViewById(R.id.positionView);
+
         updateQueuePosition();
         statusView.setText("Your current position");
+
         /**
         try{
             pos = cdbc.getQueuePosition();
@@ -141,7 +148,6 @@ public class PickupActivity extends AppCompatActivity {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
-                            System.out.println("got interrupted!");
                         }
 
                         positionView.post(new Runnable() {
@@ -168,18 +174,19 @@ public class PickupActivity extends AppCompatActivity {
             @Override
             public void dataChanged(DataSnapshot data) {
                 if((cdbc.getQueueNumber() != null) && (data.getValue(Integer.class) != null)) {
-                    System.out.println(cdbc.getQueueNumber() + " Könummer");
-                    System.out.println(data.getValue(Integer.class) + " customer numbers served");
                     Integer pos = cdbc.getQueueNumber() - data.getValue(Integer.class);
                     updateView(cdbc.getQueueNumber() - data.getValue(Integer.class));
 
                     checkPosition(pos);
                 }
 
-                System.out.println("yabadbabbadbsjdfofgnlrgn");
             }
         };
 
+    }
+    private void nextActivity(Class activity){
+        Intent intentActivity = new Intent(this,activity);
+        startActivity(intentActivity);
     }
 }
 

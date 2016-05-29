@@ -22,9 +22,8 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  *
  *
  */
-
 public class Menu {
-    private HashMap<String, Product> stringKey = new HashMap<>();
+    private HashMap<String, Product> stringKey = new HashMap<>();;
     private List<Product> allProducts;
 
     public Menu(List<Product> list){
@@ -45,8 +44,6 @@ public class Menu {
 
         Set<String> products = orderString.keySet();
         HashMap<Product,Integer> orderProduct = new HashMap<>();
-        System.out.println(orderString.size());
-        System.out.println(products.size());
 
         for (String e:products) {
             orderProduct.put( stringKey.get(e), (Integer) orderString.get(e));

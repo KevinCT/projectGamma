@@ -28,9 +28,7 @@ public class HostListViewAdapter extends BaseAdapter {
     {
         order = hashMap;
         mKeys = hashMap.keySet().toArray(new Product[hashMap.size()]);
-        for(int i = 0; i < hashMap.size();i++) {
-            System.out.println(mKeys[i].getName());
-        }
+
     }
 
     @Override
@@ -51,6 +49,7 @@ public class HostListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         product = mKeys[position];
+
         if (view == null) {
             result = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.host_cart_list, viewGroup, false);
         }

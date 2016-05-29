@@ -1,7 +1,5 @@
 package pekl.gasqueue.com.gasqueue.model;
 
-import android.util.Log;
-
 import java.util.List;
 
 /**

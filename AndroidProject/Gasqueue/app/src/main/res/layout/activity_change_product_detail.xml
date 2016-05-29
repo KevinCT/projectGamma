@@ -70,6 +70,9 @@
         </LinearLayout>
 
         <Button
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:background="#F44336"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,6 +80,8 @@
             android:id="@+id/saveBtn" />
 
         <Button
+            android:textColor="#ffffff"
+            android:background="#F44336"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -23,9 +23,10 @@ public class Customer {
     private String clientID = Secure.ANDROID_ID;
 
     private Cart cart;
-    public StopWatch timer = new StopWatch();
+    private StopWatch timer = new StopWatch();
 
     public Customer() {
+        queuePosition = 1000;
         cart = new Cart();
     }
 
@@ -89,13 +90,17 @@ public class Customer {
             this.queuePosition--;
     }
 
-    public void setQueuePosition(int queuePosition) {
+    public void setQueuePosition(Integer queuePosition) {
         this.queuePosition = queuePosition;
         System.out.println("Min köposition: " + queuePosition);
     }
 
     public void resetOrder() {
 
+    }
+
+    public StopWatch getTimer() {
+        return timer;
     }
 }
 
