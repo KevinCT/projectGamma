@@ -33,7 +33,6 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
  */
 
 public class ProductDetailActivity extends AppCompatActivity {
-    private Product chosenProduct;
     private TextView nameLabel;
     private TextView priceLabel;
     private TextView totalLabel;
@@ -50,10 +49,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         shoppingController = ShoppingController.getInstance();
         initializeViews();
 
-        amount.setText(shoppingController.getQuantityOfProduct(chosenProduct) + " st in cart");
-        totalLabel.setText(chosenProduct.getPrice() + " kr");
-        nameLabel.setText(chosenProduct.getName());
-        priceLabel.setText("* " + chosenProduct.getPrice() + " kr = ");
+        amount.setText(shoppingController.getQuantityOfProduct(shoppingController.getChosenProduct()) + " st in cart");
+        totalLabel.setText(shoppingController.getChosenProductPrice() + " kr");
+        nameLabel.setText(shoppingController.getChosenProductName());
+        priceLabel.setText("* " + shoppingController.getChosenProductPrice() + " kr = ");
         quantity.setText("1", TextView.BufferType.EDITABLE);
         quantity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -64,7 +63,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence text, int i, int i1, int i2) {
                 if (text.length() > 0) {
                     try {
-                        totalLabel.setText((Integer.parseInt(text.toString()) * chosenProduct.getPrice()) + " kr");
+                        totalLabel.setText((Integer.parseInt(text.toString()) * shoppingController.getChosenProductPrice()) + " kr");
                     } catch (IllegalFormatException l) {
                         System.out.println("ange ett nummer, tack");
                     }
@@ -85,8 +84,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(quantity.length() >0)
                 {
-                    shoppingController.addProductToCart( chosenProduct,Integer.parseInt(quantity.getText().toString()));
-                    amount.setText(shoppingController.getQuantityOfProduct(chosenProduct) + " st in cart");
+                    shoppingController.addProductToCart( shoppingController.getChosenProduct(),Integer.parseInt(quantity.getText().toString()));
+                    amount.setText(shoppingController.getQuantityOfProduct(shoppingController.getChosenProduct()) + " st in cart");
                     /**
                      * customerDB.addToCart(chosenProduct,Integer.parseInt(quantity.getText().toString()));
                      * amount.setText(customerDB.itemAmountInCart(chosenProduct) + " st in cart");
@@ -106,7 +105,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         totalLabel = (TextView) findViewById(R.id.totalLabel);
         quantity = (EditText) findViewById(R.id.quantity);
         amount = (TextView) findViewById(R.id.amountLbl);
-        chosenProduct = shoppingController.getChosenProduct();
         addBtn = (Button) findViewById(R.id.addBtn);
     }
 }

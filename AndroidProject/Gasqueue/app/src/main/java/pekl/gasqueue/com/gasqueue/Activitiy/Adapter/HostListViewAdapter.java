@@ -63,7 +63,7 @@ public class HostListViewAdapter extends BaseAdapter {
         quantityTV = (TextView) result.findViewById(R.id.quantityTV);
         quantityTV.setText(order.get(product).toString() + "");
         totalTV = (TextView) result.findViewById(R.id.totalTV);
-        totalTV.setText(order.get(product)*product.getPrice() + "");
+        totalTV.setText(order.get(product)*product.getPrice() + " kr");
         return result;
     }
 }
