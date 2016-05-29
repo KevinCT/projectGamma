@@ -35,11 +35,6 @@ public class CustomerTest {
         assertEquals(0,customer.getOrder().size(),0);
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void badIndexTest(){
-        System.out.println("Running badIndexTest");
-        customer.getOrder().get(-1);
-    }
     @Test
     public void totalCostTest(){
         System.out.println("Running totalcostTest");
