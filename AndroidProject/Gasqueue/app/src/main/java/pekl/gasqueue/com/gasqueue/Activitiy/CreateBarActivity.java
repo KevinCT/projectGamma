@@ -63,11 +63,9 @@ public class CreateBarActivity extends AppCompatActivity {
 
     }
     private void nextActivity(){
-        Intent temp = new Intent(CreateBarActivity.this,EditCategoryActivity.class);
-        temp.putExtra("barPassword",barPassword);
-        temp.putExtra("customerPassword",customerPassword);
-        temp.putExtra("clientType",true);
-        startActivity(temp);
+        Intent intentActivity = new Intent(CreateBarActivity.this,EditCategoryActivity.class);
+        dataHandler(intentActivity);
+        startActivity(intentActivity);
     }
     private void initListener(){
         createBarBtn.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +79,11 @@ public class CreateBarActivity extends AppCompatActivity {
     private void setPassword(String barPassword, String customerPassword){
         authenticatorController.setBarPassword(barPassword);
         authenticatorController.setCustomerPassword(customerPassword);
+    }
+    private void dataHandler(Intent intentActivity){
+        intentActivity.putExtra("barPassword",barPassword);
+        intentActivity.putExtra("customerPassword",customerPassword);
+        intentActivity.putExtra("clientType",true);
     }
 
 }

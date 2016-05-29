@@ -21,7 +21,7 @@ public class CustomerTest {
     @Test
     public void addItemTest(){
         System.out.println("Running addItemTest");
-        customer.addItem(product1);
+        customer.addItem(product1,1);
         assertEquals(1, customer.getOrder().size(), 0);
 
 
@@ -29,7 +29,7 @@ public class CustomerTest {
     @Test
     public void removeItemTest(){
         System.out.println("Running removeItemTest");
-        customer.addItem(product1);
+        customer.addItem(product1,5);
         assertEquals(1,customer.getOrder().size(),0);
         customer.removeItem(product1);
         assertEquals(0,customer.getOrder().size(),0);
@@ -43,9 +43,9 @@ public class CustomerTest {
     @Test
     public void totalCostTest(){
         System.out.println("Running totalcostTest");
-        customer.addItem(product1);
-        customer.addItem(product2);
+        customer.addItem(product1,2);
+        customer.addItem(product2,1);
         int totalCost =customer.getTotalCost();
-        assertEquals(40,totalCost,0);
+        assertEquals(60,totalCost,0);
     }
 }

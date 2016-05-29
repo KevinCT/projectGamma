@@ -22,7 +22,6 @@ import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
     private CustomerDBController customerDB;
-    private List<Product> productsSameCategory;
     private Map<Button, Product> productButtonMap;
     private ShoppingController shoppingController;
     private GridLayout listLayout;
@@ -30,6 +29,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        shoppingController=new ShoppingController();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         Firebase.setAndroidContext(this);
@@ -78,22 +78,20 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initializeViews()
     {
-        shoppingController = new ShoppingController();
         productButtonMap = new HashMap<>();
         listLayout = (GridLayout) findViewById(R.id.listLayout);
-        productsSameCategory = shoppingController.getProductSameCategory();
         createProductBtn = new Button(this);
     }
 
     private void createProductButton(){
         listLayout.removeAllViews();
-        if (productsSameCategory.size() > 0) {
-            for (int i = 0; i < productsSameCategory.size(); i++) {
+        if (shoppingController.getProductSameCategory().size() > 0) {
+            for (int i = 0; i < shoppingController.getProductSameCategory().size(); i++) {
                 Button button = new Button(this);
-                button.setText(shoppingController.getProductName(productsSameCategory.get(i)));
+                button.setText(shoppingController.getProductName(shoppingController.getProductSameCategory().get(i)));
                 button.setWidth(500);
                 button.setHeight(400);
-                productButtonMap.put(button, productsSameCategory.get(i));
+                productButtonMap.put(button, shoppingController.getProductSameCategory().get(i));
                 button.setOnClickListener(this);
                 listLayout.addView(button);
             }

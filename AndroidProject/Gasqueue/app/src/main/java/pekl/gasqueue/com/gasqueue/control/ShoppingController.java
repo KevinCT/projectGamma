@@ -1,7 +1,5 @@
 package pekl.gasqueue.com.gasqueue.control;
 
-import android.provider.ContactsContract;
-import android.support.v4.media.MediaBrowserCompatUtils;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -24,8 +22,7 @@ import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
  * Created by Kotex on 18/05/2016.
  */
 public class ShoppingController {
-    private List<Product> productsSameCategory;
-    private static Menu menu = new Menu();
+    private static Menu menu;
     private static Product chosenProduct;
     private static Product.Category chosenCategory;
     private List<Product> allProducts;
@@ -39,11 +36,10 @@ public class ShoppingController {
 
     {
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
-        menu=new Menu();
         allProducts= new ArrayList<>();
         cart = new Cart();
-        productsSameCategory=new ArrayList<>();
         initListener();
+
 
 
     }
@@ -142,10 +138,7 @@ public class ShoppingController {
         Product temp = new Product(name,category,price);
         allProducts.add(temp);
     }
-    //code for testing might be removed
-    public Menu getMenu(){
-        return menu;
-        }
+
 
     private void initListener(){
         listener = new ValueChangeListener("https://dazzling-torch-9680.firebaseio.com/Menus") {
@@ -154,15 +147,16 @@ public class ShoppingController {
 
                 for(DataSnapshot menuSnapshot:data.getChildren()){
                     if("1234".equals(menuSnapshot.getKey())){
-                        //allProducts=menuSnapshot.getValue(Menu.class).getProducts();
-                        //Log.v("PRODUCTPLEASE",allProducts.get(0).getName());
                         setProduct(menuSnapshot.getValue(Menu.class).getProducts());
                         break;
                     }
 
                 }
             }
+
+
         };
+
     }
 
 
@@ -173,8 +167,8 @@ public class ShoppingController {
        dbMenuManager.saveMap("Menus",menuMap);
     }
     private void setProduct(List<Product> list){
-        this.allProducts=list;
-        Log.v("WHATTAFUCK",allProducts.get(0).getName());
+        menu= new Menu(list);
+
     }
 
 

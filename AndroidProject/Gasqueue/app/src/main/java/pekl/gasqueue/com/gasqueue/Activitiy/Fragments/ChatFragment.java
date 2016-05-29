@@ -17,10 +17,10 @@ import pekl.gasqueue.com.gasqueue.R;
  * A simple {@link Fragment} subclass.
  */
 public class ChatFragment extends Fragment {
-    Intent intentActivity;
-    Button confirmationBtn;
-    EditText nameInput;
-    View view;
+    private Intent intentActivity;
+    private Button confirmationBtn;
+    private EditText nameInput;
+    private View view;
 
 
     public ChatFragment() {
