@@ -113,7 +113,7 @@ public class CustomerDBController {
             @Override
             public void dataChanged(DataSnapshot data) {
                 if (customer.isOrderSent()) {
-                    if (!(customer.getQueuePosition() == 0) || customer.getQueuePosition() == null) { //Or 0?
+                    if ((customer.getQueuePosition() != 0) || (data.getValue(Integer.class) != null)) { //Or 0?
                         customer.setQueuePosition(queueNumber - data.getValue(Integer.class));
                     } else {
                         //Your turn to be served, send notifications etc.
