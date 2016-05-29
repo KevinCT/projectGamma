@@ -20,7 +20,7 @@ public class Customer {
     private boolean orderSent;
     private Integer queuePosition; //change this back to nothing after test
     private boolean banned = false;
-    private String clientID = "fdhdh";
+    private String clientID = Secure.ANDROID_ID;
 
     private Cart cart;
     private StopWatch timer = new StopWatch();
@@ -97,6 +97,10 @@ public class Customer {
 
     public void resetOrder() {
 
+    }
+
+    public StopWatch getTimer() {
+        return timer;
     }
 }
 

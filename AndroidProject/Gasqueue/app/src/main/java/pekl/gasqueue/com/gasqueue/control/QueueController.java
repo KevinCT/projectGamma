@@ -22,7 +22,7 @@ public class QueueController {
     }
 
     public boolean isCustomerServed(Customer customer) {
-        return customer.timer.isRunning() == true;
+        return customer.getTimer().isRunning() == true;
     }
 
     public void pushQueue(){
@@ -36,13 +36,13 @@ public class QueueController {
     }
 
     public void nextCustomer(Customer customer){
-        if(customer.timer.isRunning() == true){
+        if(customer.getTimer().isRunning() == true){
             System.out.println("There is already an order waiting to be picked up!");
         }
         else {
             try {
                 System.out.println(queue.dequeue().toString() + ", please pick up your drink in 60 seconds.");
-                customer.timer.runTimer();
+                customer.getTimer().runTimer();
             } catch (IndexOutOfBoundsException noGuests) {
                 System.out.println("There are no guests in the current queue.");
             }
@@ -54,7 +54,7 @@ public class QueueController {
     public void cancelGuest(Customer customer){
         try{
             System.out.println(queue.deletedGuest.toString()+"'s order was cancelled!");
-            customer.timer.cancelTimer();
+            customer.getTimer().cancelTimer();
             queue.resetDeletedCustomer();
         } catch (NullPointerException noOrder){
             System.out.println("There is nothing to cancel.");
