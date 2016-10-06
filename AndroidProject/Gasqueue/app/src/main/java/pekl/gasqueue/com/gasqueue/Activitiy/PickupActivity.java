@@ -1,26 +1,22 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
-import pekl.gasqueue.com.gasqueue.model.Cart;
-import pekl.gasqueue.com.gasqueue.model.StopWatch;
-import pekl.gasqueue.com.gasqueue.service.ChildChangeListener;
-import pekl.gasqueue.com.gasqueue.service.IChildChangeListener;
-import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
-import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+
+import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
+import pekl.gasqueue.com.gasqueue.Activitiy.MainActivity;
+import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.control.CustomerDBController;
+import pekl.gasqueue.com.gasqueue.model.StopWatch;
+import pekl.gasqueue.com.gasqueue.service.IValueChangeListener;
+import pekl.gasqueue.com.gasqueue.service.ValueChangeListener;
 
 /**
  * Created by Eric on 5/11/2016.
@@ -62,69 +58,69 @@ public class PickupActivity extends AppCompatActivity {
         statusView.setText("Your current position");
 
         /**
-        try{
-            pos = cdbc.getQueuePosition();
-            System.out.println(pos.toString() + " wolowolowolowolo");
-            updateView(pos);
-        }catch(NullPointerException e){
-              System.out.println("Error");
+         try{
+         pos = cdbc.getQueuePosition();
+         System.out.println(pos.toString() + " wolowolowolowolo");
+         updateView(pos);
+         }catch(NullPointerException e){
+         System.out.println("Error");
+         }
+         //positionView.setText(pos.toString() + "");
+
+         assert cancelButton != null;
+         cancelButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        //qc.queue.removeItem(customer);
+        final AlertDialog.Builder okaybruh = new AlertDialog.Builder(context);
+        okaybruh.setMessage("Your order has been canceled.");
+        okaybruh.setCancelable(true);
+        okaybruh.setPositiveButton(
+        "Thanks!",
+        new DialogInterface.OnClickListener(){
+        public void onClick(DialogInterface dialog, int id){
+        dialog.cancel();
+        backToMain();
         }
-        //positionView.setText(pos.toString() + "");
-
-        assert cancelButton != null;
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //qc.queue.removeItem(customer);
-                final AlertDialog.Builder okaybruh = new AlertDialog.Builder(context);
-                okaybruh.setMessage("Your order has been canceled.");
-                okaybruh.setCancelable(true);
-                okaybruh.setPositiveButton(
-                        "Thanks!",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
-                                dialog.cancel();
-                                backToMain();
-                            }
-                        });
-
-                AlertDialog.Builder areYouSure = new AlertDialog.Builder(context);
-                areYouSure.setMessage("Are you sure you want to cancel your current order?");
-                areYouSure.setCancelable(true);
-                areYouSure.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int id){
-                                dialog.cancel();
-                                cart.clearCar();// <-empties your cart and removes order form queue
-                                cdbc.cancelOrder();
-                                AlertDialog bruh = okaybruh.create();
-                                bruh.show();
-                                }
-                        });
-                areYouSure.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = areYouSure.create();
-                alert.show();
-                }
         });
 
-        assert viewOrderButton != null;
-        viewOrderButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                pos--; //IM GONNA FIX THIS BRUHHHH -shao
-                updateView(pos);
-                checkPosition();
-            }
+        AlertDialog.Builder areYouSure = new AlertDialog.Builder(context);
+        areYouSure.setMessage("Are you sure you want to cancel your current order?");
+        areYouSure.setCancelable(true);
+        areYouSure.setPositiveButton(
+        "Yes",
+        new DialogInterface.OnClickListener(){
+        public void onClick(DialogInterface dialog, int id){
+        dialog.cancel();
+        cart.clearCar();// <-empties your cart and removes order form queue
+        cdbc.cancelOrder();
+        AlertDialog bruh = okaybruh.create();
+        bruh.show();
+        }
         });
-        */
+        areYouSure.setNegativeButton(
+        "No",
+        new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int id) {
+        dialog.cancel();
+        }
+        });
+        AlertDialog alert = areYouSure.create();
+        alert.show();
+        }
+        });
+
+         assert viewOrderButton != null;
+         viewOrderButton.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+        pos--; //IM GONNA FIX THIS BRUHHHH -shao
+        updateView(pos);
+        checkPosition();
+        }
+        });
+         */
     }
 
     public void backToMain(){

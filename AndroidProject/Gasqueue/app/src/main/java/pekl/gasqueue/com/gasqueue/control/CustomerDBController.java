@@ -24,7 +24,7 @@ public class CustomerDBController {
     private Customer customer;
     private IDatabaseManager dbManagerCustomer;
     private Integer queueNumber;
-    private static String reference = "https://dazzling-torch-9680.firebaseio.com/";
+    private static String reference = "https://blinding-heat-4643.firebaseio.com/";
 
     private CustomerDBController(String databaseReference) {
         dbManagerCustomer = new FirebaseDatabaseManager(databaseReference); //Firebase ska ej vara här...

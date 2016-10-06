@@ -1,21 +1,21 @@
 package pekl.gasqueue.com.gasqueue.Activitiy;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.ListView;
+        import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Set;
+        import java.util.HashMap;
+        import java.util.Set;
 
-import pekl.gasqueue.com.gasqueue.Adapter.HostListViewAdapter;
-import pekl.gasqueue.com.gasqueue.R;
-import pekl.gasqueue.com.gasqueue.control.BarDBController;
-import pekl.gasqueue.com.gasqueue.control.QueueController;
-import pekl.gasqueue.com.gasqueue.model.Product;
-import pekl.gasqueue.com.gasqueue.model.StopWatch;
+        import pekl.gasqueue.com.gasqueue.Adapter.HostListViewAdapter;
+        import pekl.gasqueue.com.gasqueue.R;
+        import pekl.gasqueue.com.gasqueue.control.BarDBController;
+        import pekl.gasqueue.com.gasqueue.control.QueueController;
+        import pekl.gasqueue.com.gasqueue.model.Product;
+        import pekl.gasqueue.com.gasqueue.model.StopWatch;
 
 
 /**
@@ -68,7 +68,7 @@ public class HostActivity extends AppCompatActivity {
 
                 }
             }
-                
+
         });
 
     }
@@ -138,4 +138,5 @@ public class HostActivity extends AppCompatActivity {
         return total;
     }
 }
+
 

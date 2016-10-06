@@ -60,7 +60,7 @@ public class QueueControllerTest {
         Customer customer = new Customer();
         QueueController qc5 = new QueueController();
         qc5.nextCustomer(customer);
-        
+
     }
 
     @Test
