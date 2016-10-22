@@ -21,7 +21,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView totalTV;
     private CustomerDBController customerDB = CustomerDBController.getInstance();
     private Button orderButton;
-
+    private Button refreshButton;
 
     public CartActivity() {
     }
@@ -44,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
         adapter = new HashMapAdapter();
         totalTV = (TextView) findViewById(R.id.totalTV);
         orderButton = (Button) findViewById(R.id.orderButton);
+        refreshButton = (Button) findViewById(R.id.refreshButton);
     }
     protected void onStart() {
         super.onStart();
@@ -57,6 +58,15 @@ public class CartActivity extends AppCompatActivity {
                 Intent activity = new Intent(getApplicationContext(),PickupActivity.class);
                 startActivity(activity);
             }
+        });
+
+        refreshButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                totalTV.setText(shoppingController.getTotalOfCart() + " kr");
+            }
+
+
         });
     }
 

@@ -1,5 +1,7 @@
 package pekl.gasqueue.com.gasqueue.control;
 
+import android.content.Context;
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 
@@ -26,7 +28,7 @@ public class ShoppingController {
     private Product chosenProduct;
     private Product.Category chosenCategory;
     private List<Product> allProducts;
-    private Cart cart;
+    private Cart cart = new Cart();
     private boolean isBartender = false;
     private boolean isCreatingProduct;
     private IValueChangeListener listener;
@@ -34,9 +36,10 @@ public class ShoppingController {
     private List<HashMap> productHashmap;
 
     private ShoppingController() {
+
         dbMenuManager = new FirebaseDatabaseManager("https://dazzling-torch-9680.firebaseio.com/");
         allProducts= new ArrayList<>();
-        cart = new Cart();
+
         productHashmap=new ArrayList<>();
         initListener();
     }

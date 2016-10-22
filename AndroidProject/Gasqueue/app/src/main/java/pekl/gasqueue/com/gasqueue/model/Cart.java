@@ -1,7 +1,12 @@
 package pekl.gasqueue.com.gasqueue.model;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.util.HashMap;
 import java.util.Set;
+
+import pekl.gasqueue.com.gasqueue.Activitiy.CartActivity;
 
 /**
  * Created by Kotex on 09/05/2016.
@@ -13,6 +18,7 @@ import java.util.Set;
 public class Cart {
     private static HashMap<Product,Integer> cart;
     private int total;
+
 
     public Cart()
     {
@@ -59,6 +65,7 @@ public class Cart {
         if(cart.containsKey(product))
         {
             total = total - product.getPrice()*cart.get(product);
+            //updateTotal
             cart.remove(product);
         }
     }
@@ -83,4 +90,5 @@ public class Cart {
     {
         cart.clear();
     }
+
 }

@@ -45,6 +45,7 @@ public class HashMapAdapter extends BaseAdapter {
         return i;
     }
 
+
     @Override
     public View getView(int position, View view,ViewGroup viewGroup) {
         temp = mKeys[position];
@@ -61,6 +62,13 @@ public class HashMapAdapter extends BaseAdapter {
         quantity.setText(tempCart.getQuantityOfProduct(temp) + "");
         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
         ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
+
+        for(int i = 0; i<tempCart.getCart().size();i++){
+        //make some logic that sets the "quantity" and "totalLbl" apart from reach other
+            // right now, the code makes it so that all of the products have the same "quantity" and "totallbl"
+            //give each one of the products their own variable that they keep track of
+            //use a similar thing from MeetAsweedt to keep track of each thing like MatchesBlock
+        }
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
