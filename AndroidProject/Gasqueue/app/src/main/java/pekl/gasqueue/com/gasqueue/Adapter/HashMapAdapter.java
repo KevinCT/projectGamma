@@ -10,6 +10,7 @@ import android.widget.TextView;
 import pekl.gasqueue.com.gasqueue.control.ShoppingController;
 import pekl.gasqueue.com.gasqueue.model.Product;
 import pekl.gasqueue.com.gasqueue.R;
+import pekl.gasqueue.com.gasqueue.model.productBlock;
 
 /**
  * Created by Kotex on 16/05/2016.
@@ -64,10 +65,13 @@ public class HashMapAdapter extends BaseAdapter {
         ((TextView) result.findViewById(R.id.nameLbl)).setText(temp.getName());
 
         for(int i = 0; i<tempCart.getCart().size();i++){
-        //make some logic that sets the "quantity" and "totalLbl" apart from reach other
+        //make some logic that sets the "quantity" and "totalLbl" apart from each other
             // right now, the code makes it so that all of the products have the same "quantity" and "totallbl"
             //give each one of the products their own variable that they keep track of
             //use a similar thing from MeetAsweedt to keep track of each thing like MatchesBlock
+
+            //productBlock p1 = new productBlock()
+
         }
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -76,6 +80,7 @@ public class HashMapAdapter extends BaseAdapter {
                 switch(view.getId())
                 {
                     case R.id.incBtn:
+
                         tempCart.incQuantity(temp);
                         quantity.setText("" + tempCart.getQuantityOfProduct(temp));
                         totalLbl.setText(tempCart.getTotalOfProduct(temp) + " kr");
